@@ -6,18 +6,21 @@ using UnityEngine.Android;
 
 public class GPSLocation : MonoBehaviour
 {
-    public float latitude;
-    public float longitude;
+    public static GPSLocation Instance { set; get; }
 
-    public Text gpsText;
+    public float selfLatitude;
+    public float selfLongitude;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Entered");
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         if (Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
-            if (Input.location.isEnabledByUser) StartCoroutine(GetLocation());
+            if (Input.location.isEnabledByUser) StartCoroutine(StartLocationService());
         }
         else Permission.RequestUserPermission(Permission.FineLocation);
     }
@@ -25,25 +28,46 @@ public class GPSLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateCoordinates();
-        gpsText.text = "Lat: " + latitude + "\nLon: " + longitude;
-        Debug.Log("Lat: " + latitude + "\nLon: " + longitude);
+
     }
 
-    private IEnumerator GetLocation()
+    private IEnumerator StartLocationService()
     {
-        Input.location.Start(1f, 0.5f);
-        while(Input.location.status == LocationServiceStatus.Initializing)
+        if(!Input.location.isEnabledByUser)
         {
-            yield return new WaitForSeconds(0.5f);
+            Debug.LogError("GPS is not enabled");
+            yield break;
         }
+
+        Input.location.Start(5f, 5f);
+        int waitCounter = 20;
+
+
+        while(Input.location.status == LocationServiceStatus.Initializing && waitCounter > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            waitCounter--;
+        }
+
+        if(waitCounter <= 0)
+        {
+            Debug.LogError("Location Service Initialization Timed Out");
+            yield break;
+        }
+
+        if(Input.location.status == LocationServiceStatus.Failed)
+        {
+            Debug.LogError("Location Service Initialization Failed");
+            yield break;
+        }
+
         updateCoordinates();
         yield break;
     }
 
     private void updateCoordinates()
     {
-        latitude = Input.location.lastData.latitude;
-        longitude = Input.location.lastData.longitude;
+        selfLatitude = Input.location.lastData.latitude;
+        selfLongitude = Input.location.lastData.longitude;
     }
 }
