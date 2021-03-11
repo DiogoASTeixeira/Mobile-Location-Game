@@ -11,6 +11,8 @@ public class GPSLocation : MonoBehaviour
     public float selfLatitude;
     public float selfLongitude;
 
+    private bool locationServiceStarted = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,10 @@ public class GPSLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (locationServiceStarted)
+        {
+            UpdateCoordinates();
+        }
     }
 
     private IEnumerator StartLocationService()
@@ -61,11 +66,13 @@ public class GPSLocation : MonoBehaviour
             yield break;
         }
 
-        updateCoordinates();
+        locationServiceStarted = true;
+
+        UpdateCoordinates();
         yield break;
     }
 
-    private void updateCoordinates()
+    private void UpdateCoordinates()
     {
         selfLatitude = Input.location.lastData.latitude;
         selfLongitude = Input.location.lastData.longitude;

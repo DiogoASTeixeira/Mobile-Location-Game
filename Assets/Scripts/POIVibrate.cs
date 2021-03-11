@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class POIVibrate : MonoBehaviour
 {
+    private static readonly float POI_PROXIMITY_RADIUS = 20.0f;
+
     private POICoords homeGarden;
+    private POICoords workdesk;
+    public static bool hasVibrated = false;
+
+    private UnityAndroidVibrator androidVibrator;
 
     public readonly struct POICoords
     {
@@ -42,13 +48,31 @@ public class POIVibrate : MonoBehaviour
     void Start()
     {
         homeGarden = new POICoords(41.1234329f, -8.6548297f);
+        workdesk = new POICoords(41.12326f, -8.654498f);
+        androidVibrator = gameObject.AddComponent<UnityAndroidVibrator>();
     }
 
     void Update()
     {
-        if (homeGarden.calculateDistance(GPSLocation.Instance.selfLatitude, GPSLocation.Instance.selfLongitude) < 10)
+        if (!hasVibrated)
         {
-            Handheld.Vibrate();
+            // is in range and hasn't vibrated
+            if (homeGarden.calculateDistance(GPSLocation.Instance.selfLatitude, GPSLocation.Instance.selfLongitude) < POI_PROXIMITY_RADIUS)
+            {
+                hasVibrated = true;
+                if (Application.platform == RuntimePlatform.Android)
+                    UnityAndroidVibrator.VibrateForGivenDuration(200);
+                else
+                    Handheld.Vibrate();
+            }
+        }
+        else
+        {
+            // has Vibrated but left range
+            if (homeGarden.calculateDistance(GPSLocation.Instance.selfLatitude, GPSLocation.Instance.selfLongitude) > POI_PROXIMITY_RADIUS)
+            {
+                hasVibrated = false;
+            }
         }
     }
 }
