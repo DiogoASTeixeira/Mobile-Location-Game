@@ -12,6 +12,7 @@ public class UpdateGPSText : MonoBehaviour
     void Update()
     {
         coordinates.text = "Lat: " + GPSLocation.Instance.selfLatitude.ToString() + "\nLon: " + GPSLocation.Instance.selfLongitude.ToString();
-        inRange.text = (POIVibrate.hasVibrated ? "In Range" : "Too Far");
+        // inRange.text = (GPSLocation.Instance.hasVibrated ? "In Range" : "Too Far");
+        inRange.text = GPSLocation.Instance.distance.ToString();
     }
 }
