@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.ptc.vuforia.engine": {
+      "version": "git+https://git-packages.developer.vuforia.com#9.8.5",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "2aa4b218a1eefc116d8bef718e26f3a08d2e5f02"
+    },
     "com.unity.collab-proxy": {
       "version": "1.2.16",
       "depth": 0,

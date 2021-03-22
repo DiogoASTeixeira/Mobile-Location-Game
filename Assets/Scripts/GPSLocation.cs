@@ -12,6 +12,7 @@ public class GPSLocation : MonoBehaviour
 
     public float selfLatitude;
     public float selfLongitude;
+    public float selfAccuracy;
     public bool hasVibrated = false;
     public float distance = POI_PROXIMITY_RADIUS + 1.0f;
 
@@ -49,6 +50,7 @@ public class GPSLocation : MonoBehaviour
         }
     }
 
+    private LocationService location;
     private POICoords homeGarden;
     public Text debug;
     public Text vibrateDebug;
@@ -61,11 +63,13 @@ public class GPSLocation : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        homeGarden = new POICoords(41.12325f, -8.654491f);
+        location = Input.location;
+
+        homeGarden = new POICoords(41.12348871036983f, -8.654655184410982f);
 
         if (Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
-            if (Input.location.isEnabledByUser) StartCoroutine(StartLocationService());
+            if (location.isEnabledByUser) StartCoroutine(StartLocationService());
         }
         else Permission.RequestUserPermission(Permission.FineLocation);
     }
@@ -84,19 +88,19 @@ public class GPSLocation : MonoBehaviour
 
     private IEnumerator StartLocationService()
     {
-        if(!Input.location.isEnabledByUser)
+        if (!location.isEnabledByUser)
         {
             Debug.LogError("GPS is not enabled");
             yield break;
         }
 
-        Input.location.Start(5f, 5f);
+        location.Start(5f, 1f);
         int waitCounter = 20;
 
 
-        while(Input.location.status == LocationServiceStatus.Initializing && waitCounter > 0)
+        while(location.status != LocationServiceStatus.Running && waitCounter > 0)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsRealtime(1f);
             waitCounter--;
         }
 
@@ -106,7 +110,7 @@ public class GPSLocation : MonoBehaviour
             yield break;
         }
 
-        if(Input.location.status == LocationServiceStatus.Failed)
+        if(location.status == LocationServiceStatus.Failed)
         {
             Debug.LogError("Location Service Initialization Failed");
             yield break;
@@ -124,8 +128,9 @@ public class GPSLocation : MonoBehaviour
         while (true)
         {
             debug.text = "In";
-            selfLatitude = Input.location.lastData.latitude;
-            selfLongitude = Input.location.lastData.longitude;
+            selfLatitude = location.lastData.latitude;
+            selfLongitude = location.lastData.longitude;
+            selfAccuracy= location.lastData.horizontalAccuracy;
             yield return new WaitForSeconds(1.0f);
             debug.text = "Out";
             yield return new WaitForSeconds(1.0f);

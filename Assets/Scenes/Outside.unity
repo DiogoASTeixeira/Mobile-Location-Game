@@ -697,6 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfLatitude: 0
   selfLongitude: 0
+  selfAccuracy: 0
   hasVibrated: 0
   distance: 11
   debug: {fileID: 676708434}
@@ -749,8 +750,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 553}
-  m_SizeDelta: {x: 520.5116, y: 150.43549}
+  m_AnchoredPosition: {x: 0, y: 460.7}
+  m_SizeDelta: {x: 520.5116, y: 335.0808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007228153
 MonoBehaviour:
