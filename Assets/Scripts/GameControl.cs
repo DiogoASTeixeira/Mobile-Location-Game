@@ -31,7 +31,7 @@ public class GameControl : MonoBehaviour
 
 public class Leaves
 {
-    private const int NUMBER_OF_LEAVES = 2;
+    public const int NUMBER_OF_LEAVES = 2;
     private readonly bool[] Found;
     public Leaves()
     {
