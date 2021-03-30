@@ -50,4 +50,15 @@ public class Leaves
         for (int i = 0; i < NUMBER_OF_LEAVES; i++)
             Debug.Log("Leaf " + i + " : " + Found[i]);
     }
+
+    public int getNumberFoundLeaves()
+    {
+        int n = 0;
+        foreach(bool leaf in Found)
+        {
+            if (leaf) n++;
+        }
+        return n;
+    }
+    public bool[] GetFoundLeaves() { return Found; }
 }
