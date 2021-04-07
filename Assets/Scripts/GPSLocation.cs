@@ -76,14 +76,10 @@ public class GPSLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UnityAndroidVibrator.VibrateForGivenDuration(200);
-
         if (locationServiceStarted)
         {
             CheckVibrateFlag();
         }
-
-
     }
 
     private IEnumerator StartLocationService()
@@ -147,10 +143,7 @@ public class GPSLocation : MonoBehaviour
                 // is in range and hasn't vibrated
                 hasVibrated = true;
                 vibrateDebug.text = "VIBRATE ON";
-                //if (Application.platform == RuntimePlatform.Android)
-                 //   UnityAndroidVibrator.VibrateForGivenDuration(200);
-                //else
-                    Handheld.Vibrate();
+                Handheld.Vibrate();
             }
         }
         else

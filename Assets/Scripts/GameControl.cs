@@ -40,16 +40,9 @@ public class GameControl : MonoBehaviour
     {
         Leaves = new Leaf[leafStruct.Length];
 
-        int i = 0;
-        Debug.Log(Leaves[i]);
-        Debug.Log(leafStruct[i]);
-
-        for ( i = 0; i < leafStruct.Length; i++)
+        for ( int i = 0; i < leafStruct.Length; i++)
         {
             Leaves[i] = new Leaf(leafStruct[i].treeCoordinates);
-            Debug.Log(Leaves[i]);
-            Debug.Log(leafStruct[i]);
-            DontDestroyOnLoad(Leaves[i].gameObject);
         }
     }
 
@@ -58,8 +51,6 @@ public class GameControl : MonoBehaviour
         int n = 0;
         for(int i = 0; i < Leaves.Length; i++)
         {
-            Debug.Log(Leaves[i]);
-            Debug.Log(i);
             if (Leaves[i].IsLeafFound()) n++;
         }
         return n;

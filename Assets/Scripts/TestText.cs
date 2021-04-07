@@ -14,6 +14,6 @@ public class TestText : MonoBehaviour
 
     void Update()
     {
-        leaf.text = "Leaves Found: " + GameControl.control.Leaves.Length.ToString();
+        leaf.text = GameControl.control.NumberOfFoundLeaves() + ": " + GameControl.control.Leaves.Length.ToString();
     }
 }

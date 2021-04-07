@@ -28,13 +28,12 @@ public class InsideSceneBehaviour : MonoBehaviour
     private void Update()
     {
         // TODO Detect if BTlocation is correct (is in leaf exposition)
-        bool a = leafDetected == leafSelected;  // && IsLeafOnScreenCenter(leafDetected);
-        if (a)
+        if (leafDetected == leafSelected && IsLeafOnScreenCenter(leafDetected))
         {
             text.text = "Here";
-            UpdateLeafFoundTicks(leafDetected);
+            UpdateLeafFoundTicks(leafSelected);
             OpenLeafMenu();
-            GameControl.control.Leaves[leafDetected].FoundLeaf();
+            GameControl.control.Leaves[leafSelected].FoundLeaf();
         }
     }
 

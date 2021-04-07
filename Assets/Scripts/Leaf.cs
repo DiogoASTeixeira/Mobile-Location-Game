@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Leaf : MonoBehaviour
+public class Leaf
 {
     private Vector2 treeCoordinates;
     private bool foundInside = false;
@@ -13,8 +13,6 @@ public class Leaf : MonoBehaviour
     public struct LeafStruct
     {
         public Vector2 treeCoordinates;
-        //public bool foundInside;
-        //public bool foundOutside;
 
         override public string ToString()
         {
