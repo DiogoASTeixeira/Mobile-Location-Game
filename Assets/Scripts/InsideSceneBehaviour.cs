@@ -7,31 +7,34 @@ using Vuforia;
 public class InsideSceneBehaviour : MonoBehaviour
 {
     public Camera camera;
-    public GameObject leafPanel, menuBtn;
+    public GameObject leafPanel, cameraPanel;
+    public UnityEngine.UI.Text text;
     public UnityEngine.UI.Image halfLeafImage;
     public LeavesInfo[] leavesInfo;
 
     private int leafSelected;
     private int leafDetected = -1;
 
-    public Leaves leaves;
+    [HideInInspector]
+    public Leaf[] leaves;
 
     private void Start()
     {
-        leaves = GameControl.control.Leaves;
+        //leaves = GameControl.control.Leaves;
         SetAllTicksFalse();
+        OpenLeafMenu();
     }
 
     private void Update()
     {
         // TODO Detect if BTlocation is correct (is in leaf exposition)
-
-        if(leafDetected == leafSelected && IsLeafOnScreenCenter(leafDetected))
+        bool a = leafDetected == leafSelected;  // && IsLeafOnScreenCenter(leafDetected);
+        if (a)
         {
-            leaves.SetFoundLeaf(leafDetected);
+            text.text = "Here";
             UpdateLeafFoundTicks(leafDetected);
-            leaves.DebugPrint();
             OpenLeafMenu();
+            GameControl.control.Leaves[leafDetected].FoundLeaf();
         }
     }
 
@@ -46,20 +49,25 @@ public class InsideSceneBehaviour : MonoBehaviour
 
     public void SelectedLeaf(int leafSelected)
     {
-        camera.gameObject.SetActive(true);
-        leafPanel.SetActive(false);
-        menuBtn.SetActive(true);
+        CloseLeafMenu();
         this.leafSelected = leafSelected;
         halfLeafImage.sprite = leavesInfo[this.leafSelected].halfLeaf;
-        halfLeafImage.enabled = true;
     }
 
     public void OpenLeafMenu()
     {
         camera.gameObject.SetActive(false);
         leafPanel.SetActive(true);
-        menuBtn.SetActive(false);
+        cameraPanel.SetActive(false);
         halfLeafImage.enabled = false;
+    }
+
+    public void CloseLeafMenu()
+    {
+        camera.gameObject.SetActive(true);
+        leafPanel.SetActive(false);
+        cameraPanel.SetActive(true);
+        halfLeafImage.enabled = true;
     }
 
     private void UpdateLeafFoundTicks(int leafNumber)
@@ -85,8 +93,9 @@ public class InsideSceneBehaviour : MonoBehaviour
         Debug.Log("Y: " + screenPos.y);
         Debug.LogWarning(fifthX * 2);
         Debug.LogWarning(fifthY * 2);
-        return fifthX * 2 < screenPos.x && screenPos.x < fifthX * 3
+        bool a = fifthX * 2 < screenPos.x && screenPos.x < fifthX * 3
             && fifthY * 2 < screenPos.y && screenPos.y < fifthY * 3;
+        return a;
     }
 
 

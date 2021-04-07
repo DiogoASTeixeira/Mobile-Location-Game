@@ -4,16 +4,19 @@ public class GameControl : MonoBehaviour
 {
     // Static Reference
     public static GameControl control;
-    public Leaves Leaves;
 
     // data to persist between scenes
+    public Leaf[] Leaves;
+    public string words;
+    public int nLeaves;
 
+
+    //Leaf Struct to allow settings values in Unity Editor
+    public Leaf.LeafStruct[] leafStruct;
     private void Awake()
     {
         //Let the gameobject persist over the scenes
         DontDestroyOnLoad(gameObject);
-
-        Leaves = new Leaves();
 
         //Check if the control instance is null
         if (control == null)
@@ -27,38 +30,38 @@ public class GameControl : MonoBehaviour
             Destroy(gameObject);
         }
     }
-}
 
-public class Leaves
-{
-    public const int NUMBER_OF_LEAVES = 2;
-    private readonly bool[] Found;
-    public Leaves()
+     void Start()
     {
-        Found = new bool[NUMBER_OF_LEAVES];
-        for (int i = 0; i < NUMBER_OF_LEAVES; i++)
-            Found[i] = false;
+        CreateLeaves();
     }
 
-    public void SetFoundLeaf(int leafNumber)
+    private void CreateLeaves()
     {
-        Found[leafNumber] = true;
+        Leaves = new Leaf[leafStruct.Length];
+
+        int i = 0;
+        Debug.Log(Leaves[i]);
+        Debug.Log(leafStruct[i]);
+
+        for ( i = 0; i < leafStruct.Length; i++)
+        {
+            Leaves[i] = new Leaf(leafStruct[i].treeCoordinates);
+            Debug.Log(Leaves[i]);
+            Debug.Log(leafStruct[i]);
+            DontDestroyOnLoad(Leaves[i].gameObject);
+        }
     }
 
-    public void DebugPrint()
-    {
-        for (int i = 0; i < NUMBER_OF_LEAVES; i++)
-            Debug.Log("Leaf " + i + " : " + Found[i]);
-    }
-
-    public int getNumberFoundLeaves()
+    public int NumberOfFoundLeaves()
     {
         int n = 0;
-        foreach(bool leaf in Found)
+        for(int i = 0; i < Leaves.Length; i++)
         {
-            if (leaf) n++;
+            Debug.Log(Leaves[i]);
+            Debug.Log(i);
+            if (Leaves[i].IsLeafFound()) n++;
         }
         return n;
     }
-    public bool[] GetFoundLeaves() { return Found; }
 }

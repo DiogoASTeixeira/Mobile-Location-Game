@@ -54,9 +54,6 @@ public class GPSLocation : MonoBehaviour
     private POICoords homeGarden;
     public Text debug;
     public Text vibrateDebug;
-    public Text LeavesFoundText;
-
-
 
     void Start()
     {
@@ -74,13 +71,6 @@ public class GPSLocation : MonoBehaviour
         }
         else Permission.RequestUserPermission(Permission.FineLocation);
         
-        int nLeavesFound = 0;
-        foreach( bool found in GameControl.control.Leaves.GetFoundLeaves())
-        {
-            if (found) nLeavesFound++;
-        }
-
-        LeavesFoundText.text = "Leaves Found: " + nLeavesFound;
     }
 
     // Update is called once per frame

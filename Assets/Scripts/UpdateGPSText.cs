@@ -18,9 +18,13 @@ public class UpdateGPSText : MonoBehaviour
 
     void Update()
     {
-        coordinates.text = "Lat: " + gps.selfLatitude.ToString() + "\nLon: " + gps.selfLongitude.ToString() + "\nAcc: " + gps.selfAccuracy.ToString();
+        //coordinates.text = "Lat: " + gps.selfLatitude.ToString() + "\nLon: " + gps.selfLongitude.ToString() + "\nAcc: " + gps.selfAccuracy.ToString();
         // inRange.text = (GPSLocation.Instance.hasVibrated ? "In Range" : "Too Far");
-        inRange.text = gps.distance.ToString();
-        leaf.text = "Leaves Found: " + GameControl.control.Leaves.getNumberFoundLeaves();
+        //inRange.text = gps.distance.ToString();
+        string a = "Why" + GameControl.control.Leaves.Length.ToString();
+        coordinates.text = a;
+
+        a = "Leaves Found: " + GameControl.control.NumberOfFoundLeaves();
+        leaf.text = a;
     }
 }

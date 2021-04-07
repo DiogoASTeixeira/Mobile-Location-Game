@@ -43,4 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd224ec6defd7443be5e51de1da4b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 0
+  Leaves: []
+  leafStruct:
+  - treeCoordinates: {x: 0, y: 0}
+  - treeCoordinates: {x: 0, y: 0}
