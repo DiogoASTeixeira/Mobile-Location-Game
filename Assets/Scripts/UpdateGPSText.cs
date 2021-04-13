@@ -23,13 +23,16 @@ public class UpdateGPSText : MonoBehaviour
             {
                 if(gps.ActiveNotification != gps.previousNotification) // new tree in Range
                 {
-                    gps.previousNotification = gps.ActiveNotification;
                     LeafName.text = "Tree Nearby: " + GameControl.control.Leaves[gps.ActiveNotification].speciesName;
+                    Handheld.Vibrate();
                     //TODO maybe put image of the leaf
                 }
             }
-            
-
+            else
+            {
+                LeafName.text = "No undiscovered trees nearby";
+            }
+            gps.previousNotification = gps.ActiveNotification;
         }
         else gps = GPSLocation.Instance;
     }
