@@ -6,25 +6,31 @@ using UnityEngine.UI;
 public class UpdateGPSText : MonoBehaviour
 {
     public Text coordinates;
-    public Text inRange;
+    public Text LeafName;
     private GPSLocation gps;
-    public Text leaf;
-
-    // Update is called once per frame
-    private void Start()
-    {
-        gps = GPSLocation.Instance;
-    }
 
     void Update()
     {
-        //coordinates.text = "Lat: " + gps.selfLatitude.ToString() + "\nLon: " + gps.selfLongitude.ToString() + "\nAcc: " + gps.selfAccuracy.ToString();
-        // inRange.text = (GPSLocation.Instance.hasVibrated ? "In Range" : "Too Far");
-        //inRange.text = gps.distance.ToString();
-        string a = "Why" + GameControl.control.Leaves.Length.ToString();
-        coordinates.text = a;
+        if (gps != null)
+        {
+            coordinates.text =
+                "Lat: " + gps.selfLatitude.ToString() +
+                "\nLon: " + gps.selfLongitude.ToString() +
+                "\nAcc: " + gps.selfAccuracy.ToString();
 
-        a = "Leaves Found: " + GameControl.control.NumberOfFoundLeaves();
-        leaf.text = a;
+
+            if(gps.ActiveNotification != -1)
+            {
+                if(gps.ActiveNotification != gps.previousNotification) // new tree in Range
+                {
+                    gps.previousNotification = gps.ActiveNotification;
+                    LeafName.text = "Tree Nearby: " + GameControl.control.Leaves[gps.ActiveNotification].speciesName;
+                    //TODO maybe put image of the leaf
+                }
+            }
+            
+
+        }
+        else gps = GPSLocation.Instance;
     }
 }

@@ -8,69 +8,33 @@ using System;
 public class GPSLocation : MonoBehaviour
 {
     public static GPSLocation Instance { set; get; }
+    private Leaf[] leaves;
     private static readonly float POI_PROXIMITY_RADIUS = 10.0f;
+    private LocationService location;
+    private bool locationServiceStarted = false;
 
     public float selfLatitude;
     public float selfLongitude;
     public float selfAccuracy;
-    public bool hasVibrated = false;
-    public float distance = POI_PROXIMITY_RADIUS + 1.0f;
-
-    private bool locationServiceStarted = false;
-
-    public readonly struct POICoords
-    {
-        private static readonly float EarthRadius = 6371;
-        public float Latitude { get; }
-        public float Longitude { get; }
-
-        public POICoords(float lat, float lon)
-        {
-            Latitude = lat;
-            Longitude = lon;
-        }
-
-        public float CalculateDistance(float lat, float lon)
-        {
-            float lat1 = lat;
-            float lat2 = Latitude;
-            float lon1 = lon;
-            float lon2 = Longitude;
-
-            float dLat = (lat2 - lat1) * Mathf.PI / 180;
-            float dLon = (lon2 - lon1) * Mathf.PI / 180;
-
-            lat1 = lat1 * Mathf.PI / 180;
-            lat2 = lat2 * Mathf.PI / 180;
-
-            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-                    Math.Sin(dLon / 2) * Math.Sin(dLon / 2) * Math.Cos(lat1) * Math.Cos(lat2);
-            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            return (float)(EarthRadius * c * 1000);
-        }
-    }
-
-    private LocationService location;
-    private POICoords homeGarden;
-    public Text debug;
-    public Text vibrateDebug;
+    public int ActiveNotification = -1;
+    public int previousNotification = -1;
 
     void Start()
     {
-        Debug.Log("Entered");
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
         location = Input.location;
 
-        homeGarden = new POICoords(41.12348871036983f, -8.654655184410982f);
 
         if (Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
             if (location.isEnabledByUser) StartCoroutine(StartLocationService());
         }
         else Permission.RequestUserPermission(Permission.FineLocation);
-        
+
+        leaves = GameControl.control.Leaves;
+
     }
 
     // Update is called once per frame
@@ -78,8 +42,31 @@ public class GPSLocation : MonoBehaviour
     {
         if (locationServiceStarted)
         {
-            CheckVibrateFlag();
+            CheckForTrees();
         }
+    }
+
+    private void CheckForTrees()
+    {
+        for (int i = 0; i < leaves.Length; i++)
+        {
+            if (leaves[i].IsLeafFound() && !leaves[i].IsTreeFound())
+            {
+                if (CheckIfInRange(leaves[i]))
+                {
+                    // Tree is in range and hasn't been found
+
+                    // Notify nearby tree
+                    ActiveNotification = i;
+                    return;
+                }
+            }
+        }
+    }
+
+    private bool CheckIfInRange(Leaf leaf)
+    {
+        return leaf.DistanceToTree(selfLatitude, selfLongitude) < POI_PROXIMITY_RADIUS;
     }
 
     private IEnumerator StartLocationService()
@@ -94,26 +81,26 @@ public class GPSLocation : MonoBehaviour
         int waitCounter = 20;
 
 
-        while(location.status != LocationServiceStatus.Running && waitCounter > 0)
+        while (location.status != LocationServiceStatus.Running && waitCounter > 0)
         {
             yield return new WaitForSecondsRealtime(1f);
             waitCounter--;
         }
 
-        if(waitCounter <= 0)
+        if (waitCounter <= 0)
         {
             Debug.LogError("Location Service Initialization Timed Out");
             yield break;
         }
 
-        if(location.status == LocationServiceStatus.Failed)
+        if (location.status == LocationServiceStatus.Failed)
         {
             Debug.LogError("Location Service Initialization Failed");
             yield break;
         }
 
         locationServiceStarted = true;
-        
+
         StartCoroutine(UpdateCoordinates());
 
         yield break;
@@ -123,17 +110,17 @@ public class GPSLocation : MonoBehaviour
     {
         while (true)
         {
-            debug.text = "In";
             selfLatitude = location.lastData.latitude;
             selfLongitude = location.lastData.longitude;
-            selfAccuracy= location.lastData.horizontalAccuracy;
-            yield return new WaitForSeconds(1.0f);
-            debug.text = "Out";
+            selfAccuracy = location.lastData.horizontalAccuracy;
             yield return new WaitForSeconds(1.0f);
         }
     }
-
-    void CheckVibrateFlag()
+}
+   
+    
+    /*
+    private void CheckVibrateFlag()
     {
         distance = homeGarden.CalculateDistance(Instance.selfLatitude, Instance.selfLongitude);
         if (distance < POI_PROXIMITY_RADIUS)
@@ -156,4 +143,4 @@ public class GPSLocation : MonoBehaviour
             }
         }
     }
-}
+    */

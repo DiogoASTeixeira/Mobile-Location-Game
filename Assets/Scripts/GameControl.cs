@@ -6,13 +6,12 @@ public class GameControl : MonoBehaviour
     public static GameControl control;
 
     // data to persist between scenes
+    [HideInInspector]
     public Leaf[] Leaves;
-    public string words;
-    public int nLeaves;
-
 
     //Leaf Struct to allow settings values in Unity Editor
     public Leaf.LeafStruct[] leafStruct;
+
     private void Awake()
     {
         //Let the gameobject persist over the scenes
@@ -31,7 +30,7 @@ public class GameControl : MonoBehaviour
         }
     }
 
-     void Start()
+     private void Start()
     {
         CreateLeaves();
     }
@@ -42,7 +41,7 @@ public class GameControl : MonoBehaviour
 
         for ( int i = 0; i < leafStruct.Length; i++)
         {
-            Leaves[i] = new Leaf(leafStruct[i].treeCoordinates);
+            Leaves[i] = new Leaf(leafStruct[i]);
         }
     }
 

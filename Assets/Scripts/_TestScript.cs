@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class _TestScript : MonoBehaviour
 {
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     public Camera camera;
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     public GameObject[] centerPiece;
 
     public LeavesInfo[] leavesInfo;

@@ -6,7 +6,10 @@ using Vuforia;
 
 public class InsideSceneBehaviour : MonoBehaviour
 {
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     public Camera camera;
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
+
     public GameObject leafPanel, cameraPanel;
     public UnityEngine.UI.Text text;
     public UnityEngine.UI.Image halfLeafImage;
