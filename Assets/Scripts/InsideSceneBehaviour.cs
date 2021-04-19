@@ -24,7 +24,7 @@ public class InsideSceneBehaviour : MonoBehaviour
     private void Start()
     {
         //leaves = GameControl.control.Leaves;
-        SetAllTicksFalse();
+        SetAllLeafTicks();
         OpenLeafMenu();
     }
 
@@ -77,11 +77,13 @@ public class InsideSceneBehaviour : MonoBehaviour
         leavesInfo[leafNumber].tick.enabled = true;
     }
 
-    private void SetAllTicksFalse()
+    private void SetAllLeafTicks()
     {
-        foreach(LeavesInfo leaf in leavesInfo)
+        for (int i = 0; i < leavesInfo.Length; i++)
         {
-            leaf.tick.enabled = false;
+            if (GameControl.control.Leaves[i].IsLeafFound())
+                leavesInfo[i].tick.enabled = true;
+            else leavesInfo[i].tick.enabled = false;
         }
     }
 

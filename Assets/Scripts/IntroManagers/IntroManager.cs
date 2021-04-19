@@ -40,7 +40,7 @@ public class IntroManager : MonoBehaviour
 
     }
 
-    public void ShowPreviousMenu()
+    public void ShowPreviousPanel()
     {
         if (index - 1 >= 0 && Panels[index - 1] != null)
         {
@@ -50,7 +50,7 @@ public class IntroManager : MonoBehaviour
         }
     }
 
-    public void ShowNextScreen()
+    public void ShowNextPanel()
     {
         if (index + 1 < Panels.Length && Panels[index + 1] != null)
         {
