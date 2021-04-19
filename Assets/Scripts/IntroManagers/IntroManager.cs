@@ -42,7 +42,7 @@ public class IntroManager : MonoBehaviour
 
     public void ShowPreviousMenu()
     {
-        if (Panels[index - 1] != null)
+        if (index - 1 >= 0 && Panels[index - 1] != null)
         {
             Panels[index].HideForPrevious();
             Panels[index - 1].Show();
@@ -52,7 +52,7 @@ public class IntroManager : MonoBehaviour
 
     public void ShowNextScreen()
     {
-        if (Panels[index + 1] != null)
+        if (index + 1 < Panels.Length && Panels[index + 1] != null)
         {
             Panels[index].HideForNext();
             Panels[index + 1].Show();
