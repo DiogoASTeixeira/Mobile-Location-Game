@@ -9,8 +9,7 @@ public class MobileNotifications : MonoBehaviour
     private static readonly string channelName = "Notification Channel";
     private static readonly string channelDescription = "Tree localisation";
 
-    //DEBUG
-    public UnityEngine.UI.Text DebugText;
+
     private static int notifID;
     void Start()
     {
@@ -51,8 +50,19 @@ public class MobileNotifications : MonoBehaviour
 
     private void Update()
     {
+       
+    }
+
+    /***
+     * Debug Function
+     * Unhide Variable to use
+     * */
+    [HideInInspector]
+    public UnityEngine.UI.Text DebugText;
+    private void CheckNotificationStatus()
+    {
         NotificationStatus status = AndroidNotificationCenter.CheckScheduledNotificationStatus(notifID);
-       switch(status)
+        switch (status)
         {
             case NotificationStatus.Scheduled:
                 {

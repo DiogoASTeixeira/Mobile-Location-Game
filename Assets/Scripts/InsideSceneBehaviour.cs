@@ -11,12 +11,12 @@ public class InsideSceneBehaviour : MonoBehaviour
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 
     public GameObject leafPanel, cameraPanel;
-    public UnityEngine.UI.Text text;
     public UnityEngine.UI.Image halfLeafImage;
     public LeavesInfo[] leavesInfo;
 
     private int leafSelected;
     private int leafDetected = -1;
+    private bool cameraBtnPressed = false;
 
     [HideInInspector]
     public Leaf[] leaves;
@@ -31,13 +31,13 @@ public class InsideSceneBehaviour : MonoBehaviour
     private void Update()
     {
         // TODO Detect if BTlocation is correct (is in leaf exposition)
-        if (leafDetected == leafSelected && IsLeafOnScreenCenter(leafDetected))
+        if (leafDetected == leafSelected && IsLeafOnScreenCenter(leafDetected) && cameraBtnPressed)
         {
-            text.text = "Here";
             UpdateLeafFoundTicks(leafSelected);
             OpenLeafMenu();
             GameControl.control.Leaves[leafSelected].FoundLeaf();
         }
+        cameraBtnPressed = false;
     }
 
     public void DetectedLeaf(int leafNumber)
@@ -102,7 +102,10 @@ public class InsideSceneBehaviour : MonoBehaviour
         return a;
     }
 
-
+    public void CameraBtnPress()
+    {
+        cameraBtnPressed = true;
+    }
 
     [System.Serializable]
     public struct LeavesInfo
