@@ -4,11 +4,23 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class IntroPanels : MonoBehaviour
 {
+    public IntroPanels instance;
+    //public TMPro.TextMeshProUGUI textDebug;
+    public bool isInitialPanel;
     RectTransform rectTransform;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        if(isInitialPanel)
+            rectTransform.DOAnchorPosX(0, 0f);
+        else
+            rectTransform.DOAnchorPosX(rectTransform.rect.width, 0f);
     }
 
     public void Show(float delay = 0f)
@@ -28,14 +40,16 @@ public class IntroPanels : MonoBehaviour
 
     public void InitialOffset(int i)
     {
-        if(i > 0)
-            rectTransform.DOAnchorPosX(rectTransform.rect.width, 0f);
-        else
-            rectTransform.DOAnchorPosX(0, 0f);
+
     }
 
     override public string ToString()
     {
         return gameObject.name;
+    }
+
+    public IntroPanels getInstance()
+    {
+        return instance;
     }
 }

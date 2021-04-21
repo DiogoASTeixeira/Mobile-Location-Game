@@ -5,9 +5,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(RectTransform))]
 public class IntroManager : MonoBehaviour
 {
-    RectTransform rectTransform;
-
-    private Transform[] allChildren;
+    public RectTransform[] PanelsArray;
     private IntroPanels[] Panels;
     private int index = 0;
 
@@ -28,16 +26,13 @@ public class IntroManager : MonoBehaviour
 
     private void Start()
     {
-        Panels = new IntroPanels[transform.childCount];
-        int i = 0;
-        foreach (Transform child in transform)
-        {
-                Panels[i] = child.gameObject.GetComponent<IntroPanels>();
-                Panels[i].InitialOffset(i);
-                i++;
-        }
-
-
+        Panels = new IntroPanels[PanelsArray.Length];
+        for( int i = 0; i < PanelsArray.Length; i++)
+              {
+                  Debug.LogWarning(i);
+                  Panels[i] = PanelsArray[i].gameObject.GetComponent<IntroPanels>().getInstance();
+                  Debug.LogWarning(Panels[i]);
+              }
     }
 
     public void ShowPreviousPanel()
