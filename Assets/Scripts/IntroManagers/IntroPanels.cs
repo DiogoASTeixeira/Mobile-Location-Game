@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class IntroPanels : MonoBehaviour
 {
+    [HideInInspector]
     public IntroPanels instance;
     //public TMPro.TextMeshProUGUI textDebug;
     public bool isInitialPanel;
