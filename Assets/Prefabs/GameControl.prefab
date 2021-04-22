@@ -46,9 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Leaves: []
   leafStruct:
-  - speciesName: 
-    treeCoordinates: {x: 0, y: 0}
-  - speciesName: 
+  - speciesName: "Bordo-do-Jap\xE3o"
+    scientificName: Acer palmatum Thunb.
+    treeCoordinates: {x: 41.15334, y: -8.642256}
+  - speciesName: "Eug\xE9nia"
+    scientificName: Syzygium smithii (Poir.) Neid.Syzygium smithii (Poir.) Neid.
     treeCoordinates: {x: 0, y: 0}
 --- !u!114 &-8265676596766252100
 MonoBehaviour:
@@ -62,3 +64,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7710f0d1c4206cc41b556e4acef71816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugText: {fileID: 0}

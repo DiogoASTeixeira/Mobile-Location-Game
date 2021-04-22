@@ -9,6 +9,7 @@ public class Leaf
     private static readonly float EARTH_RADIUS = 6371;
 
     public readonly string speciesName;
+    public readonly string scientificName;
     private Vector2 treeCoordinates;
     private bool foundInside = false;
     private bool foundOutside = false;
@@ -20,6 +21,7 @@ public class Leaf
     public struct LeafStruct
     {
         public string speciesName;
+        public string scientificName;
         public Vector2 treeCoordinates;
 
         public override string ToString() => "Name: " + speciesName + "\nX: " + treeCoordinates.x + "\ny: " + treeCoordinates.y;
@@ -28,6 +30,7 @@ public class Leaf
     public Leaf(LeafStruct stru)
      {
         speciesName = stru.speciesName;
+        scientificName = stru.scientificName;
         treeCoordinates = new Vector2(stru.treeCoordinates.x, stru.treeCoordinates.y);
     }
 
