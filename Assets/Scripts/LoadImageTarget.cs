@@ -17,7 +17,7 @@ public class LoadImageTarget : MonoBehaviour
 
         // get the runtime image source and set the texture to load
         var runtimeImageSource = objectTracker.RuntimeImageSource;
-        runtimeImageSource.SetFile(VuforiaUnity.StorageType., "Vuforia/myTarget.jpg", 0.15f, "myTargetName");
+        runtimeImageSource.SetFile(VuforiaUnity.StorageType.STORAGE_APPRESOURCE, "Vuforia/myTarget.jpg", 0.15f, "myTargetName");
 
         // create a new dataset and use the source to create a new trackable
         var dataset = objectTracker.CreateDataSet();
