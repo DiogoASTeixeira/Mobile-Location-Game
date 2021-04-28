@@ -1096,33 +1096,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
-      propertyPath: leafStruct.Array.data[0].speciesName
-      value: Especie 1
+      propertyPath: leafStruct.Array.data[0].foundInside
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
-      propertyPath: leafStruct.Array.data[1].speciesName
-      value: Especie 2
+      propertyPath: leafStruct.Array.data[1].foundInside
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
-      propertyPath: leafStruct.Array.data[0].treeCoordinates.x
-      value: 41.123417
+      propertyPath: leafStruct.Array.data[2].foundInside
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
-      propertyPath: leafStruct.Array.data[0].treeCoordinates.y
-      value: -8.654877
+      propertyPath: leafStruct.Array.data[3].foundInside
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
-      propertyPath: leafStruct.Array.data[1].treeCoordinates.x
-      value: 41.123535
+      propertyPath: leafStruct.Array.data[4].foundInside
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
-      propertyPath: leafStruct.Array.data[1].treeCoordinates.y
-      value: -8.654531
+      propertyPath: leafStruct.Array.data[5].foundInside
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063303, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Android;
 using System;
+using TMPro;
 
 public class GPSLocation : MonoBehaviour
 {
@@ -12,12 +13,18 @@ public class GPSLocation : MonoBehaviour
     private static readonly float POI_PROXIMITY_RADIUS = 10.0f;
     private LocationService location;
     private bool locationServiceStarted = false;
+    private int foundLeafIndex = -1;
 
-    public float selfLatitude;
-    public float selfLongitude;
-    public float selfAccuracy;
+    public double selfLatitude;
+    public double selfLongitude;
+    public double selfAccuracy;
     public int ActiveNotification = -1;
     public int previousNotification = -1;
+
+    //Tree Box
+    public GameObject FoundTreeBox;
+    public TextMeshProUGUI FoundTreeText;
+    public TextMeshProUGUI CounterText;
 
     void Start()
     {
@@ -35,6 +42,12 @@ public class GPSLocation : MonoBehaviour
 
         leaves = GameControl.control.Leaves;
 
+        int c = 0;
+        for (int i = 0; i < leaves.Length; i++)
+        {
+            if (leaves[i].IsTreeFound()) c++;
+        }
+        CounterText.text = c.ToString() + " / " + leaves.Length.ToString();
     }
 
     // Update is called once per frame
@@ -55,13 +68,32 @@ public class GPSLocation : MonoBehaviour
                 if (CheckIfInRange(leaves[i]))
                 {
                     // Tree is in range and hasn't been found
-
+                    foundLeafIndex = i;
+                    OpenFoundTreeBox();
                     // Notify nearby tree
                     ActiveNotification = i;
                     return;
                 }
             }
         }
+    }
+
+    private void OpenFoundTreeBox()
+    {
+        FoundTreeBox.SetActive(true);
+        FoundTreeText.text = "A espécie " + leaves[foundLeafIndex].speciesName + " está perto.";
+    }
+
+    public void CloseFoundTreeBox()
+    {
+        FoundTreeBox.SetActive(false);
+        leaves[foundLeafIndex].FoundTree();
+        int c = 0;
+        for (int i = 0; i < leaves.Length; i++)
+        {
+            if (leaves[i].IsTreeFound()) c++;
+        }
+        CounterText.text = c.ToString() + " / " + leaves.Length;
     }
 
     private bool CheckIfInRange(Leaf leaf)
@@ -117,30 +149,3 @@ public class GPSLocation : MonoBehaviour
         }
     }
 }
-   
-    
-    /*
-    private void CheckVibrateFlag()
-    {
-        distance = homeGarden.CalculateDistance(Instance.selfLatitude, Instance.selfLongitude);
-        if (distance < POI_PROXIMITY_RADIUS)
-        {
-            if (!hasVibrated)
-            {
-                // is in range and hasn't vibrated
-                hasVibrated = true;
-                vibrateDebug.text = "VIBRATE ON";
-                Handheld.Vibrate();
-            }
-        }
-        else
-        {
-            // has Vibrated but left range
-            if (distance > POI_PROXIMITY_RADIUS)
-            {
-                vibrateDebug.text = "VIBRATE OFF";
-                hasVibrated = false;
-            }
-        }
-    }
-    */

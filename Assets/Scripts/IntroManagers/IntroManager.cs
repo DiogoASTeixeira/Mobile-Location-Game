@@ -29,9 +29,7 @@ public class IntroManager : MonoBehaviour
         Panels = new IntroPanels[PanelsArray.Length];
         for( int i = 0; i < PanelsArray.Length; i++)
               {
-                  Debug.LogWarning(i);
                   Panels[i] = PanelsArray[i].gameObject.GetComponent<IntroPanels>().getInstance();
-                  Debug.LogWarning(Panels[i]);
               }
     }
 
@@ -53,5 +51,10 @@ public class IntroManager : MonoBehaviour
             Panels[index + 1].Show();
             index++;
         }
+    }
+
+    private int getCurrentPanelIndex()
+    {
+        return index;
     }
 }

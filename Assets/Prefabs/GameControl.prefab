@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7588096747396063305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 558.91626, y: 744.22144, z: -108.125}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,10 +48,40 @@ MonoBehaviour:
   leafStruct:
   - speciesName: "Bordo-do-Jap\xE3o"
     scientificName: Acer palmatum Thunb.
-    treeCoordinates: {x: 41.15334, y: -8.642256}
+    latitude: 41.1533352
+    longitude: -8.6422109
+    information: 
+    foundInside: 0
   - speciesName: "Eug\xE9nia"
     scientificName: Syzygium smithii (Poir.) Neid.Syzygium smithii (Poir.) Neid.
-    treeCoordinates: {x: 0, y: 0}
+    latitude: 41.1538684
+    longitude: -8.6429917
+    information: 
+    foundInside: 0
+  - speciesName: "Carvalho dos p\xE2ntanos"
+    scientificName: "Quercus palustris M\xFCnchh."
+    latitude: 41.1524683
+    longitude: -8.6420456
+    information: 
+    foundInside: 0
+  - speciesName: Pilriteiro
+    scientificName: 'Crataegus monogyna  Jacq. '
+    latitude: 41.1536492
+    longitude: 8.6427624
+    information: 
+    foundInside: 0
+  - speciesName: "\xC1rvore-do-\xE2mbar"
+    scientificName: Liquidambar styraciflua L.
+    latitude: 41.1536715
+    longitude: -8.6429874
+    information: 
+    foundInside: 0
+  - speciesName: ' Azevinho'
+    scientificName: Ilex aquifolium L.
+    latitude: 41.153698
+    longitude: -8.6422558
+    information: 
+    foundInside: 0
 --- !u!114 &-8265676596766252100
 MonoBehaviour:
   m_ObjectHideFlags: 0

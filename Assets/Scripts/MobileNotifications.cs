@@ -16,17 +16,6 @@ public class MobileNotifications : MonoBehaviour
         // Create the Notification Channel
         AndroidNotificationChannel channel = new AndroidNotificationChannel(channelId, channelName, channelDescription, Importance.Default);
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
-
-        AndroidNotification notification = new AndroidNotification
-        {
-            Title = "Start",
-            Text = "Welcome",
-            FireTime = System.DateTime.Now.AddSeconds(7)
-        };
-
-        //Send Notification
-        AndroidNotificationCenter.SendNotification(notification, channelId);
-
     }
 
     public static void CreateNotification(string title, string text)

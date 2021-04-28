@@ -10,7 +10,7 @@ public class Leaf
 
     public readonly string speciesName;
     public readonly string scientificName;
-    private MyVector2 treeCoordinates;
+    private readonly MyVector2 treeCoordinates;
     private bool foundInside = false;
     private bool foundOutside = false;
     private bool inRangeTree = false;
@@ -22,16 +22,20 @@ public class Leaf
     {
         public string speciesName;
         public string scientificName;
-        public MyVector2 treeCoordinates;
+        public double latitude, longitude;
+        public string information;
 
-        public override string ToString() => "Name: " + speciesName + "\nX: " + treeCoordinates.x + "\ny: " + treeCoordinates.y;
+        // Use for Testing
+        public bool foundInside;
+        public override string ToString() => "Name: " + speciesName + "\nX: " + latitude + "\ny: " + longitude;
     }
 
     public Leaf(LeafStruct stru)
      {
         speciesName = stru.speciesName;
         scientificName = stru.scientificName;
-        treeCoordinates = new MyVector2(stru.treeCoordinates.x, stru.treeCoordinates.y);
+        treeCoordinates = new MyVector2(stru.latitude, stru.longitude);
+        foundInside = stru.foundInside;
     }
 
     public double DistanceToTree(double lat, double lon)

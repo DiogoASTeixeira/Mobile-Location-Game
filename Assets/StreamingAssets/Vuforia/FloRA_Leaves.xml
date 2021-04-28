@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="pilriteiro" size="1.000000 1.000000" />
+    <ImageTarget name="nogeira-do-japao" size="1.000000 1.000000" />
+    <ImageTarget name="eugenia" size="1.000000 1.000000" />
+    <ImageTarget name="carvalho-dos-pantanos" size="1.000000 1.000000" />
+    <ImageTarget name="camelia" size="1.000000 1.000000" />
+    <ImageTarget name="bordo-do-japao" size="1.000000 1.000000" />
+    <ImageTarget name="azevinho" size="1.000000 1.000000" />
+    <ImageTarget name="ambar" size="1.000000 1.000000" />
+  </Tracking>
+</QCARConfig>
