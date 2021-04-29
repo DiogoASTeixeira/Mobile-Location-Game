@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Outside.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/RealidadeAumentada/ARFlora2.unity
+    guid: 09e87deaa3c75dd4bbe63775bee7a398
+  - enabled: 1
+    path: Assets/Scenes/RealidadeAumentada/PhotoTaken.unity
+    guid: 6ff15d7b1c5defb4c82a47cfbece19e1
   m_configObjects: {}
