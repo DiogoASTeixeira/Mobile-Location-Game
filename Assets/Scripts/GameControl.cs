@@ -54,4 +54,11 @@ public class GameControl : MonoBehaviour
         }
         return n;
     }
+
+    public bool HasFoundAllLeaves()
+    {
+        foreach(Leaf leaf in Leaves)
+            if (!leaf.IsLeafFound()) return false;
+        return true;
+    }
 }

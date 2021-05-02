@@ -69,6 +69,45 @@ public class InsideController : MonoBehaviour
         }
     }
 
+    public void NextLeafChallenge()
+    {
+        ResetQuestionBtns();
+        //next leaf or found all 3 leafs panel
+        if (leafChallenge.Next())
+        {
+            //Update UI
+            UpdateUICameraPanel();
+            LowerSection.SetActive(true);
+            QuestionBox.SetActive(false);
+        }
+        else
+        {
+            // show end panel
+            PanelManager.ShowNextPanel();
+        }
+    }
+
+    private void ResetQuestionBtns()
+    {
+        foreach(Image btn in QuestionBtn)
+        {
+            btn.color = new Color32(255, 255, 255, 255);
+        }
+    }
+
+    public void RepeatChallenge()
+    {
+        if (!Control.HasFoundAllLeaves())
+        {
+            CreateLeafChallenge();
+            UpdateUICameraPanel();
+            LowerSection.SetActive(true);
+            QuestionBox.SetActive(false);
+
+            PanelManager.ShowPreviousPanel();
+        }
+    }
+
     private void Init_ARCamera()
     {
         camera.enabled = true;
@@ -83,15 +122,6 @@ public class InsideController : MonoBehaviour
 
             //Quiz time
             ShowQuestion(leafChallenge.GetLeaf());
-
-            /*
-            //next leaf or found all 3 leafs panel
-            if (leafChallenge.Next())
-            {
-                //Update UI
-                UpdateUICameraPanel();
-            }
-            */
         }
     }
     private void ShowQuestion(short leafIndex)
