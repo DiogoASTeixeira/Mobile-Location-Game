@@ -7420,7 +7420,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636737714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7535,7 +7535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364763fc5d72dda4d91309c1e45a129e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stickerObject0: {fileID: 6127921649556114097, guid: 9145673e6316e4140a9afed7413a10c2,
+  stickerObject0: {fileID: 4707363493444244061, guid: ea7e3a25a5a8e024bb93d8eb5d508f1c,
     type: 3}
   stickerObject1: {fileID: 6127921649556114097, guid: 26ea54dc92f665140b28fce06b17836d,
     type: 3}
@@ -9083,7 +9083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1889204817
 RectTransform:
   m_ObjectHideFlags: 0
