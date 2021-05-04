@@ -13,7 +13,7 @@ public class InsideController : MonoBehaviour
 #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     public Camera camera;
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
-    public GameControl Control;
+    private GameControl Control;
     public IntroManager PanelManager;
     public Sprite[] HalfLeaves;
     public TMPro.TextMeshProUGUI CounterText;
@@ -35,6 +35,7 @@ public class InsideController : MonoBehaviour
 
     private void Start()
     {
+        Control = GameControl.control;
     }
 
     public void OnCameraPanel()

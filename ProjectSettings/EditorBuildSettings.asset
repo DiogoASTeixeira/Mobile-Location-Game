@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inside.unity
     guid: d30a59549965cdd4986dca9064f19c23
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LocationPermission.unity
     guid: 990bc532b9aff1d42bc5b89fbebcde74
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Outside.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
