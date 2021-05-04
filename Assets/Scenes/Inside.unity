@@ -2515,10 +2515,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 896867104}
-        m_TargetAssemblyTypeName: ButtonSceneBehaviour, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 1775746082}
+        m_TargetAssemblyTypeName: InsideController, Assembly-CSharp
+        m_MethodName: RepeatChallenge
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
