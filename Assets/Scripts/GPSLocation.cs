@@ -8,18 +8,27 @@ using TMPro;
 
 public class GPSLocation : MonoBehaviour
 {
+    private static readonly float CLOSE_PROXIMITY_RADIUS = 4.0f;
+    private static readonly float MEDIUM_PROXIMITY_RADIUS = 7.0f;
+    private static readonly float DISTANT_PROXIMITY_RADIUS = 10.0f;
+    private enum Proximity
+    {
+        CLOSE, MEDIUM, DISTANT, FARAWAY
+    }
+
     public static GPSLocation Instance { set; get; }
     private Leaf[] leaves;
-    private static readonly float POI_PROXIMITY_RADIUS = 10.0f;
     private LocationService location;
     private bool locationServiceStarted = false;
+    private bool location_updated = false;
     private int foundLeafIndex = -1;
+    private Proximity foundProximity = Proximity.FARAWAY;
 
     public double selfLatitude;
     public double selfLongitude;
     public double selfAccuracy;
-    public int ActiveNotification = -1;
-    public int previousNotification = -1;
+    public short ActiveNotification = -1;
+    public short previousNotification = -1;
 
     //Tree Box
     public GameObject FoundTreeBox;
@@ -53,29 +62,36 @@ public class GPSLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (locationServiceStarted)
+        if (locationServiceStarted && location_updated)
         {
+            location_updated = false;
             CheckForTrees();
         }
     }
 
     private void CheckForTrees()
     {
-        for (int i = 0; i < leaves.Length; i++)
+        Proximity closest_proximity = Proximity.FARAWAY;
+        short closest_index = -1;
+        for (short i = 0; i < leaves.Length; i++)
         {
             if (leaves[i].IsLeafFound() && !leaves[i].IsTreeFound())
             {
-                if (CheckIfInRange(leaves[i]))
+                Proximity prox = CheckIfInRange(leaves[i]);
+                if(prox < closest_proximity)
                 {
-                    // Tree is in range and hasn't been found
-                    foundLeafIndex = i;
-                    OpenFoundTreeBox();
-                    // Notify nearby tree
-                    ActiveNotification = i;
-                    return;
+                    closest_proximity = prox;
+                    closest_index = i;
                 }
             }
         }
+        // Tree is in range and hasn't been found
+        foundLeafIndex = closest_index;
+        foundProximity = closest_proximity;
+        OpenFoundTreeBox();
+        // Notify nearby tree
+        ActiveNotification = closest_index;
+        return;
     }
 
     private void OpenFoundTreeBox()
@@ -96,9 +112,13 @@ public class GPSLocation : MonoBehaviour
         CounterText.text = c.ToString() + " / " + leaves.Length;
     }
 
-    private bool CheckIfInRange(Leaf leaf)
+    private Proximity CheckIfInRange(Leaf leaf)
     {
-        return leaf.DistanceToTree(selfLatitude, selfLongitude) < POI_PROXIMITY_RADIUS;
+        double distance = leaf.DistanceToTree(selfLatitude, selfLongitude);
+        if (distance <= CLOSE_PROXIMITY_RADIUS) return Proximity.CLOSE;
+        if (distance <= MEDIUM_PROXIMITY_RADIUS) return Proximity.MEDIUM;
+        if (distance <= DISTANT_PROXIMITY_RADIUS) return Proximity.DISTANT;
+        return Proximity.FARAWAY;
     }
 
     private IEnumerator StartLocationService()
@@ -145,6 +165,7 @@ public class GPSLocation : MonoBehaviour
             selfLatitude = location.lastData.latitude;
             selfLongitude = location.lastData.longitude;
             selfAccuracy = location.lastData.horizontalAccuracy;
+            location_updated = true;
             yield return new WaitForSeconds(1.0f);
         }
     }
