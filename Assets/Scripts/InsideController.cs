@@ -14,15 +14,21 @@ public class InsideController : MonoBehaviour
     public Camera camera;
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     private GameControl Control;
+    public PointCounter PointsCounter;
     public IntroManager PanelManager;
     public Sprite[] HalfLeaves;
+
+    //Panel 2 (Camera)
     public TMPro.TextMeshProUGUI CounterText;
     public GameObject LowerSection;
     public GameObject QuestionBox;
     public InfoPanelBehaviour InfoPanel;
     public Image HalfLeaf;
     public Image[] QuestionBtn;
-    //public TMPro.TextMeshProUGUI[] AnswerBtnText;
+
+    //Panel 3
+    public TMPro.TextMeshProUGUI LeavesLeftText;
+    public TMPro.TextMeshProUGUI PointsText;
 
     LeafChallenge leafChallenge;
     private short leafDetected = -1;
@@ -33,9 +39,17 @@ public class InsideController : MonoBehaviour
     public enum Difficulty { EASY, MEDIUM, HARD };
     private Difficulty difficulty = Difficulty.EASY;
 
+    //DEBUG 
+    public int points = 0;
+
     private void Start()
     {
         Control = GameControl.control;
+    }
+
+    private void Update()
+    {
+        points = PointsCounter.getCounter();
     }
 
     public void OnCameraPanel()
@@ -43,6 +57,7 @@ public class InsideController : MonoBehaviour
         Init_ARCamera();
         CreateLeafChallenge();
         UpdateUICameraPanel();
+        PointsCounter.StartCounter();
     }
 
     public void CreateLeafChallenge()
@@ -80,10 +95,13 @@ public class InsideController : MonoBehaviour
             UpdateUICameraPanel();
             LowerSection.SetActive(true);
             QuestionBox.SetActive(false);
+            PointsCounter.StartCounter();
         }
         else
         {
             // show end panel
+            LeavesLeftText.text = "Total Leaves Found: " + Control.NumberOfFoundLeaves() + " / " + Control.Leaves.Length;
+            PointsText.text = "Points: " + PointsCounter.getCounter();
             PanelManager.ShowNextPanel();
         }
     }
@@ -104,6 +122,7 @@ public class InsideController : MonoBehaviour
             UpdateUICameraPanel();
             LowerSection.SetActive(true);
             QuestionBox.SetActive(false);
+            PointsCounter.StartCounter();
 
             PanelManager.ShowPreviousPanel();
         }
@@ -138,7 +157,7 @@ public class InsideController : MonoBehaviour
 
     private void UpdateUICameraPanel()
     {
-        CounterText.text = Control.NumberOfFoundLeaves().ToString() + " / " + Control.Leaves.Length.ToString();
+        CounterText.text = leafChallenge.index + " / " + LEAVES_PER_CHALLENGE;
         short leafIndex = leafChallenge.GetLeaf();
         HalfLeaf.sprite = HalfLeaves[leafIndex];
     }
@@ -169,19 +188,23 @@ public class InsideController : MonoBehaviour
             }
         }
     }
+
+    // Points are considered bad right now
     public void AnswerQuestion(int answer)
     {
         if (!answered)
         {
             answered = true;
+            PointsCounter.StopCounter();
             if (answer == leafChallenge.rightAnswer)
             {
-                // TODO Award Points
+                PointsCounter.TakePoints();
             }
             else
             {
                 // Wrond answer turns red
                 QuestionBtn[answer].color = new Color32(231, 94, 90, 255);
+                PointsCounter.AwardPoints();
             }
             // Correct answer Turns green
             QuestionBtn[leafChallenge.rightAnswer].color = new Color32(106, 142, 78, 255);
