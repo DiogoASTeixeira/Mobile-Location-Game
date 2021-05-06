@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
@@ -61,4 +62,16 @@ public class GameControl : MonoBehaviour
             if (!leaf.IsLeafFound()) return false;
         return true;
     }
+
+    //TODO prepare localisation with GPS and BT
+    private void CheckSceneTransition()
+    {
+        // string s = GetSupposedScene();
+        string s = "";
+        if(s != SceneManager.GetActiveScene().name)
+        {
+            SceneManager.LoadScene(s);
+        }
+    }
+
 }
