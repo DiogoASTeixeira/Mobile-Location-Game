@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
@@ -74,4 +76,55 @@ public class GameControl : MonoBehaviour
         }
     }
 
+
+    public void SaveGame()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/" + SaveData.FILE_NAME);
+        Leaf[] leaves = control.Leaves;
+        SaveData data = new SaveData(leaves.Length);
+        for(short i = 0; i < leaves.Length; i++)
+        {
+            data.savedFoundInside[i] = leaves[i].IsLeafFound();
+            data.savedFoundOutside[i] = leaves[i].IsTreeFound();
+        }
+        bf.Serialize(file, data);
+        file.Close();
+        Debug.Log("Saved Game Data: " + Application.persistentDataPath + "/" + SaveData.FILE_NAME);
+    }
+
+    public void LoadGame()
+    {
+        if (File.Exists(Application.persistentDataPath + "/" + SaveData.FILE_NAME))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + SaveData.FILE_NAME, FileMode.Open);
+            SaveData data = (SaveData)bf.Deserialize(file);
+            file.Close();
+            Leaf[] leaves = control.Leaves;
+            for (short i = 0; i < leaves.Length; i++)
+            {
+                if (data.savedFoundInside[i]) leaves[i].FoundLeaf();
+                if (data.savedFoundOutside[i]) leaves[i].FoundTree();
+
+                Debug.Log(i + " " + data.savedFoundInside[i] + " " + data.savedFoundOutside[i]);
+            }
+            Debug.Log("Loaded Data.");
+        }
+        else Debug.LogWarning("No save data.");
+    }
+}
+
+[System.Serializable]
+class SaveData
+{
+    public static readonly string FILE_NAME = "FloRA.dat";
+    public bool[] savedFoundInside;
+    public bool[] savedFoundOutside;
+
+    public SaveData(int length)
+    {
+        savedFoundInside = new bool[6];
+        savedFoundOutside = new bool[6];
+    }
 }
