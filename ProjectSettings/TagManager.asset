@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Slide
+  - 3D
+  - found
+  - right
+  - wrong
   layers:
   - Default
   - TransparentFX
