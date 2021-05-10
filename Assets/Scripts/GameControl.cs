@@ -12,6 +12,8 @@ public class GameControl : MonoBehaviour
     [HideInInspector]
     public Leaf[] Leaves;
 
+    public bool seen_intro;
+    public bool load_finished;
     //Leaf Struct to allow settings values in Unity Editor
     public Leaf.LeafStruct[] leafStruct;
 
@@ -88,6 +90,7 @@ public class GameControl : MonoBehaviour
         {
             data.savedFoundInside[i] = leaves[i].IsLeafFound();
             data.savedFoundOutside[i] = leaves[i].IsTreeFound();
+            data.SeenIntro = seen_intro;
         }
         bf.Serialize(file, data);
         file.Close();
@@ -108,12 +111,22 @@ public class GameControl : MonoBehaviour
                 if (data.savedFoundInside[i]) leaves[i].FoundLeaf();
                 if (data.savedFoundOutside[i]) leaves[i].FoundTree();
 
-                Debug.Log(i + " " + data.savedFoundInside[i] + " " + data.savedFoundOutside[i]);
+                //Debug.Log(i + " " + data.savedFoundInside[i] + " " + data.savedFoundOutside[i]);
             }
+            if (data.SeenIntro) seen_intro = true;
+
             Debug.Log("Loaded Data.");
+            load_finished = true;
         }
-        else Debug.LogWarning("No save data.");
+        else
+        {
+            Debug.LogWarning("No save data.");
+            load_finished = true;
+        }
     }
+
+    public bool HasSeenIntro() => seen_intro;
+    public void SeenIntro() => seen_intro = true;
 }
 
 [System.Serializable]
@@ -122,10 +135,11 @@ class SaveData
     public static readonly string FILE_NAME = "FloRA.dat";
     public bool[] savedFoundInside;
     public bool[] savedFoundOutside;
+    public bool SeenIntro;
 
     public SaveData(int length)
     {
-        savedFoundInside = new bool[6];
-        savedFoundOutside = new bool[6];
+        savedFoundInside = new bool[length];
+        savedFoundOutside = new bool[length];
     }
 }
