@@ -5,21 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Intro2.unity
     guid: 2ffe8c441094f5b409548704764f80ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 8aa578af46111ae4e89c76331bf2efa5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FarAway.unity
     guid: a003fa107b3b3474d9df9d2702d3cbd5
   - enabled: 1
-    path: Assets/Scenes/Old_bkp/Menu_old.unity
-    guid: af7576f9781312d40bbb8227a48be609
-  - enabled: 1
     path: Assets/Scenes/Inside.unity
-    guid: d30a59549965cdd4986dca9064f19c23
+    guid: 8cdc3c8d649f9504bbb4fb832b651b54
   - enabled: 1
     path: Assets/Scenes/LocationPermission.unity
     guid: 990bc532b9aff1d42bc5b89fbebcde74

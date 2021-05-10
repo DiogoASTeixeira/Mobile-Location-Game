@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using static Utils;
 
 public class InsideController : MonoBehaviour
@@ -17,6 +18,7 @@ public class InsideController : MonoBehaviour
     public PointCounter PointsCounter;
     public IntroManager PanelManager;
     public Sprite[] HalfLeaves;
+    public Sprite[] FullLeaves;
 
     //Panel 2 (Camera)
     public TMPro.TextMeshProUGUI CounterText;
@@ -42,9 +44,15 @@ public class InsideController : MonoBehaviour
     //DEBUG 
     public int points = 0;
 
+    // Routines
+    public GameObject[] feedbackIcons;
+    public GameObject[] rightIcons;
+    public GameObject[] wrongIcons;
+
     private void Start()
     {
         Control = GameControl.control;
+        
     }
 
     private void Update()
@@ -132,7 +140,21 @@ public class InsideController : MonoBehaviour
     {
         camera.enabled = true;
         camera.gameObject.SetActive(true);
+        rightIcons = GameObject.FindGameObjectsWithTag("right");
+        wrongIcons = GameObject.FindGameObjectsWithTag("wrong");
+        feedbackIcons = GameObject.FindGameObjectsWithTag("found");
+
+        foreach (GameObject wrongIcon in wrongIcons)
+        {
+            wrongIcon.gameObject.SetActive(false);
+        }
+        foreach (GameObject rightIcon in rightIcons)
+        {
+            rightIcon.gameObject.SetActive(false);
+        }
     }
+
+    
     public void CameraBtnPressed()
     {
         if (leafDetected == leafChallenge.GetLeaf() )//&& IsLeafOnScreenCenter(leafDetected))
@@ -141,15 +163,83 @@ public class InsideController : MonoBehaviour
             Control.Leaves[leafChallenge.GetLeaf()].FoundLeaf();
 
             //Quiz time
-            ShowQuestion(leafChallenge.GetLeaf());
+            //ShowQuestion(leafChallenge.GetLeaf());
+            StartCoroutine("ShowCorrectFeedback");
+        }
+        else
+        {
+            StartCoroutine("ShowWrongFeedback");
         }
     }
+
+    IEnumerator ShowCorrectFeedback()
+    {
+        //desliga o icon ? do desconhecido
+        
+        foreach (GameObject feedbackIcon in feedbackIcons)
+        {
+            feedbackIcon.gameObject.SetActive(false);
+        }
+        //liga o icon do certo
+        
+        foreach (GameObject rightIcon in rightIcons)
+        {
+            rightIcon.gameObject.SetActive(true);
+        }
+        //espera 2 segundos
+        yield return new WaitForSeconds(2f);
+        //liga o icon ? do desconhecido de novo
+        foreach (GameObject feedbackIcon in feedbackIcons)
+        {
+            feedbackIcon.gameObject.SetActive(true);
+        }
+        //desliga o icon do certo
+        foreach (GameObject rightIcon in rightIcons)
+        {
+            rightIcon.gameObject.SetActive(false);
+        }
+        ShowQuestion(leafChallenge.GetLeaf());
+        yield return null;
+    }
+    IEnumerator ShowWrongFeedback()
+    {
+        //desliga o icon ? do desconhecido
+        foreach (GameObject feedbackIcon in feedbackIcons)
+        {
+            feedbackIcon.gameObject.SetActive(false);
+        }
+        //liga o icon do errado
+        foreach (GameObject wrongIcon in wrongIcons)
+        {
+            wrongIcon.gameObject.SetActive(true);
+        }
+        //espera 2 segundos
+        yield return new WaitForSeconds(2f);
+        //liga o icon ? do desconhecido de novo
+        foreach (GameObject feedbackIcon in feedbackIcons)
+        {
+            feedbackIcon.gameObject.SetActive(true);
+        }
+        //desliga o icon do erradp
+        foreach (GameObject wrongIcon in wrongIcons)
+        {
+            wrongIcon.gameObject.SetActive(false);
+        }
+        yield return null;
+    }
+
     private void ShowQuestion(short leafIndex)
     {
         LowerSection.SetActive(false);
         CreateQuestion(leafIndex);
         QuestionBox.SetActive(true);
         answered = false;
+
+        //Hide ? Icon in Question
+        foreach (GameObject feedbackIcon in feedbackIcons)
+        {
+            feedbackIcon.gameObject.SetActive(false);
+        }
 
         //prepare InfoPanel
         InfoPanel.Setup(leafIndex);
@@ -208,6 +298,13 @@ public class InsideController : MonoBehaviour
             }
             // Correct answer Turns green
             QuestionBtn[leafChallenge.rightAnswer].color = new Color32(106, 142, 78, 255);
+
+            //Show ? Icon in Question
+            foreach (GameObject feedbackIcon in feedbackIcons)
+            {
+                feedbackIcon.gameObject.SetActive(true);
+            }
+
 
             m_MethodToCall = ShowInfoPanel;
             StartCoroutine(WaitAndCall(2, m_MethodToCall));
