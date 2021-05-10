@@ -66,11 +66,12 @@ public class GameControl : MonoBehaviour
     }
 
     //TODO prepare localisation with GPS and BT
-    private void CheckSceneTransition()
+    public void CheckSceneTransition()
     {
         // string s = GetSupposedScene();
-        string s = "";
-        if(s != SceneManager.GetActiveScene().name)
+         string s = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("Menu");
+        if (s != SceneManager.GetActiveScene().name)
         {
             SceneManager.LoadScene(s);
         }
