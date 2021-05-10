@@ -28,6 +28,7 @@ public class Leaf
 
         // Use for Testing
         public bool foundInside;
+        public bool foundOutside;
         public override string ToString() => "Name: " + speciesName + "\nX: " + latitude + "\ny: " + longitude;
     }
 
@@ -38,6 +39,7 @@ public class Leaf
         information = stru.information;
         treeCoordinates = new MyVector2(stru.latitude, stru.longitude);
         foundInside = stru.foundInside;
+        foundOutside = stru.foundOutside;
     }
 
     public double DistanceToTree(double lat, double lon)
