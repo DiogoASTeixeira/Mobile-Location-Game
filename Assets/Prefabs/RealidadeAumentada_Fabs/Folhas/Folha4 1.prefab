@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 6127921649556114104}
   - component: {fileID: 6127921649556114105}
   - component: {fileID: 5781823541049045273}
+  - component: {fileID: 2221471005609543168}
   m_Layer: 0
-  m_Name: Folha 5
+  m_Name: Folha4 1
   m_TagString: 3D
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db77c3205618f2d469a5b282a5203a61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c14f16c0ededabf4185d81df8c908cb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -208,5 +209,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.8648112, y: 6.2488127, z: 0.20000012}
-  m_Center: {x: -0.060267504, y: 0.6211835, z: 0}
+  m_Size: {x: 6.311386, y: 7.776879, z: 0.20000012}
+  m_Center: {x: -0.5927358, y: 1.1196405, z: 0}
+--- !u!65 &2221471005609543168
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127921649556114097}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6347566, y: 2.9978108, z: 0.20000012}
+  m_Center: {x: -0.7318734, y: -4.2323747, z: 0}

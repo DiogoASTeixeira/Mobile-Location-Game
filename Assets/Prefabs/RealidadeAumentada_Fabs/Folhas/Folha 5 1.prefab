@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6127921649556114105}
   - component: {fileID: 5781823541049045273}
   m_Layer: 0
-  m_Name: Folha 5
+  m_Name: Folha 5 1
   m_TagString: 3D
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db77c3205618f2d469a5b282a5203a61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08b67eef5c37b0741b805f25f0979a65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -208,5 +208,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.8648112, y: 6.2488127, z: 0.20000012}
-  m_Center: {x: -0.060267504, y: 0.6211835, z: 0}
+  m_Size: {x: 5.05797, y: 11.61281, z: 0.20000012}
+  m_Center: {x: -0.04705514, y: 0.15876989, z: 0}

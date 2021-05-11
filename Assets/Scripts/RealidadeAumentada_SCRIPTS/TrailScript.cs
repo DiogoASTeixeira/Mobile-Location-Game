@@ -22,6 +22,14 @@ public class TrailScript : MonoBehaviour
 	public GameObject stickerObject3;
 	public GameObject stickerObject4;
 	public GameObject stickerObject5;
+	public GameObject stickerObject6;
+	public GameObject stickerObject7;
+	public GameObject stickerObject8;
+	public GameObject stickerObject9;
+	public GameObject stickerObject10;
+	public GameObject stickerObject11;
+	public GameObject stickerObject12;
+
 
 	public GameObject phonecamera;
 	public Vector3 Distance;
@@ -30,7 +38,8 @@ public class TrailScript : MonoBehaviour
 	public int count_touch;
 	public bool placeSticker;
 	public int stickerType;
-	
+	public bool deleteToggle;
+
 	//public List<GameObject> Points = new List<GameObject>();
 
 
@@ -40,7 +49,18 @@ public class TrailScript : MonoBehaviour
 		
 		debug.text = "Debug will appear here";
 		placeSticker = false;
-		
+		deleteToggle = false;
+
+
+	}
+
+	public void deleteOn()
+    {
+		deleteToggle = true;
+    }
+	public void deleteOff()
+	{
+		deleteToggle = false;
 	}
 
 	public void PlaceSticker()
@@ -72,12 +92,52 @@ public class TrailScript : MonoBehaviour
 	{
 		stickerType = 5;
 	}
-
-
+	public void PlaceSticker6()
+	{
+		stickerType = 6;
+	}
+	public void PlaceSticker7()
+	{
+		stickerType = 7;
+	}
+	public void PlaceSticker8()
+	{
+		stickerType = 8;
+	}
+	public void PlaceSticker9()
+	{
+		stickerType = 9;
+	}
+	public void PlaceSticker10()
+	{
+		stickerType = 10;
+	}
+	public void PlaceSticker11()
+	{
+		stickerType = 11;
+	}
+	public void PlaceSticker12()
+	{
+		stickerType = 12;
+	}
 	// Update is called once per frame
 	void Update()
 	{
 		
+		if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0) && deleteToggle == true)
+		{
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit, 100.0f) && hit.transform.tag == "3D")
+			{
+				// here you need to insert a check if the object is really a tree
+				// for example by tagging all trees with "Tree" and checking hit.transform.tag
+				GameObject.Destroy(hit.transform.gameObject);
+			}
+		}
+		
+
 		if (placeSticker == true)
         {
 			Vector3 camPos = phonecamera.transform.position;
@@ -121,9 +181,52 @@ public class TrailScript : MonoBehaviour
 				cur.transform.SetParent(this.transform);
 				placeSticker = false;
 			}
+			// real leaves
+			else if (stickerType == 6)
+			{
+				GameObject cur = Instantiate(stickerObject6, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 6
+				cur.transform.SetParent(this.transform);
+				placeSticker = false;
+			}
+			else if (stickerType == 7)
+			{
+				GameObject cur = Instantiate(stickerObject7, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 7
+				cur.transform.SetParent(this.transform);
+				placeSticker = false;
+			}
+			else if (stickerType == 8)
+			{
+				GameObject cur = Instantiate(stickerObject8, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 8
+				cur.transform.SetParent(this.transform);
+				placeSticker = false;
+			}
+			else if (stickerType == 9)
+			{
+				GameObject cur = Instantiate(stickerObject9, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 9
+				cur.transform.SetParent(this.transform);
+				placeSticker = false;
+			}
+			else if (stickerType == 10)
+			{
+				GameObject cur = Instantiate(stickerObject10, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 10
+				cur.transform.SetParent(this.transform);
+				placeSticker = false;
+			}
+			else if (stickerType == 11)
+			{
+				GameObject cur = Instantiate(stickerObject11, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 11
+				cur.transform.SetParent(this.transform);
+				placeSticker = false;
+			}
+			else if (stickerType == 12)
+			{
+				GameObject cur = Instantiate(stickerObject12, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 12
+				cur.transform.SetParent(this.transform);
+				placeSticker = false;
+			}
 
 
-			
+
 		}
 
 		/*
