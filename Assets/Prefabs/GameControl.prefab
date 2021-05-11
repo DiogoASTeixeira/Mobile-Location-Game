@@ -1088,6 +1088,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Leaves: []
+  seen_intro: 0
+  load_finished: 0
   leafStruct:
   - speciesName: "Bordo-do-Jap\xE3o"
     scientificName: Acer palmatum Thunb.
@@ -1177,7 +1179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.1646, y: 0}
+  m_AnchoredPosition: {x: 0.16461182, y: 0}
   m_SizeDelta: {x: -95.965, y: 157.1863}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &8351201317101679339
@@ -1238,7 +1240,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &966130754183505601
 MonoBehaviour:
