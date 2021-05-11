@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class InitialEmptyScript : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         while (GameControl.control == null)
         {
             StartCoroutine(WaitCoroutine());
         }
         GameControl control = GameControl.control;
+        control.NavBar.SetActive(false);
         control.load_finished = false;
         control.LoadGame();
 
