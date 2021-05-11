@@ -8,9 +8,9 @@ using TMPro;
 
 public class GPSLocation : MonoBehaviour
 {
-    private static readonly float CLOSE_PROXIMITY_RADIUS = 4.0f;
-    private static readonly float MEDIUM_PROXIMITY_RADIUS = 7.0f;
-    private static readonly float DISTANT_PROXIMITY_RADIUS = 10.0f;
+    private static readonly float CLOSE_PROXIMITY_RADIUS = 7.0f;
+    private static readonly float MEDIUM_PROXIMITY_RADIUS = 15.0f;
+    private static readonly float DISTANT_PROXIMITY_RADIUS = 30.0f;
     private enum Proximity
     {
         CLOSE, MEDIUM, DISTANT, FARAWAY
@@ -34,6 +34,7 @@ public class GPSLocation : MonoBehaviour
     public GameObject FoundTreeBox;
     public TextMeshProUGUI FoundTreeText;
     public TextMeshProUGUI CounterText;
+    public TextMeshProUGUI RadarTreeText;
 
     void Start()
     {
@@ -85,12 +86,41 @@ public class GPSLocation : MonoBehaviour
                 }
             }
         }
+        switch(closest_proximity)
+        {
+            case Proximity.CLOSE:
+                {
+                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está muito próxima.";
+                    OpenFoundTreeBox();
+                    // Notify nearby tree
+                    ActiveNotification = closest_index;
+                    break;
+                }
+            case Proximity.MEDIUM:
+                {
+                    RadarTreeText.text = "Estás a aproximar-te da árvore " + leaves[closest_index].speciesName + ".";
+                    break;
+                }
+            case Proximity.DISTANT:
+                {
+                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está distante de ti.";
+                    break;
+                }
+            default: //FARAWAY
+                {
+                    RadarTreeText.text = "Não há árvores próximas ainda por descobrir.";
+                    break;
+                }
+        }
         // Tree is in range and hasn't been found
-        foundLeafIndex = closest_index;
-        foundProximity = closest_proximity;
-        OpenFoundTreeBox();
-        // Notify nearby tree
-        ActiveNotification = closest_index;
+        if (closest_proximity != Proximity.FARAWAY)
+        {
+            foundLeafIndex = closest_index;
+            foundProximity = closest_proximity;
+            OpenFoundTreeBox();
+            // Notify nearby tree
+            ActiveNotification = closest_index;
+        }
         return;
     }
 
@@ -102,6 +132,7 @@ public class GPSLocation : MonoBehaviour
 
     public void CloseFoundTreeBox()
     {
+        GameControl.control.SaveGame();
         FoundTreeBox.SetActive(false);
         leaves[foundLeafIndex].FoundTree();
         int c = 0;

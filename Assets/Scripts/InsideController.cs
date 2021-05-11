@@ -112,6 +112,7 @@ public class InsideController : MonoBehaviour
             LeavesLeftText.text = "Total Leaves Found: " + Control.NumberOfFoundLeaves() + " / " + Control.Leaves.Length;
             PointsText.text = "Points: " + PointsCounter.getCounter();
             PanelManager.ShowNextPanel();
+            Control.SaveGame();
         }
     }
 
