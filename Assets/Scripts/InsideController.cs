@@ -108,6 +108,7 @@ public class InsideController : MonoBehaviour
         else
         {
             // show end panel
+            Control.NavBar.SetActive(true);
             LeavesLeftText.text = "Total Leaves Found: " + Control.NumberOfFoundLeaves() + " / " + Control.Leaves.Length;
             PointsText.text = "Points: " + PointsCounter.getCounter();
             PanelManager.ShowNextPanel();
@@ -126,6 +127,7 @@ public class InsideController : MonoBehaviour
     {
         if (!Control.HasFoundAllLeaves())
         {
+            Control.NavBar.SetActive(false);
             CreateLeafChallenge();
             UpdateUICameraPanel();
             LowerSection.SetActive(true);

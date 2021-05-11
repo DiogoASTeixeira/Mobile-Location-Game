@@ -1087,6 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd224ec6defd7443be5e51de1da4b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NavBar: {fileID: 8351201317101679339}
   Leaves: []
   seen_intro: 0
   load_finished: 0

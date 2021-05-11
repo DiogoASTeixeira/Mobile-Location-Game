@@ -7,6 +7,7 @@ public class GameControl : MonoBehaviour
 {
     // Static Reference
     public static GameControl control;
+    public GameObject NavBar;
 
     // data to persist between scenes
     [HideInInspector]
