@@ -189,8 +189,8 @@ public class InsideController : MonoBehaviour
             if (leafChallenge.GetLeaf() == 5) {
                 Control.azevinho_found = true;
             }
-            
 
+            PointsCounter.CorrectLeaf();
 
             //Quiz time
             //ShowQuestion(leafChallenge.GetLeaf());
@@ -198,6 +198,8 @@ public class InsideController : MonoBehaviour
         }
         else
         {
+            PointsCounter.WrongLeaf();
+
             StartCoroutine("ShowWrongFeedback");
             Debug.Log(leafChallenge.GetLeaf());
 
@@ -321,13 +323,13 @@ public class InsideController : MonoBehaviour
             PointsCounter.StopCounter();
             if (answer == leafChallenge.rightAnswer)
             {
-                PointsCounter.TakePoints();
+                PointsCounter.CorrectAnswer();
             }
             else
             {
                 // Wrond answer turns red
                 QuestionBtn[answer].color = new Color32(231, 94, 90, 255);
-                PointsCounter.AwardPoints();
+                PointsCounter.WrongAnswer();
             }
             // Correct answer Turns green
             QuestionBtn[leafChallenge.rightAnswer].color = new Color32(106, 142, 78, 255);
