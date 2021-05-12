@@ -18,7 +18,9 @@ public class InsideController : MonoBehaviour
     public PointCounter PointsCounter;
     public IntroManager PanelManager;
     public Sprite[] HalfLeaves;
-    public Sprite[] FullLeaves;
+    public Sprite[] HalfLeavesNormal;
+    public Sprite[] HalfLeavesHard;
+    //public Sprite[] FullLeaves;
     public GameObject[] modal;
 
     //Panel 2 (Camera)
@@ -284,7 +286,25 @@ public class InsideController : MonoBehaviour
     {
         CounterText.text = leafChallenge.index + " / " + LEAVES_PER_CHALLENGE;
         short leafIndex = leafChallenge.GetLeaf();
-        HalfLeaf.sprite = HalfLeaves[leafIndex];
+        switch(difficulty)
+        {
+            case Difficulty.EASY:
+                {
+                    HalfLeaf.sprite = HalfLeaves[leafIndex];
+                    break;
+                }
+            case Difficulty.MEDIUM:
+                {
+                    HalfLeaf.sprite = HalfLeavesNormal[leafIndex];
+                    break;
+                }
+            case Difficulty.HARD:
+            default:
+                {
+                    HalfLeaf.sprite = HalfLeavesHard[leafIndex];
+                    break;
+                }
+        }
     }
 
     private void CreateQuestion(short leafIndex)

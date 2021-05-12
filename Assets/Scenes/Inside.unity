@@ -38934,7 +38934,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4692395fae523ed448744ea9e5cbc23c, type: 3}
   - {fileID: 21300000, guid: e77c31481eb00f349ae006da68ecbbfd, type: 3}
   - {fileID: 21300000, guid: f76ecbd46bc6ca142bd22d839a3089eb, type: 3}
-  FullLeaves: []
+  HalfLeavesNormal:
+  - {fileID: 21300000, guid: e9b7aa899f5482842a978d543399e33c, type: 3}
+  - {fileID: 21300000, guid: 322e4fa37cf7101489066990472330ce, type: 3}
+  - {fileID: 21300000, guid: d40a0022544f992438319de910158569, type: 3}
+  - {fileID: 21300000, guid: 1171fe449aa221147b483f1d4820f0fe, type: 3}
+  - {fileID: 21300000, guid: c752dbad82fae7044b2cf4c102772638, type: 3}
+  - {fileID: 21300000, guid: 42dba68c1f0854d42850a188a269dd99, type: 3}
+  HalfLeavesHard:
+  - {fileID: 21300000, guid: f0cb27bc444eab04fbe5725ee99e3ac5, type: 3}
+  - {fileID: 21300000, guid: f9461cc2e6591264391868cf70b2fd3e, type: 3}
+  - {fileID: 21300000, guid: c8827ebdb8bc6d14b9067b21ed4441cb, type: 3}
+  - {fileID: 21300000, guid: 759eacaad55595d41826c528686c60e3, type: 3}
+  - {fileID: 21300000, guid: b7adc84eb13fb8f448a3da769f946c9e, type: 3}
+  - {fileID: 21300000, guid: f7b4d799354e9624aa1c37a793a29402, type: 3}
   modal:
   - {fileID: 1237499173}
   - {fileID: 1271504799}
