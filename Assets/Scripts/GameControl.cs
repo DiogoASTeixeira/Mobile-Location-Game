@@ -153,17 +153,17 @@ public class GameControl : MonoBehaviour
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/" + SaveData.FILE_NAME, FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
-            file.Close();
-            Leaf[] leaves = control.Leaves;
-            for (short i = 0; i < leaves.Length; i++)
-            {
-                if (data.savedFoundInside[i]) leaves[i].FoundLeaf();
-                if (data.savedFoundOutside[i]) leaves[i].FoundTree();
-                
 
-                // Debug.Log(i + " " + data.savedFoundInside[i] + " " + data.savedFoundOutside[i]);
-                 Debug.Log(data.foundBordo);
+            SaveData data = new SaveData(control.Leaves.Length);
+            data = (SaveData)bf.Deserialize(file);
+            file.Close();
+            for (short i = 0; i < control.Leaves.Length; i++)
+            {
+                if (data.savedFoundInside[i])
+                    control.Leaves[i].FoundLeaf();
+                if (data.savedFoundOutside[i])
+                    control.Leaves[i].FoundTree();
+                
             }
             if (data.SeenIntro) seen_intro = true;
             if (data.foundBordo) bordo_found = true;
