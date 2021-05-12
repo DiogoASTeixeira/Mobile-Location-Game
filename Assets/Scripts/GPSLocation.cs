@@ -11,7 +11,7 @@ public class GPSLocation : MonoBehaviour
     private static readonly float CLOSE_PROXIMITY_RADIUS = 7.0f;
     private static readonly float MEDIUM_PROXIMITY_RADIUS = 15.0f;
     private static readonly float DISTANT_PROXIMITY_RADIUS = 30.0f;
-    private enum Proximity
+    public enum Proximity
     {
         CLOSE, MEDIUM, DISTANT, FARAWAY
     }
@@ -86,7 +86,19 @@ public class GPSLocation : MonoBehaviour
                 }
             }
         }
-        switch(closest_proximity)
+        // Tree is in range and hasn't been found
+        /*if (closest_proximity != Proximity.FARAWAY)
+        {
+            foundLeafIndex = closest_index;
+            foundProximity = closest_proximity;
+            OpenFoundTreeBox();
+            // Notify nearby tree
+            ActiveNotification = closest_index;
+        }
+        */
+        foundLeafIndex = closest_index;
+        foundProximity = closest_proximity;
+        switch (closest_proximity)
         {
             case Proximity.CLOSE:
                 {
@@ -112,15 +124,7 @@ public class GPSLocation : MonoBehaviour
                     break;
                 }
         }
-        // Tree is in range and hasn't been found
-        if (closest_proximity != Proximity.FARAWAY)
-        {
-            foundLeafIndex = closest_index;
-            foundProximity = closest_proximity;
-            OpenFoundTreeBox();
-            // Notify nearby tree
-            ActiveNotification = closest_index;
-        }
+
         return;
     }
 
@@ -160,7 +164,7 @@ public class GPSLocation : MonoBehaviour
             yield break;
         }
 
-        location.Start(5f, 1f);
+        location.Start(4.0f, 1.0f);
         int waitCounter = 20;
 
 
@@ -200,4 +204,6 @@ public class GPSLocation : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
     }
+
+    public Proximity GetProximity() => foundProximity;
 }

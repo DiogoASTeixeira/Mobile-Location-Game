@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -91,6 +92,35 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    private string GetSupposedScene()
+    {
+        GPSLocation gps = GPSLocation.Instance;
+        // coordinates that surround Jardim Botanico
+        MyVector2 a_coords = new MyVector2(41.15434233891927, -8.643349215167602),
+            b_coords = new MyVector2(41.153878879571764, -8.641774344324698),
+            c_coords = new MyVector2(41.15307068904232, -8.643918733955989),
+            d_coords = new MyVector2(41.15200534835579, -8.641775566711743);
+
+        MyVector2 self_coords = new MyVector2(gps.selfLatitude, gps.selfLongitude);
+
+        // the sum of all triangles with self coords as one of the points of the triangle 
+        double sum = getTriangleArea(a_coords, b_coords, self_coords)
+         + getTriangleArea(b_coords, c_coords, self_coords)
+         + getTriangleArea(c_coords, d_coords, self_coords)
+         + getTriangleArea(d_coords, a_coords, self_coords);
+
+
+        return "";
+    }
+
+    private double getTriangleArea(MyVector2 point_A, MyVector2 point_B, MyVector2 point_C)
+    {
+        double l1 = Math.Sqrt(Math.Pow((point_A.x - point_B.x), 2) + Math.Pow((point_A.y - point_B.y), 2));
+        double l2 = Math.Sqrt(Math.Pow((point_B.x - point_C.x), 2) + Math.Pow((point_B.y - point_C.y), 2));
+        double l3 = Math.Sqrt(Math.Pow((point_C.x - point_A.x), 2) + Math.Pow((point_C.y - point_A.y), 2));
+
+        return 0.0f;
+    }
 
     public void SaveGame()
     {
