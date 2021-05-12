@@ -289,7 +289,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 649929297}
   - {fileID: 1625353928}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1483,69 +1482,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &649929296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 649929297}
-  - component: {fileID: 649929299}
-  - component: {fileID: 649929298}
-  m_Layer: 5
-  m_Name: PanelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &649929297
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649929296}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 22051951}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &649929298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649929296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3a655168122f140b4bd07e0895bd21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &649929299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649929296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f565d1821aef6842af3177106d24983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PanelsArray:
-  - {fileID: 0}
 --- !u!1 &657339163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,7 +1893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -419}
+  m_AnchoredPosition: {x: 0, y: -446.00003}
   m_SizeDelta: {x: 0, y: 152.1857}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &850857983
@@ -2527,7 +2463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -262}
+  m_AnchoredPosition: {x: 1.3226013, y: -275}
   m_SizeDelta: {x: 0, y: 150.7881}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1261986594
@@ -2552,7 +2488,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "A Flo[RA] \xE9 uma aplica\xE7\xE3o gr\xE1tis, de realidade aumentada (RA)
     e jogos pervasivos explorando o conhecimento ci\xEAntifico atrav\xE9s do l\xFAdico
-    e da express\xE3o criativa."
+    e da express\xE3o criativa. Realizada em base de disserta\xE7\xE3o de Mestrado."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e72ced01fe6cae42838a1fcebfc9ec3, type: 2}
   m_sharedMaterial: {fileID: 7756593536764636594, guid: 0e72ced01fe6cae42838a1fcebfc9ec3,
@@ -2590,7 +2526,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -4
+  m_characterSpacing: -2.04
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3422,12 +3358,12 @@ RectTransform:
   m_Children:
   - {fileID: 1551010355}
   m_Father: {fileID: 22051951}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.00012207031}
-  m_SizeDelta: {x: -3.152954, y: -6.480957}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625353929
 MonoBehaviour:
@@ -3879,7 +3815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -618}
+  m_AnchoredPosition: {x: 0, y: -645}
   m_SizeDelta: {x: 0, y: 152.1857}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1990817920
@@ -3902,7 +3838,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Com orientoria de:'
+  m_text: 'Com a Orientoria de:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3188f217840b9eb46bb2b5e3fe793226, type: 2}
   m_sharedMaterial: {fileID: -5842651309706327260, guid: 3188f217840b9eb46bb2b5e3fe793226,
@@ -4254,7 +4190,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Maria Van Zeller
 
-    Conselheira'
+    Coorientadora'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e72ced01fe6cae42838a1fcebfc9ec3, type: 2}
   m_sharedMaterial: {fileID: 7756593536764636594, guid: 0e72ced01fe6cae42838a1fcebfc9ec3,
@@ -4710,7 +4646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -856}
+  m_AnchoredPosition: {x: 0, y: -883}
   m_SizeDelta: {x: 0, y: 152.1857}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2142299723

@@ -21,13 +21,16 @@ public class InitialEmptyScript : MonoBehaviour
 
         if (!control.HasSeenIntro())
         {
-            control.SeenIntro();
+            
             UnityEngine.SceneManagement.SceneManager.LoadScene("Intro2");
+            control.SeenIntro();
+            
         }
         else
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
             control.CheckSceneTransition();
+            
         }
     }
 

@@ -39,6 +39,8 @@ public class TrailScript : MonoBehaviour
 	public bool placeSticker;
 	public int stickerType;
 	public bool deleteToggle;
+	public GameObject TutorialToggle;
+	private GameControl Control;
 
 	//public List<GameObject> Points = new List<GameObject>();
 
@@ -46,7 +48,7 @@ public class TrailScript : MonoBehaviour
 
 	void Start()
 	{
-		
+		Control = GameControl.control;
 		debug.text = "Debug will appear here";
 		placeSticker = false;
 		deleteToggle = false;
@@ -120,10 +122,24 @@ public class TrailScript : MonoBehaviour
 	{
 		stickerType = 12;
 	}
+	public void SetTutorialSeen()
+	{
+		Control.seen_tutorial = true;
+		Control.SaveGame();
+	}
+
 	// Update is called once per frame
 	void Update()
 	{
-		
+
+		if (Control.seen_tutorial == true )
+		{
+			TutorialToggle.SetActive(false);
+			
+
+		}
+
+
 		if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0) && deleteToggle == true)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

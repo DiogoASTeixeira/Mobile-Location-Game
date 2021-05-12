@@ -19,6 +19,7 @@ public class InsideController : MonoBehaviour
     public IntroManager PanelManager;
     public Sprite[] HalfLeaves;
     public Sprite[] FullLeaves;
+    public GameObject[] modal;
 
     //Panel 2 (Camera)
     public TMPro.TextMeshProUGUI CounterText;
@@ -110,7 +111,7 @@ public class InsideController : MonoBehaviour
             // show end panel
             Control.NavBar.SetActive(true);
             LeavesLeftText.text = "Total Leaves Found: " + Control.NumberOfFoundLeaves() + " / " + Control.Leaves.Length;
-            PointsText.text = "Points: " + PointsCounter.getCounter();
+            PointsText.text = "Pontos " + PointsCounter.getCounter();
             PanelManager.ShowNextPanel();
             Control.SaveGame();
         }
@@ -147,6 +148,10 @@ public class InsideController : MonoBehaviour
         wrongIcons = GameObject.FindGameObjectsWithTag("wrong");
         feedbackIcons = GameObject.FindGameObjectsWithTag("found");
 
+        foreach (GameObject feedbackIcon in feedbackIcons)
+        {
+            feedbackIcon.gameObject.SetActive(true);
+        }
         foreach (GameObject wrongIcon in wrongIcons)
         {
             wrongIcon.gameObject.SetActive(false);
@@ -165,6 +170,28 @@ public class InsideController : MonoBehaviour
             //mark leaf as found
             Control.Leaves[leafChallenge.GetLeaf()].FoundLeaf();
 
+            if (leafChallenge.GetLeaf() == 0) {
+                Control.bordo_found = true;
+               
+            }
+            if (leafChallenge.GetLeaf() == 1) {
+                Control.eugenia_found = true;
+            }
+            if (leafChallenge.GetLeaf() == 2) {
+                Control.carvalho_found = true;
+            }
+            if (leafChallenge.GetLeaf() == 3) {
+                Control.pilriteiro_found = true;
+            }
+            if (leafChallenge.GetLeaf() == 4) {
+                Control.ambar_found = true;
+            }
+            if (leafChallenge.GetLeaf() == 5) {
+                Control.azevinho_found = true;
+            }
+            
+
+
             //Quiz time
             //ShowQuestion(leafChallenge.GetLeaf());
             StartCoroutine("ShowCorrectFeedback");
@@ -172,6 +199,9 @@ public class InsideController : MonoBehaviour
         else
         {
             StartCoroutine("ShowWrongFeedback");
+            Debug.Log(leafChallenge.GetLeaf());
+
+            
         }
     }
 
@@ -316,6 +346,13 @@ public class InsideController : MonoBehaviour
 
     private void ShowInfoPanel()
     {
+        int which = leafChallenge.GetLeaf();
+
+        for (int i = 0; i < modal.Length; i++)
+        {
+            // only the one matching i == which will be on, all others will be off
+            modal[i].SetActive(i == which);
+        }
         InfoPanel.gameObject.SetActive(true);
         Debug.LogWarning("DONE");
     }

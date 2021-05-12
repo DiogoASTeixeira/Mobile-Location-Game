@@ -13,8 +13,19 @@ public class GameControl : MonoBehaviour
     [HideInInspector]
     public Leaf[] Leaves;
 
+
+    
     public bool seen_intro;
+    public bool seen_tutorial;
     public bool load_finished;
+    public bool bordo_found;
+    public bool pilriteiro_found;
+    public bool azevinho_found;
+    public bool ambar_found;
+    public bool carvalho_found;
+    public bool eugenia_found;
+    
+
     //Leaf Struct to allow settings values in Unity Editor
     public Leaf.LeafStruct[] leafStruct;
 
@@ -92,6 +103,14 @@ public class GameControl : MonoBehaviour
             data.savedFoundInside[i] = leaves[i].IsLeafFound();
             data.savedFoundOutside[i] = leaves[i].IsTreeFound();
             data.SeenIntro = seen_intro;
+            data.SeenTutorial = seen_tutorial;
+            data.foundBordo = bordo_found;
+            data.foundpilriteiro = pilriteiro_found;
+            data.foundAzevinho = azevinho_found;
+            data.foundCarvalho = carvalho_found;
+            data.foundEugenia = eugenia_found;
+            data.foundAmbar = ambar_found;
+
         }
         bf.Serialize(file, data);
         file.Close();
@@ -111,10 +130,19 @@ public class GameControl : MonoBehaviour
             {
                 if (data.savedFoundInside[i]) leaves[i].FoundLeaf();
                 if (data.savedFoundOutside[i]) leaves[i].FoundTree();
+                
 
-                //Debug.Log(i + " " + data.savedFoundInside[i] + " " + data.savedFoundOutside[i]);
+                // Debug.Log(i + " " + data.savedFoundInside[i] + " " + data.savedFoundOutside[i]);
+                 Debug.Log(data.foundBordo);
             }
             if (data.SeenIntro) seen_intro = true;
+            if (data.foundBordo) bordo_found = true;
+            if (data.foundpilriteiro) pilriteiro_found = true;
+            if (data.foundAzevinho) azevinho_found = true;
+            if (data.foundCarvalho) carvalho_found = true;
+            if (data.foundEugenia) eugenia_found = true;
+            if (data.foundAmbar) ambar_found = true;
+            if (data.SeenTutorial) seen_tutorial = true;
 
             Debug.Log("Loaded Data.");
             load_finished = true;
@@ -137,6 +165,13 @@ class SaveData
     public bool[] savedFoundInside;
     public bool[] savedFoundOutside;
     public bool SeenIntro;
+    public bool SeenTutorial;
+    public bool foundBordo;
+    public bool foundpilriteiro;
+    public bool foundAzevinho;
+    public bool foundCarvalho;
+    public bool foundEugenia;
+    public bool foundAmbar;
 
     public SaveData(int length)
     {
