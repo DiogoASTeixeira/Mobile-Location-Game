@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using GoogleARCore;
+using GoogleARCore;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -41,6 +41,8 @@ public class TrailScript : MonoBehaviour
 	public bool deleteToggle;
 	public GameObject TutorialToggle;
 	private GameControl Control;
+	Anchor leafAnchor;
+	private bool hasPlacedLeafAnchor;
 
 	//public List<GameObject> Points = new List<GameObject>();
 
@@ -52,23 +54,23 @@ public class TrailScript : MonoBehaviour
 		debug.text = "Debug will appear here";
 		placeSticker = false;
 		deleteToggle = false;
-
+		GameControl.control.NavBar.SetActive(false);
 
 	}
 
 	public void deleteOn()
-    {
+	{
 		deleteToggle = true;
-    }
+	}
 	public void deleteOff()
 	{
 		deleteToggle = false;
 	}
 
 	public void PlaceSticker()
-    {
+	{
 		placeSticker = true;
-    }
+	}
 
 	public void PlaceSticker0()
 	{
@@ -127,15 +129,20 @@ public class TrailScript : MonoBehaviour
 		Control.seen_tutorial = true;
 		Control.SaveGame();
 	}
+	public void ShowTutorial()
+	{
+		Control.seen_tutorial = false;
+		
+	}
 
 	// Update is called once per frame
 	void Update()
 	{
 
-		if (Control.seen_tutorial == true )
+		if (Control.seen_tutorial == true)
 		{
 			TutorialToggle.SetActive(false);
-			
+
 
 		}
 
@@ -152,98 +159,114 @@ public class TrailScript : MonoBehaviour
 				GameObject.Destroy(hit.transform.gameObject);
 			}
 		}
-		
+
 
 		if (placeSticker == true)
-        {
+		{
 			Vector3 camPos = phonecamera.transform.position;
 			Vector3 camDirection = phonecamera.transform.forward;
 			Quaternion camRotation = phonecamera.transform.rotation;
-
 			Vector3 spawnPos = (camDirection * spawnDistance);
+
+			if (hasPlacedLeafAnchor == false)
+			{
+				leafAnchor = Session.CreateAnchor(new Pose(camPos + (camDirection - spawnPos), this.transform.rotation));
+				hasPlacedLeafAnchor = true;
+				Debug.Log("Coloquei uma ancora de folhas em:" + leafAnchor.transform.position + " " + leafAnchor.transform.rotation);
+
+			}
+
+
+			
 			if (stickerType == 0)
-            {
-				GameObject cur = Instantiate(stickerObject0, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 0
-				cur.transform.SetParent(this.transform);
+			{
+				GameObject cur = Instantiate(stickerObject0, (camPos + (camDirection - (spawnPos * 0.001f))), this.transform.rotation); //cria a sticker 0
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 1)
-            {
+			{
 				GameObject cur = Instantiate(stickerObject1, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 1
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 2)
 			{
 				GameObject cur = Instantiate(stickerObject2, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 2
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 3)
 			{
 				GameObject cur = Instantiate(stickerObject3, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 3
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 4)
 			{
 				GameObject cur = Instantiate(stickerObject4, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 4
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 5)
 			{
 				GameObject cur = Instantiate(stickerObject5, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 5
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			// real leaves
 			else if (stickerType == 6)
 			{
 				GameObject cur = Instantiate(stickerObject6, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 6
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 7)
 			{
 				GameObject cur = Instantiate(stickerObject7, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 7
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 8)
 			{
 				GameObject cur = Instantiate(stickerObject8, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 8
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 9)
 			{
 				GameObject cur = Instantiate(stickerObject9, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 9
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 10)
 			{
 				GameObject cur = Instantiate(stickerObject10, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 10
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 11)
 			{
 				GameObject cur = Instantiate(stickerObject11, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 11
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 			else if (stickerType == 12)
 			{
 				GameObject cur = Instantiate(stickerObject12, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 12
-				cur.transform.SetParent(this.transform);
+				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}
 
 
 
 		}
+
+		
+		
+
+
+
 
 		/*
 		if (Input.touchCount > 1 && status == true )

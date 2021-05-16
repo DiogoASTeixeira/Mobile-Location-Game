@@ -31,11 +31,16 @@ namespace GoogleARCore.Examples.HelloAR
     using Input = InstantPreviewInput;
 #endif
 
+
     /// <summary>
     /// Controls the HelloAR example.
     /// </summary>
     public class HelloARController : MonoBehaviour
     {
+
+        public bool hasCreatedAnchor;
+        Anchor anchor;
+
         /// <summary>
         /// The Depth Setting Menu.
         /// </summary>
@@ -91,7 +96,9 @@ namespace GoogleARCore.Examples.HelloAR
         {
             // Enable ARCore to target 60fps camera capture frame rate on supported devices.
             // Note, Application.targetFrameRate is ignored when QualitySettings.vSyncCount != 0.
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 30;
+            hasCreatedAnchor = false;
+            //Screen.SetResolution(540, 1110, false);
         }
 
         /// <summary>
@@ -192,15 +199,22 @@ namespace GoogleARCore.Examples.HelloAR
                     }
 
                     // Instantiate prefab at the hit pose.
-                    var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+                    //var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
 
                     // Compensate for the hitPose rotation facing away from the raycast (i.e.
                     // camera).
-                    gameObject.transform.Rotate(0, _prefabRotation, 0, Space.Self);
+                    //gameObject.transform.Rotate(0, _prefabRotation, 0, Space.Self);
 
                     // Create an anchor to allow ARCore to track the hitpoint as understanding of
                     // the physical world evolves.
-                    var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+                    //Usar apenas uma ancora
+                    if (hasCreatedAnchor == false)
+                    {
+                        anchor = hit.Trackable.CreateAnchor(hit.Pose);
+                        hasCreatedAnchor = true;
+                    }
+                    
 
                     // Make game object a child of the anchor.
                     gameObject.transform.parent = anchor.transform;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4707363493444244060}
   - component: {fileID: 1703753519521383024}
   - component: {fileID: 8714382068658586225}
+  - component: {fileID: 6926767334543522236}
   m_Layer: 0
   m_Name: MapleSeedAnchor
   m_TagString: Untagged
@@ -104,6 +105,20 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &6926767334543522236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707363493444244061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ded265568253443a09c884bcf50139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnThatTree: {fileID: 4707363493444244061, guid: cf34210f198e3a0439c5ffad88e96ba4,
+    type: 3}
 --- !u!1001 &4707363494861647992
 PrefabInstance:
   m_ObjectHideFlags: 0
