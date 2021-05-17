@@ -66,10 +66,19 @@ public class InsideController : MonoBehaviour
 
     public void OnCameraPanel()
     {
-        Init_ARCamera();
-        CreateLeafChallenge();
-        UpdateUICameraPanel();
-        PointsCounter.StartCounter();
+        if (!Control.HasFoundAllLeaves())
+        {
+            Init_ARCamera();
+            CreateLeafChallenge();
+            UpdateUICameraPanel();
+            PointsCounter.StartCounter();
+        }
+        else
+        {
+            // skip panel if all leafs found
+            PanelManager.ShowNextPanel();
+            Control.NavBar.SetActive(true);
+        }
     }
 
     public void CreateLeafChallenge()
