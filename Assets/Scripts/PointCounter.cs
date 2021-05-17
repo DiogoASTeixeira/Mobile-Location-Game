@@ -25,7 +25,7 @@ public class PointCounter : MonoBehaviour
 
     public void StopCounter() => isCounting = false;
     public void CorrectLeaf() => counter += CORRECT_LEAF_POINTS;
-    public void WrongLeaf() => counter -= WRONG_LEAF_POINTS;
+    public void WrongLeaf(short multiplier = 1) => counter -= WRONG_LEAF_POINTS * multiplier;
     public void CorrectAnswer() => counter += CORRECT_ANSWER_POINTS;
     public void WrongAnswer() => counter -= WRONG_ANSWER_POINTS;
 

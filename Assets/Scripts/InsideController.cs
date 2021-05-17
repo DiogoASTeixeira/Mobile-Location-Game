@@ -30,6 +30,7 @@ public class InsideController : MonoBehaviour
     public InfoPanelBehaviour InfoPanel;
     public Image HalfLeaf;
     public Image[] QuestionBtn;
+    public Button SkipBtn;
 
     //Panel 3
     public TMPro.TextMeshProUGUI LeavesLeftText;
@@ -96,9 +97,19 @@ public class InsideController : MonoBehaviour
         }
     }
 
+    // Acts as if the leaf was found, but takes away points equal to 5 erros
+    public void SkipChallenge()
+    {
+        PointsCounter.WrongLeaf(5);
+        Control.Leaves[leafChallenge.GetLeaf()].FoundLeaf();
+        Debug.Log("Leaf SKipped: " + Control.Leaves[leafChallenge.GetLeaf()].speciesName);
+        ShowQuestion(leafChallenge.GetLeaf());
+    }
+
     public void NextLeafChallenge()
     {
         ResetQuestionBtns();
+        SkipBtn.gameObject.SetActive(true);
         //next leaf or found all 3 leafs panel
         if (leafChallenge.Next())
         {
@@ -137,6 +148,7 @@ public class InsideController : MonoBehaviour
             LowerSection.SetActive(true);
             QuestionBox.SetActive(false);
             PointsCounter.StartCounter();
+            SkipBtn.gameObject.SetActive(true);
 
             PanelManager.ShowPreviousPanel();
         }
@@ -271,6 +283,7 @@ public class InsideController : MonoBehaviour
         CreateQuestion(leafIndex);
         QuestionBox.SetActive(true);
         answered = false;
+        SkipBtn.gameObject.SetActive(false);
 
         //Hide ? Icon in Question
         foreach (GameObject feedbackIcon in feedbackIcons)
