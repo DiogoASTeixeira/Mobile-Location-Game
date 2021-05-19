@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: Flora_colors
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Branco
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Name: Preto
+    m_Color: {r: 0, g: 0, b: 0, a: 1}
+  - m_Name: Dark Green
+    m_Color: {r: 0.17254902, g: 0.2784314, b: 0.24313726, a: 1}
+  - m_Name: Medium Green
+    m_Color: {r: 0.41568628, g: 0.5568628, b: 0.30588236, a: 1}
+  - m_Name: Light Green
+    m_Color: {r: 0.6901961, g: 0.81960785, b: 0.50980395, a: 1}
+  - m_Name: Rouge
+    m_Color: {r: 0.90588236, g: 0.36862746, b: 0.3529412, a: 1}
+  - m_Name: Grayish Blue
+    m_Color: {r: 0.6117647, g: 0.64705884, b: 0.6784314, a: 1}
+  - m_Name: Medium Gay
+    m_Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
