@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5781823541049045273}
   - component: {fileID: 1348439346683462964}
   - component: {fileID: 7744946532728948699}
+  - component: {fileID: 3531512983915363801}
   m_Layer: 0
   m_Name: Folha3
   m_TagString: 3D
@@ -34,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 6127921649556114097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalScale: {x: 0.03, y: 0.029999997, z: 0.03}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,7 +106,19 @@ MonoBehaviour:
   selfSelected: 0
   onSelected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3531512983915363801}
+        m_TargetAssemblyTypeName: DissolveSprite, Assembly-CSharp
+        m_MethodName: LeafSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeselected:
     m_PersistentCalls:
       m_Calls: []
@@ -238,3 +251,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.95845634, y: 2.4586153, z: 0.20000012}
   m_Center: {x: 0.50745183, y: -3.3507235, z: 0}
+--- !u!114 &3531512983915363801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127921649556114097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1400b7a7b74b3438a843bb97c82f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newMat: {fileID: 2100000, guid: 3e7101ee60b046b418bc7a05d385162b, type: 2}
+  speed: 0.5

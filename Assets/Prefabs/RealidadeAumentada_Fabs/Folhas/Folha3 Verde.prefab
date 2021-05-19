@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6127921649556114104}
   - component: {fileID: 6127921649556114105}
   - component: {fileID: 5781823541049045273}
+  - component: {fileID: -7038425536582325020}
   - component: {fileID: 1348439346683462964}
   - component: {fileID: 7744946532728948699}
   m_Layer: 0
@@ -105,7 +106,19 @@ MonoBehaviour:
   selfSelected: 0
   onSelected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -7038425536582325020}
+        m_TargetAssemblyTypeName: DissolveSprite, Assembly-CSharp
+        m_MethodName: LeafSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeselected:
     m_PersistentCalls:
       m_Calls: []
@@ -212,6 +225,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4566147, y: 6.2282352, z: 0.20000012}
   m_Center: {x: -0.26580682, y: 0.950531, z: 0}
+--- !u!114 &-7038425536582325020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127921649556114097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1400b7a7b74b3438a843bb97c82f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newMat: {fileID: 2100000, guid: 3e7101ee60b046b418bc7a05d385162b, type: 2}
+  speed: 0.5
 --- !u!65 &1348439346683462964
 BoxCollider:
   m_ObjectHideFlags: 0

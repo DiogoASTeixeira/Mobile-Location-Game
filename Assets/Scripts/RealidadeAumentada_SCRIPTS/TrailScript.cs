@@ -38,7 +38,7 @@ public class TrailScript : MonoBehaviour
 	public int count_touch;
 	public bool placeSticker;
 	public int stickerType;
-	public bool deleteToggle;
+	public static bool deleteToggle;
 	public GameObject TutorialToggle;
 	private GameControl Control;
 	Anchor leafAnchor;
@@ -55,6 +55,7 @@ public class TrailScript : MonoBehaviour
 		placeSticker = false;
 		deleteToggle = false;
 		GameControl.control.NavBar.SetActive(false);
+		
 
 	}
 
@@ -135,6 +136,21 @@ public class TrailScript : MonoBehaviour
 		
 	}
 
+	
+	private RaycastHit FirstHit;
+
+
+	IEnumerator DestroyDisolve()
+	{
+		yield return new WaitForSeconds(1f);
+		
+
+
+		//GameObject.Destroy(FirstHit.transform.gameObject);
+		yield return null;
+
+	}
+
 	// Update is called once per frame
 	void Update()
 	{
@@ -146,6 +162,7 @@ public class TrailScript : MonoBehaviour
 
 		}
 
+		
 
 		if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0) && deleteToggle == true)
 		{
@@ -156,7 +173,10 @@ public class TrailScript : MonoBehaviour
 			{
 				// here you need to insert a check if the object is really a tree
 				// for example by tagging all trees with "Tree" and checking hit.transform.tag
-				GameObject.Destroy(hit.transform.gameObject);
+				FirstHit = hit;
+				StartCoroutine("DestroyDisolve");
+
+
 			}
 		}
 
