@@ -48,15 +48,15 @@ public class ModalPanel : MonoBehaviour
 
 
         //Debug.Log(Map(0f, 1f, -550f, -310f,  this.transform.localPosition.y) + " " + this.transform.localPosition.y);
-        valuerange = Map(1f, 0f, -550f, -400f, this.transform.localPosition.y);
-        backdrop.color = new Color32(200, 200, 200, (byte) Map(0f, 255f, -580f, -400f, this.transform.localPosition.y));
+        valuerange = Map(1f, 0f, -500f, -400f, this.transform.localPosition.y);
+        backdrop.color = new Color32(200, 200, 200, (byte) Map(0f, 255f, -500f, -400f, this.transform.localPosition.y));
         otherclosebtn.alpha = Map(0f, 1f, -450f, -400f, this.transform.localPosition.y);
-        leavesdrop.startColor = new Color32(200, 200, 200, (byte) Map(0f, 255f, -550f, -400f, this.transform.localPosition.y));
+        leavesdrop.startColor = new Color32(200, 200, 200, (byte) Map(0f, 255f, -500f, -400f, this.transform.localPosition.y));
 
 
 
         anim.Play("CloseModal_Animation", -1, valuerange);
-        if (this.transform.localPosition.y < -550)
+        if (this.transform.localPosition.y < -500)
         {
             Debug.Log("Closed Modal");
             //this.transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);

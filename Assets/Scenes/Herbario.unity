@@ -2704,6 +2704,16 @@ PrefabInstance:
         s\xE3o comest\xEDveis, mas t\xEAm um sabor aguado e suave, portanto desinteressantes
         de sabor."
       objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 6482886054765533750, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3778,6 +3788,16 @@ PrefabInstance:
         e existe uma lei que pro\xEDbe o corte, arranque e venda.\nOs Romanos usavam-na
         para decorar festas em honra ao Deus Saturno, garantindo uma boa colheita
         no ano seguinte."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6482886054765533750, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
@@ -5043,33 +5063,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
+      propertyPath: seen_intro
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
+        type: 3}
       propertyPath: ambar_found
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: bordo_found
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: eugenia_found
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
+        type: 3}
+      propertyPath: load_finished
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
+        type: 3}
+      propertyPath: seen_tutorial
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: azevinho_found
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: carvalho_found
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: pilriteiro_found
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
@@ -5084,12 +5119,12 @@ PrefabInstance:
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: TreeOutside.bordo_foundOutside
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: TreeOutside.eugenia_foundOutside
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
@@ -5099,7 +5134,7 @@ PrefabInstance:
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
       propertyPath: TreeOutside.carvalho_foundOutside
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}
@@ -7097,6 +7132,16 @@ PrefabInstance:
       propertyPath: m_text
       value: "Podes mastigar a resina para refrescar o h\xE1lito, mas tem um sabor
         amargo. Costuma ser usada para tratar constipa\xE7\xF5es e problemas de pele."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6482886054765533750, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
@@ -10081,6 +10126,16 @@ PrefabInstance:
         bugalhos, bolas que envolvem muitas vezes as larvas destes insetos, servindo
         de casa."
       objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 6482886054765533750, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -10529,7 +10584,7 @@ PrefabInstance:
     - target: {fileID: 6482886053571488145, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
       propertyPath: expectedInteractable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6482886053574212080, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
@@ -11048,6 +11103,16 @@ PrefabInstance:
         de sangue e normal funcionamento do cora\xE7\xE3o. Diminuindo a press\xE3o
         arterial e fortalecendo o cora\xE7\xE3o.\r\nA madeira \xE9 utilizada como
         cabo para ferramentas."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6482886054765533750, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
@@ -11630,6 +11695,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482886054765533748, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 6482886054765533750, guid: 8d7e1546fdde4a348a125d5ffaab70aa,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -11737,7 +11812,7 @@ PrefabInstance:
     - target: {fileID: 1431956144768155281, guid: fca9a8b690b72a0469da52a25351b97f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1431956144768155281, guid: fca9a8b690b72a0469da52a25351b97f,
         type: 3}
