@@ -207,13 +207,28 @@ public class GameControl : MonoBehaviour
             if (data.SeenTutorial) seen_tutorial = true;
 
             Debug.Log("Loaded Data.");
-            load_finished = true;
         }
         else
         {
             Debug.LogWarning("No save data.");
-            load_finished = true;
         }
+        load_finished = true;
+    }
+
+    public void ResetGame()
+    {
+            if (File.Exists(Application.persistentDataPath + "/" + SaveData.FILE_NAME))
+            {
+                File.Delete(Application.persistentDataPath + "/" + SaveData.FILE_NAME);
+                for (short i = 0; i < control.Leaves.Length; i++)
+                {
+                        control.Leaves[i].ResetLeaf();
+
+                }
+                Debug.Log("Successfully Reset Data.");
+            }
+            else
+                Debug.LogWarning("No save data found to delete.");
     }
 
     public bool HasSeenIntro() => seen_intro;

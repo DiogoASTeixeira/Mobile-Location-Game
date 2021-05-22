@@ -65,6 +65,12 @@ public class Leaf
     public void FoundTree() => foundOutside = true;
     public bool IsLeafFound() => foundInside;
     public bool IsTreeFound() => foundOutside;
+
+    public void ResetLeaf()
+    {
+        foundInside = false;
+        foundOutside = false;
+    }
     public void SetTreeCoordinates(MyVector2 coords)
     {
         treeCoordinates.x = coords.x;
