@@ -137,19 +137,10 @@ public class TrailScript : MonoBehaviour
 	}
 
 	
-	private RaycastHit FirstHit;
+	
 
 
-	IEnumerator DestroyDisolve()
-	{
-		yield return new WaitForSeconds(1f);
-		
-
-
-		//GameObject.Destroy(FirstHit.transform.gameObject);
-		yield return null;
-
-	}
+	
 
 	// Update is called once per frame
 	void Update()
@@ -163,22 +154,6 @@ public class TrailScript : MonoBehaviour
 		}
 
 		
-
-		if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0) && deleteToggle == true)
-		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 100.0f) && hit.transform.tag == "3D")
-			{
-				// here you need to insert a check if the object is really a tree
-				// for example by tagging all trees with "Tree" and checking hit.transform.tag
-				FirstHit = hit;
-				StartCoroutine("DestroyDisolve");
-
-
-			}
-		}
 
 
 		if (placeSticker == true)

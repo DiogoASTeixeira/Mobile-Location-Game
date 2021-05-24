@@ -22,9 +22,9 @@ public class TreeSpawner : MonoBehaviour
         // Debug.Log(this.transform.position);
 
 
-        if (this.transform.position.y < -2 && placedTree == false)
+        if (this.transform.position.y < -1.5f && placedTree == false)
         {
-            Debug.Log("You fell motherfucker");
+            Debug.Log("Seed has fell");
             GameObject treeSpawn = Instantiate(spawnThatTree,this.transform.position, this.transform.rotation, Parent.transform);
             placedTree = true;
             Destroy(gameObject);

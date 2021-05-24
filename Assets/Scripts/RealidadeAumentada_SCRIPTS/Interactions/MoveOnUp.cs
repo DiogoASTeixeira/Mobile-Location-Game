@@ -25,7 +25,7 @@ public class MoveOnUp : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
 
-            transform.localPosition = new Vector3(0, 0, 0);
+            //transform.localPosition = new Vector3(0, 0, 0);
             if (isSelected == true)
             {
                 rendererScript.stickerType = StickerNumber;

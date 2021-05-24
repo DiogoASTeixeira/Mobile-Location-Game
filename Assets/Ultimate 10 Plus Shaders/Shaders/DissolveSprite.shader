@@ -29,72 +29,105 @@ This shader has NOT been tested on any other PC configuration except the followi
 ____________________________________________________________________________________________________________________________________________
 */
 
-Shader "Ultimate 10+ Shaders/Dissolve"
+Shader "Ultimate 10+ Shaders/DissolveSpriteMod"
 {
-    Properties
-    {
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _NoiseTex ("Noise", 2D) = "white" {}
+	Properties
+	{
+		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
+		_Color("Tint", Color) = (1,1,1,1)
+		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
+		[HideInInspector] _RendererColor("RendererColor", Color) = (1,1,1,1)
+		[HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
+		[PerRendererData] _AlphaTex("External Alpha", 2D) = "white" {}
+		[PerRendererData] _EnableExternalAlpha("Enable External Alpha", Float) = 0
 
-        _Cutoff ("Cut off", Range(0, 1)) = 0.25
-        _EdgeWidth ("Edge Width", Range(0, 1)) = 0.05
-        [HDR] _EdgeColor ("Edge Color", Color) = (1,1,1,1)
-        
-        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Geometry" "Queue"="Transparent" }
-        LOD 200
-        Cull [_Cull]
+		_DissolveTex("Dissolve Overlay", 2D) = "white" {}
+		_EmissionColor("Emission Color", color) = (1,0,0,1)
+		_EmissionThickness("Emission Thickness", Range(0, 1)) = 0.1
+		_DissolvePower("Dissolve Power", Range(0, 1)) = 1
+	}
 
-        CGPROGRAM
-        // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard addshadow fullforwardshadows
+		SubShader
+		{
+			Tags
+			{
+				"Queue" = "Transparent"
+				"IgnoreProjector" = "True"
+				"RenderType" = "Transparent"
+				"PreviewType" = "Plane"
+				"CanUseSpriteAtlas" = "True"
+			}
 
-        #ifndef SHADER_API_D3D11
-            #pragma target 3.0
-        #else
-            #pragma target 4.0
-        #endif
+			Cull Off
+			Lighting Off
+			ZWrite Off
+			Blend One OneMinusSrcAlpha
 
-        sampler2D _MainTex;
-        sampler2D _NoiseTex;
+			Pass
+			{
+			CGPROGRAM
+				#pragma vertex SpriteVert_Dissolve
+				#pragma fragment SpriteFrag_Dissolve
+				#pragma target 2.0
+				#pragma multi_compile_instancing
+				#pragma multi_compile_local _ PIXELSNAP_ON
+				#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
+				#include "UnitySprites.cginc"
 
-        half _Cutoff;
-        half _EdgeWidth;
+				sampler2D _DissolveTex;
+				float4 _DissolveTex_ST;
 
-        fixed4 _Color;
-        fixed4 _EdgeColor;
+				fixed4 _EmissionColor;
+				fixed _EmissionThickness;
+				fixed _DissolvePower; //start at 1 then gradually to 0
 
-        struct Input
-        {
-            float2 uv_MainTex;
-            float2 uv_NoiseTex;
-        };
+				struct v2fExt
+				{
+					float4 vertex   : SV_POSITION;
+					fixed4 color : COLOR;
+					float2 texcoord : TEXCOORD0;
+					float2 texcoord2 : TEXCOORD1;
+					UNITY_VERTEX_OUTPUT_STEREO
+				};
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
-        UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
-        UNITY_INSTANCING_BUFFER_END(Props)
+				v2fExt SpriteVert_Dissolve(appdata_t IN)
+				{
+					v2fExt OUT;
 
-        fixed4 noisePixel, pixel;
-        half cutoff;
-        void surf (Input IN, inout SurfaceOutputStandard o)
-        {
-            pixel = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+					UNITY_SETUP_INSTANCE_ID(IN);
+					UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
 
-            o.Albedo = pixel.rgb;
+					OUT.vertex = UnityFlipSprite(IN.vertex, _Flip);
+					OUT.vertex = UnityObjectToClipPos(OUT.vertex);
+					OUT.texcoord = IN.texcoord;
+					OUT.color = IN.color * _Color * _RendererColor;
 
-            noisePixel = tex2D (_NoiseTex, IN.uv_NoiseTex);
+					#ifdef PIXELSNAP_ON
+					OUT.vertex = UnityPixelSnap(OUT.vertex);
+					#endif
 
-            clip(noisePixel.r >= _Cutoff ? 1 : -1);
-            o.Emission = noisePixel.r >= (_Cutoff * (_EdgeWidth + 1.0)) ? 0 : _EdgeColor;
-        }
-        ENDCG
-    }
-    FallBack "Diffuse"
+					//coord for dissolve to accomodate texture scale/offset
+					OUT.texcoord2 = IN.texcoord * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
+
+					return OUT;
+				}
+
+				fixed4 SpriteFrag_Dissolve(v2fExt IN) : COLOR
+				{
+					fixed4 clr = SampleSpriteTexture(IN.texcoord) * IN.color;
+					fixed mask = tex2D(_DissolveTex, IN.texcoord2).r;
+
+					fixed4 blend = fixed4(0,0,0,0);
+					if (mask < _DissolvePower + _EmissionThickness)
+						blend = fixed4(_EmissionColor.r, _EmissionColor.g, _EmissionColor.b, clr.a);
+					if (mask <= _DissolvePower)
+						blend = clr;
+
+					blend.rgb *= blend.a;
+
+					return blend;
+				}
+			ENDCG
+			}
+		}
 }

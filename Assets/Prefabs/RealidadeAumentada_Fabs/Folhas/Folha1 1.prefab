@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6127921649556114104}
   - component: {fileID: 6127921649556114105}
   - component: {fileID: 5781823541049045273}
-  - component: {fileID: 4309298490797400349}
+  - component: {fileID: 2996373670869077680}
   - component: {fileID: 9069243077494295871}
   m_Layer: 0
   m_Name: Folha1 1
@@ -106,7 +106,7 @@ MonoBehaviour:
   onSelected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4309298490797400349}
+      - m_Target: {fileID: 2996373670869077680}
         m_TargetAssemblyTypeName: DissolveSprite, Assembly-CSharp
         m_MethodName: LeafSelected
         m_Mode: 1
@@ -224,7 +224,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.8502502, y: 7.5199184, z: 0.20000012}
   m_Center: {x: -0.16348189, y: 2.753048, z: 0}
---- !u!114 &4309298490797400349
+--- !u!114 &2996373670869077680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,10 +233,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6127921649556114097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1400b7a7b74b3438a843bb97c82f50, type: 3}
+  m_Script: {fileID: 11500000, guid: 2daa33529fa7386438c2c3bce9074660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newMat: {fileID: 2100000, guid: 3e7101ee60b046b418bc7a05d385162b, type: 2}
+  newMat: {fileID: 2100000, guid: 3851845a54b6845429011aaf99acde0a, type: 2}
   speed: 0.5
 --- !u!65 &9069243077494295871
 BoxCollider:

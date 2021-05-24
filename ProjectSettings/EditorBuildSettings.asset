@@ -5,25 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/InitialEmpty.unity
     guid: 7274065a057dfa544850d9a6102d39c9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Intro2.unity
     guid: 2ffe8c441094f5b409548704764f80ae
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 8aa578af46111ae4e89c76331bf2efa5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FarAway.unity
     guid: a003fa107b3b3474d9df9d2702d3cbd5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Inside.unity
     guid: 8cdc3c8d649f9504bbb4fb832b651b54
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LocationPermission.unity
     guid: 990bc532b9aff1d42bc5b89fbebcde74
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Outside.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
@@ -32,15 +32,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARFlora2.unity
     guid: 09e87deaa3c75dd4bbe63775bee7a398
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/PhotoTaken.unity
     guid: 6ff15d7b1c5defb4c82a47cfbece19e1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/About.unity
     guid: 19dd47473d98619459df179c1e3c2809
-  - enabled: 0
-    path: Assets/Scenes/Old_bkp/ARFlora2_bkp.unity
-    guid: a8aa7540413ca8846a47b33e0b23a683
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: fce79fb97a03ecc4ba428c3f9cb610e1,
       type: 2}
