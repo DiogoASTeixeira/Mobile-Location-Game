@@ -35,6 +35,7 @@ public class InsideController : MonoBehaviour
     //Panel 3
     public TMPro.TextMeshProUGUI LeavesLeftText;
     public TMPro.TextMeshProUGUI PointsText;
+    public WinStarScript WinStarsScript;
 
     LeafChallenge leafChallenge;
     private short leafDetected = -1;
@@ -83,8 +84,8 @@ public class InsideController : MonoBehaviour
 
     public void CreateLeafChallenge()
     {
-        //TODO verify if alreaddy init
         leafChallenge.Init();
+        WinStarsScript.ResetValues();
 
         // Create a list of only unfound Leaves
         List<short> leavesNotFound = new List<short>(Control.Leaves.Length);
@@ -110,6 +111,7 @@ public class InsideController : MonoBehaviour
     public void SkipChallenge()
     {
         PointsCounter.WrongLeaf(5);
+        WinStarsScript.WrongGuess(5);
         Control.Leaves[leafChallenge.GetLeaf()].FoundLeaf();
         Debug.Log("Leaf SKipped: " + Control.Leaves[leafChallenge.GetLeaf()].speciesName);
         ShowQuestion(leafChallenge.GetLeaf());
@@ -131,6 +133,7 @@ public class InsideController : MonoBehaviour
         else
         {
             // show end panel
+            WinStarsScript.UpdateStarUI(Time.time - leafChallenge.TimeStart);
             Control.NavBar.SetActive(true);
             LeavesLeftText.text = "Total Leaves Found: " + Control.NumberOfFoundLeaves() + " / " + Control.Leaves.Length;
             PointsText.text = "Pontos " + PointsCounter.getCounter();
@@ -192,7 +195,7 @@ public class InsideController : MonoBehaviour
         {
             //mark leaf as found
             Control.Leaves[leafChallenge.GetLeaf()].FoundLeaf();
-
+            /*
             if (leafChallenge.GetLeaf() == 0) {
                 Control.bordo_found = true;
                
@@ -212,9 +215,9 @@ public class InsideController : MonoBehaviour
             if (leafChallenge.GetLeaf() == 5) {
                 Control.azevinho_found = true;
             }
-
+            */
             PointsCounter.CorrectLeaf();
-
+            WinStarsScript.CorrectGuess();
             //Quiz time
             //ShowQuestion(leafChallenge.GetLeaf());
             StartCoroutine("ShowCorrectFeedback");
@@ -222,11 +225,10 @@ public class InsideController : MonoBehaviour
         else
         {
             PointsCounter.WrongLeaf();
+            WinStarsScript.WrongGuess();
 
             StartCoroutine("ShowWrongFeedback");
             Debug.Log(leafChallenge.GetLeaf());
-
-            
         }
     }
 
@@ -356,7 +358,6 @@ public class InsideController : MonoBehaviour
         }
     }
 
-    // Points are considered bad right now
     public void AnswerQuestion(int answer)
     {
         if (!answered)
@@ -366,12 +367,14 @@ public class InsideController : MonoBehaviour
             if (answer == leafChallenge.rightAnswer)
             {
                 PointsCounter.CorrectAnswer();
+                WinStarsScript.CorrectGuess();
             }
             else
             {
                 // Wrond answer turns red
                 QuestionBtn[answer].color = new Color32(231, 94, 90, 255);
                 PointsCounter.WrongAnswer();
+                WinStarsScript.WrongGuess();
             }
             // Correct answer Turns green
             QuestionBtn[leafChallenge.rightAnswer].color = new Color32(106, 142, 78, 255);
@@ -400,6 +403,9 @@ public class InsideController : MonoBehaviour
         InfoPanel.gameObject.SetActive(true);
         Debug.LogWarning("DONE");
     }
+
+
+
     //TODO detect only in frame
     private bool IsLeafOnScreenCenter(int leafNumber)
     {
@@ -426,11 +432,14 @@ public class InsideController : MonoBehaviour
 
         public string[] answers;
         public short rightAnswer;
+
+        public float TimeStart;
         internal void Init()
         {
             index = 0;
             leaves = new short[LEAVES_PER_CHALLENGE];
             answers = new string[3];
+            TimeStart = Time.time;
         }
 
         internal short GetLeaf()
