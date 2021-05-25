@@ -22,15 +22,17 @@ public class CollectionBehaviour : MonoBehaviour
             {
                 LockedImage[i].SetActive(false);
                 LeafButtons[i].interactable = true;
-
+                FoundOutsideIndicator[i].SetActive(true);
+                treeCounterText[i].text = "2/2";
             }
             else
             {
                 LockedImage[i].SetActive(true);
                 LeafButtons[i].interactable = false;
-
+                FoundInsideIndicator[i].SetActive(false);
             }
         }
+        /*
         //bordo
         if (control.bordo_found == true)
         {
@@ -39,7 +41,7 @@ public class CollectionBehaviour : MonoBehaviour
             FoundInsideIndicator[0].SetActive(true);
             counterColor[0].color = new Color32(106, 142, 78, 255);
             treeCounterText[0].text = "1/2";
-            if (control.TreeOutside.bordo_foundOutside == true) { FoundOutsideIndicator[0].SetActive(true); treeCounterText[0].text = "2/2"; }
+           // if (control.TreeOutside.bordo_foundOutside == true) { FoundOutsideIndicator[0].SetActive(true); treeCounterText[0].text = "2/2"; }
 
         }
         else
@@ -56,7 +58,7 @@ public class CollectionBehaviour : MonoBehaviour
             FoundInsideIndicator[5].SetActive(true);
             counterColor[5].color = new Color32(106, 142, 78, 255);
             treeCounterText[5].text = "1/2";
-            if (control.TreeOutside.eugenia_foundOutside == true) { FoundOutsideIndicator[5].SetActive(true); treeCounterText[5].text = "2/2"; }
+            // if (control.TreeOutside.eugenia_foundOutside == true) { FoundOutsideIndicator[5].SetActive(true); treeCounterText[5].text = "2/2"; }
 
         }
         else
@@ -74,7 +76,7 @@ public class CollectionBehaviour : MonoBehaviour
             FoundInsideIndicator[4].SetActive(true);
             counterColor[4].color = new Color32(106, 142, 78, 255);
             treeCounterText[4].text = "1/2";
-            if (control.TreeOutside.carvalho_foundOutside == true) { FoundOutsideIndicator[4].SetActive(true); treeCounterText[4].text = "2/2"; }
+           // if (control.TreeOutside.carvalho_foundOutside == true) { FoundOutsideIndicator[4].SetActive(true); treeCounterText[4].text = "2/2"; }
         }
         else
         {
@@ -91,7 +93,7 @@ public class CollectionBehaviour : MonoBehaviour
             FoundInsideIndicator[1].SetActive(true);
             counterColor[1].color = new Color32(106, 142, 78, 255);
             treeCounterText[1].text = "1/2";
-            if (control.TreeOutside.pilriteiro_foundOutside == true) { FoundOutsideIndicator[1].SetActive(true); treeCounterText[1].text = "2/2"; }
+           // if (control.TreeOutside.pilriteiro_foundOutside == true) { FoundOutsideIndicator[1].SetActive(true); treeCounterText[1].text = "2/2"; }
         }
         else
         {
@@ -107,7 +109,7 @@ public class CollectionBehaviour : MonoBehaviour
             FoundInsideIndicator[3].SetActive(true);
             counterColor[3].color = new Color32(106, 142, 78, 255);
             treeCounterText[3].text = "1/2";
-            if (control.TreeOutside.ambar_foundOutside == true) { FoundOutsideIndicator[3].SetActive(true); treeCounterText[3].text = "2/2"; }
+          //  if (control.TreeOutside.ambar_foundOutside == true) { FoundOutsideIndicator[3].SetActive(true); treeCounterText[3].text = "2/2"; }
         }
         else
         {
@@ -124,7 +126,7 @@ public class CollectionBehaviour : MonoBehaviour
             FoundInsideIndicator[2].SetActive(true);
             counterColor[2].color = new Color32(106, 142, 78, 255);
             treeCounterText[2].text = "1/2";
-            if (control.TreeOutside.azevinho_foundOutside == true) { FoundOutsideIndicator[2].SetActive(true); treeCounterText[2].text = "2/2"; }
+          //  if (control.TreeOutside.azevinho_foundOutside == true) { FoundOutsideIndicator[2].SetActive(true); treeCounterText[2].text = "2/2"; }
         }
         else
         {
@@ -133,5 +135,6 @@ public class CollectionBehaviour : MonoBehaviour
             FoundInsideIndicator[2].SetActive(false);
 
         }
+        */
     }
 }

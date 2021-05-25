@@ -17,16 +17,18 @@ public class GameControl : MonoBehaviour
     [HideInInspector]
     public Leaf[] Leaves;
 
+    
     public bool seen_intro;
     public bool seen_tutorial;
     public bool load_finished;
+    /*
     public bool bordo_found;
     public bool pilriteiro_found;
     public bool azevinho_found;
     public bool ambar_found;
     public bool carvalho_found;
     public bool eugenia_found;
-
+    
     //Lista das folhas encontradas lá fora
     [Serializable]
     public struct FoundTreeOutside
@@ -38,10 +40,10 @@ public class GameControl : MonoBehaviour
         public bool carvalho_foundOutside;
         public bool eugenia_foundOutside;
     }
-
+    
     [SerializeField]
     public FoundTreeOutside TreeOutside;
-
+    */
     //Leaf Struct to allow settings values in Unity Editor
     public Leaf.LeafStruct[] leafStruct;
 
@@ -151,6 +153,7 @@ public class GameControl : MonoBehaviour
             data.savedFoundOutside[i] = leaves[i].IsTreeFound();
             data.SeenIntro = seen_intro;
             data.SeenTutorial = seen_tutorial;
+            /*
             data.foundBordo = bordo_found;
             data.foundpilriteiro = pilriteiro_found;
             data.foundAzevinho = azevinho_found;
@@ -164,7 +167,7 @@ public class GameControl : MonoBehaviour
             data.foundCarvalhoOutside = TreeOutside.carvalho_foundOutside;
             data.foundEugeniaOutside = TreeOutside.eugenia_foundOutside;
             data.foundAmbarOutside = TreeOutside.ambar_foundOutside;
-
+            */
         }
         bf.Serialize(file, data);
         file.Close();
@@ -189,7 +192,9 @@ public class GameControl : MonoBehaviour
                     control.Leaves[i].FoundTree();
                 
             }
+            
             if (data.SeenIntro) seen_intro = true;
+            /*
             if (data.foundBordo) bordo_found = true;
             if (data.foundpilriteiro) pilriteiro_found = true;
             if (data.foundAzevinho) azevinho_found = true;
@@ -203,7 +208,7 @@ public class GameControl : MonoBehaviour
             if (data.foundCarvalhoOutside) TreeOutside.carvalho_foundOutside = true;
             if (data.foundEugeniaOutside) TreeOutside.eugenia_foundOutside = true;
             if (data.foundAmbarOutside) TreeOutside.ambar_foundOutside = true;
-
+            */
             if (data.SeenTutorial) seen_tutorial = true;
 
             Debug.Log("Loaded Data.");
@@ -243,6 +248,8 @@ class SaveData
     public bool[] savedFoundOutside;
     public bool SeenIntro;
     public bool SeenTutorial;
+
+    /*
     public bool foundBordo;
     public bool foundpilriteiro;
     public bool foundAzevinho;
@@ -255,6 +262,7 @@ class SaveData
     public bool foundCarvalhoOutside;
     public bool foundEugeniaOutside;
     public bool foundAmbarOutside;
+    */
 
     public SaveData(int length)
     {
