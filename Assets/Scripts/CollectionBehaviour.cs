@@ -22,8 +22,14 @@ public class CollectionBehaviour : MonoBehaviour
             {
                 LockedImage[i].SetActive(false);
                 LeafButtons[i].interactable = true;
-                FoundOutsideIndicator[i].SetActive(true);
-                treeCounterText[i].text = "2/2";
+                FoundInsideIndicator[0].SetActive(true);
+                counterColor[i].color = new Color32(106, 142, 78, 255);
+                treeCounterText[i].text = "1/2";
+                if (leaves[i].IsTreeFound())
+                {
+                    FoundOutsideIndicator[i].SetActive(true);
+                    treeCounterText[i].text = "2/2";
+                }
             }
             else
             {
