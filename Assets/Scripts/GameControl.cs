@@ -4,9 +4,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
-
 public class GameControl : MonoBehaviour
 {
     // Static Reference
@@ -46,6 +43,7 @@ public class GameControl : MonoBehaviour
     */
     //Leaf Struct to allow settings values in Unity Editor
     public Leaf.LeafStruct[] leafStruct;
+    public PointCounter PointCounter;
 
     private void Awake()
     {
@@ -63,13 +61,12 @@ public class GameControl : MonoBehaviour
             //In case there is a different instance destroy this one.
             Destroy(gameObject);
         }
-
-        
     }
 
      private void Start()
     {
         CreateLeaves();
+        
     }
 
     private void CreateLeaves()

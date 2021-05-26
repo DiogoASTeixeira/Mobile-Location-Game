@@ -6989,7 +6989,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 58.1
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8234,6 +8234,7 @@ MonoBehaviour:
   selfAccuracy: 0
   ActiveNotification: -1
   previousNotification: -1
+  PointsText: {fileID: 1513813015}
   FoundTreeBox: {fileID: 1711117146}
   FoundTreeText: {fileID: 1000312068}
   CounterText: {fileID: 1664964532}

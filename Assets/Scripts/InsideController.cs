@@ -15,7 +15,7 @@ public class InsideController : MonoBehaviour
     public Camera camera;
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     private GameControl Control;
-    public PointCounter PointsCounter;
+    //public PointCounter PointCounter;
     public IntroManager PanelManager;
     public Sprite[] HalfLeaves;
     public Sprite[] HalfLeavesNormal;
@@ -62,7 +62,7 @@ public class InsideController : MonoBehaviour
 
     private void Update()
     {
-        points = PointsCounter.getCounter();
+        points = Control.PointCounter.GetCounter();
     }
 
     public void OnCameraPanel()
@@ -72,7 +72,7 @@ public class InsideController : MonoBehaviour
             Init_ARCamera();
             CreateLeafChallenge();
             UpdateUICameraPanel();
-            PointsCounter.StartCounter();
+            Control.PointCounter.StartCounter();
         }
         else
         {
@@ -110,7 +110,7 @@ public class InsideController : MonoBehaviour
     // Acts as if the leaf was found, but takes away points equal to 5 erros
     public void SkipChallenge()
     {
-        PointsCounter.WrongLeaf(5);
+        Control.PointCounter.WrongLeaf(5);
         WinStarsScript.WrongGuess(5);
         Control.Leaves[leafChallenge.GetLeaf()].FoundLeaf();
         Debug.Log("Leaf SKipped: " + Control.Leaves[leafChallenge.GetLeaf()].speciesName);
@@ -128,7 +128,7 @@ public class InsideController : MonoBehaviour
             UpdateUICameraPanel();
             LowerSection.SetActive(true);
             QuestionBox.SetActive(false);
-            PointsCounter.StartCounter();
+            Control.PointCounter.StartCounter();
         }
         else
         {
@@ -136,7 +136,7 @@ public class InsideController : MonoBehaviour
             WinStarsScript.UpdateStarUI(Time.time - leafChallenge.TimeStart);
             Control.NavBar.SetActive(true);
             LeavesLeftText.text = "Total Leaves Found: " + Control.NumberOfFoundLeaves() + " / " + Control.Leaves.Length;
-            PointsText.text = "Pontos " + PointsCounter.getCounter();
+            PointsText.text = "Pontos " + Control.PointCounter.GetCounter();
             PanelManager.ShowNextPanel();
             Control.SaveGame();
         }
@@ -159,7 +159,7 @@ public class InsideController : MonoBehaviour
             UpdateUICameraPanel();
             LowerSection.SetActive(true);
             QuestionBox.SetActive(false);
-            PointsCounter.StartCounter();
+            Control.PointCounter.StartCounter();
             SkipBtn.gameObject.SetActive(true);
 
             PanelManager.ShowPreviousPanel();
@@ -216,7 +216,7 @@ public class InsideController : MonoBehaviour
                 Control.azevinho_found = true;
             }
             */
-            PointsCounter.CorrectLeaf();
+            Control.PointCounter.CorrectLeaf();
             WinStarsScript.CorrectGuess();
             //Quiz time
             //ShowQuestion(leafChallenge.GetLeaf());
@@ -224,7 +224,7 @@ public class InsideController : MonoBehaviour
         }
         else
         {
-            PointsCounter.WrongLeaf();
+            Control.PointCounter.WrongLeaf();
             WinStarsScript.WrongGuess();
 
             StartCoroutine("ShowWrongFeedback");
@@ -363,17 +363,17 @@ public class InsideController : MonoBehaviour
         if (!answered)
         {
             answered = true;
-            PointsCounter.StopCounter();
+            Control.PointCounter.StopCounter();
             if (answer == leafChallenge.rightAnswer)
             {
-                PointsCounter.CorrectAnswer();
+                Control.PointCounter.CorrectAnswer();
                 WinStarsScript.CorrectGuess();
             }
             else
             {
                 // Wrond answer turns red
                 QuestionBtn[answer].color = new Color32(231, 94, 90, 255);
-                PointsCounter.WrongAnswer();
+                Control.PointCounter.WrongAnswer();
                 WinStarsScript.WrongGuess();
             }
             // Correct answer Turns green

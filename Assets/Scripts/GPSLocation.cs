@@ -30,6 +30,8 @@ public class GPSLocation : MonoBehaviour
     public short ActiveNotification = -1;
     public short previousNotification = -1;
 
+    public TextMeshProUGUI PointsText;
+
     //Tree Box
     public GameObject FoundTreeBox;
     public TextMeshProUGUI FoundTreeText;
@@ -58,6 +60,7 @@ public class GPSLocation : MonoBehaviour
             if (leaves[i].IsTreeFound()) c++;
         }
         CounterText.text = c.ToString() + " / " + leaves.Length.ToString();
+        PointsText.text = GameControl.control.PointCounter.GetCounter() + " Points";
     }
 
     // Update is called once per frame

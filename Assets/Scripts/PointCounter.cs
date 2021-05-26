@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class PointCounter : MonoBehaviour
 {
+    private static readonly float STARTING_POINTS = 2000.0f;
+
     private static readonly int CORRECT_LEAF_POINTS = 300;
     private static readonly int WRONG_LEAF_POINTS = 50;
     private static readonly int CORRECT_ANSWER_POINTS = 150;
     private static readonly int WRONG_ANSWER_POINTS = 100;
     private static readonly float POINTS_PER_SECOND = 11.0f;
 
-    private float counter = 2000.0f;
+    private float counter = STARTING_POINTS;
     private bool isCounting = false;
     private void Update()
     {
@@ -29,5 +31,7 @@ public class PointCounter : MonoBehaviour
     public void CorrectAnswer() => counter += CORRECT_ANSWER_POINTS;
     public void WrongAnswer() => counter -= WRONG_ANSWER_POINTS;
 
-    public int getCounter() => (int)counter;
+    public void ResetCounter() => counter = STARTING_POINTS;
+
+    public int GetCounter() => (int)counter;
 }
