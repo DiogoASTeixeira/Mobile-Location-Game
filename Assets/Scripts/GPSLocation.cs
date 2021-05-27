@@ -24,6 +24,8 @@ public class GPSLocation : MonoBehaviour
     private int foundLeafIndex = -1;
     private Proximity foundProximity = Proximity.FARAWAY;
 
+    public Slider DebugSlider;
+    public double fakeDistance;
     public double selfLatitude;
     public double selfLongitude;
     public double selfAccuracy;
@@ -37,6 +39,8 @@ public class GPSLocation : MonoBehaviour
     public TextMeshProUGUI FoundTreeText;
     public TextMeshProUGUI CounterText;
     public TextMeshProUGUI RadarTreeText;
+
+       
 
     void Start()
     {
@@ -70,9 +74,12 @@ public class GPSLocation : MonoBehaviour
         {
             location_updated = false;
             CheckForTrees();
-        }
-    }
 
+
+
+        }
+
+    }
     private void CheckForTrees()
     {
         Proximity closest_proximity = Proximity.FARAWAY;
@@ -105,7 +112,7 @@ public class GPSLocation : MonoBehaviour
         {
             case Proximity.CLOSE:
                 {
-                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está muito próxima.";
+                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está muito próxima!";
                     OpenFoundTreeBox();
                     // Notify nearby tree
                     ActiveNotification = closest_index;
@@ -113,12 +120,12 @@ public class GPSLocation : MonoBehaviour
                 }
             case Proximity.MEDIUM:
                 {
-                    RadarTreeText.text = "Estás a aproximar-te da árvore " + leaves[closest_index].speciesName + ".";
+                    RadarTreeText.text = "Estás a aproximar-te da árvore " + leaves[closest_index].speciesName + "!";
                     break;
                 }
             case Proximity.DISTANT:
                 {
-                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está distante de ti.";
+                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está perto!";
                     break;
                 }
             default: //FARAWAY
@@ -157,6 +164,8 @@ public class GPSLocation : MonoBehaviour
         if (distance <= MEDIUM_PROXIMITY_RADIUS) return Proximity.MEDIUM;
         if (distance <= DISTANT_PROXIMITY_RADIUS) return Proximity.DISTANT;
         return Proximity.FARAWAY;
+        
+
     }
 
     private IEnumerator StartLocationService()
@@ -209,4 +218,28 @@ public class GPSLocation : MonoBehaviour
     }
 
     public Proximity GetProximity() => foundProximity;
+
+
+    public float Map(float from, float to, float from2, float to2, float value)
+    {
+        if (value <= from2)
+        {
+            return from;
+        }
+        else if (value >= to2)
+        {
+            return to;
+        }
+        else
+        {
+            return (to - from) * ((value - from2) / (to2 - from2)) + from;
+        }
+    }
+
+    public void DebugSliderShow()
+    {
+        fakeDistance = Map(50f, 0f, 0f, 1f, DebugSlider.value);
+
+        return;
+    }
 }
