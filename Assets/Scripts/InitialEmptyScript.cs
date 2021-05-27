@@ -22,10 +22,6 @@ public class InitialEmptyScript : MonoBehaviour
         {
             panel.SetActive(true);
         }
-        else
-        {
-           LateStart();
-        }
     }
     private void Update()
     {
