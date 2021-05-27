@@ -141,15 +141,16 @@ public class GameControl : MonoBehaviour
     public void SaveGame()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/" + SaveData.FILE_NAME);
+        FileStream file = File.Create(SaveData.FILE_PATH);
         Leaf[] leaves = control.Leaves;
         SaveData data = new SaveData(leaves.Length);
-        for(short i = 0; i < leaves.Length; i++)
+        data.SeenIntro = seen_intro;
+        data.SeenTutorial = seen_tutorial;
+        for (short i = 0; i < leaves.Length; i++)
         {
             data.savedFoundInside[i] = leaves[i].IsLeafFound();
             data.savedFoundOutside[i] = leaves[i].IsTreeFound();
-            data.SeenIntro = seen_intro;
-            data.SeenTutorial = seen_tutorial;
+
             /*
             data.foundBordo = bordo_found;
             data.foundpilriteiro = pilriteiro_found;
@@ -168,15 +169,16 @@ public class GameControl : MonoBehaviour
         }
         bf.Serialize(file, data);
         file.Close();
-        Debug.Log("Saved Game Data: " + Application.persistentDataPath + "/" + SaveData.FILE_NAME);
+        Debug.Log("Saved Game Data: " + SaveData.FILE_PATH);
     }
 
     public void LoadGame()
     {
-        if (File.Exists(Application.persistentDataPath + "/" + SaveData.FILE_NAME))
+        Debug.Log("HAAHAHHHHHHAHAAAHAHAHAHAHAHAHAHHAHAHAHAHAHAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+        if (File.Exists(SaveData.FILE_PATH))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + SaveData.FILE_NAME, FileMode.Open);
+            FileStream file = File.Open(SaveData.FILE_PATH, FileMode.Open);
 
             SaveData data = new SaveData(control.Leaves.Length);
             data = (SaveData)bf.Deserialize(file);
@@ -187,10 +189,10 @@ public class GameControl : MonoBehaviour
                     control.Leaves[i].FoundLeaf();
                 if (data.savedFoundOutside[i])
                     control.Leaves[i].FoundTree();
-                
             }
             
             if (data.SeenIntro) seen_intro = true;
+            if (data.SeenTutorial) seen_tutorial = true;
             /*
             if (data.foundBordo) bordo_found = true;
             if (data.foundpilriteiro) pilriteiro_found = true;
@@ -206,22 +208,21 @@ public class GameControl : MonoBehaviour
             if (data.foundEugeniaOutside) TreeOutside.eugenia_foundOutside = true;
             if (data.foundAmbarOutside) TreeOutside.ambar_foundOutside = true;
             */
-            if (data.SeenTutorial) seen_tutorial = true;
 
-            Debug.Log("Loaded Data.");
+            Debug.Log("Loaded Data from: " + SaveData.FILE_PATH);
         }
         else
         {
-            Debug.LogWarning("No save data.");
+            Debug.LogWarning("No save data on: " + SaveData.FILE_PATH);
         }
         load_finished = true;
     }
 
     public void ResetGame()
     {
-            if (File.Exists(Application.persistentDataPath + "/" + SaveData.FILE_NAME))
+            if (File.Exists(SaveData.FILE_PATH))
             {
-                File.Delete(Application.persistentDataPath + "/" + SaveData.FILE_NAME);
+                File.Delete(SaveData.FILE_PATH);
                 for (short i = 0; i < control.Leaves.Length; i++)
                 {
                         control.Leaves[i].ResetLeaf();
@@ -240,7 +241,7 @@ public class GameControl : MonoBehaviour
 [System.Serializable]
 class SaveData
 {
-    public static readonly string FILE_NAME = "FloRA.dat";
+    public static readonly string FILE_PATH = Application.persistentDataPath + "/FloRA.dat";
     public bool[] savedFoundInside;
     public bool[] savedFoundOutside;
     public bool SeenIntro;
