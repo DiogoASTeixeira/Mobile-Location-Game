@@ -34,6 +34,12 @@ public class GPSLocation : MonoBehaviour
 
     public TextMeshProUGUI PointsText;
 
+    public MapTreeFocusApproach TreeMap;
+    public Proximity currentViewPortProximity = Proximity.FARAWAY;
+    public int currentViewPortIndex = -1;
+    public Proximity previousViewPortProximity = Proximity.FARAWAY;
+    public int previousViewPortIndex = -1;
+
     //Tree Box
     public GameObject FoundTreeBox;
     public TextMeshProUGUI FoundTreeText;
@@ -74,12 +80,9 @@ public class GPSLocation : MonoBehaviour
         {
             location_updated = false;
             CheckForTrees();
-
-
-
         }
-
     }
+
     private void CheckForTrees()
     {
         Proximity closest_proximity = Proximity.FARAWAY;
@@ -134,7 +137,15 @@ public class GPSLocation : MonoBehaviour
                     break;
                 }
         }
+        currentViewPortIndex = closest_index;
+        currentViewPortProximity = closest_proximity;
+        if (currentViewPortProximity < previousViewPortProximity || currentViewPortIndex != previousViewPortIndex)
+        {
+            TreeMap.FocusMapOnTree(currentViewPortIndex);
+        }
 
+        previousViewPortProximity = currentViewPortProximity;
+        previousViewPortIndex = currentViewPortIndex;
         return;
     }
 
