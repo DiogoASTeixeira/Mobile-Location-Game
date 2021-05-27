@@ -174,7 +174,6 @@ public class GameControl : MonoBehaviour
 
     public void LoadGame()
     {
-        Debug.Log("HAAHAHHHHHHAHAAAHAHAHAHAHAHAHAHHAHAHAHAHAHAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
         if (File.Exists(SaveData.FILE_PATH))
         {
             BinaryFormatter bf = new BinaryFormatter();
