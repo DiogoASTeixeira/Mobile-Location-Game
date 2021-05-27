@@ -25,7 +25,7 @@ public class InitialEmptyScript : MonoBehaviour
     }
     private void Update()
     {
-        if (!started && Permission.HasUserAuthorizedPermission(Permission.Camera) && Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        if (!started )//&& Permission.HasUserAuthorizedPermission(Permission.Camera) && Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
             started = true;
             LateStart();
@@ -38,7 +38,7 @@ public class InitialEmptyScript : MonoBehaviour
         if (!Permission.HasUserAuthorizedPermission(Permission.Camera) || !Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
             Permission.RequestUserPermission(Permission.Camera);
-            Permission.RequestUserPermission(Permission.FineLocation);
+           Permission.RequestUserPermission(Permission.FineLocation);
 
             clicked_request_btn = true;
         }
