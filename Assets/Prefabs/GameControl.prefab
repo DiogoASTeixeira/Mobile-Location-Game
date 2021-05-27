@@ -1568,8 +1568,8 @@ MonoBehaviour:
     foundOutside: 0
   - speciesName: Pilriteiro
     scientificName: 'Crataegus monogyna  Jacq. '
-    latitude: 41.1536492
-    longitude: 8.6427624
+    latitude: 41.1536813
+    longitude: -8.6427735
     information: WEQEQW
     foundInside: 0
     foundOutside: 0
