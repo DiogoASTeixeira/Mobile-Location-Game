@@ -78,16 +78,13 @@ public class GPSLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (locationServiceStarted && location_updated)
+        if(Application.isEditor)
+            Debug_Update();
+        else if (locationServiceStarted && location_updated)
         {
             location_updated = false;
-
-            //CheckForTrees();
-
+            CheckForTrees();
         }
-        */
-        Debug_Update();
     }
 
     private void Debug_Update()
@@ -138,8 +135,6 @@ public class GPSLocation : MonoBehaviour
         Proximity closest_proximity = Proximity.FARAWAY;
         short closest_index = -1;
 
-       // curr_debug_slider_distance = 50.0f;
-        //lowest_debug_slider_distance = 50.0f;
         for (short i = 0; i < leaves.Length; i++)
         {
             if (leaves[i].IsLeafFound() && !leaves[i].IsTreeFound())
@@ -233,8 +228,6 @@ public class GPSLocation : MonoBehaviour
         if (distance <= MEDIUM_PROXIMITY_RADIUS) return Proximity.MEDIUM;
         if (distance <= DISTANT_PROXIMITY_RADIUS) return Proximity.DISTANT;
         return Proximity.FARAWAY;
-        
-
     }
 
     private IEnumerator StartLocationService()
