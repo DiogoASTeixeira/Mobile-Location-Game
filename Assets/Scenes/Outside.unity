@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 50
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 41.1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -8855,6 +8855,8 @@ MonoBehaviour:
   CounterText: {fileID: 1664964532}
   RadarTreeText: {fileID: 1598019443}
   debug_slider: {fileID: 1454853}
+  debug_tree_index: 0
+  debug_proximity: 3
 --- !u!114 &1776564175
 MonoBehaviour:
   m_ObjectHideFlags: 0

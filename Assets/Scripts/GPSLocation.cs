@@ -29,8 +29,8 @@ public class GPSLocation : MonoBehaviour
     public double selfLatitude;
     public double selfLongitude;
     public double selfAccuracy;
-    public short ActiveNotification = -1;
-    public short previousNotification = -1;
+    public int ActiveNotification = -1;
+    public int previousNotification = -1;
 
     public TextMeshProUGUI PointsText;
 
@@ -78,21 +78,61 @@ public class GPSLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (locationServiceStarted && location_updated)
         {
             location_updated = false;
-            debug_slider.value = (float)lowest_debug_slider_distance;
-            CheckForTrees();
+
+            //CheckForTrees();
+
         }
-
-        
-
+        */
+        Debug_Update();
     }
 
-    double curr_debug_slider_distance = 50.0f;
-    double lowest_debug_slider_distance = 50.0f;
-    public Slider debug_slider;
+    private void Debug_Update()
+    {
+        //debug_slider.value = (float)lowest_debug_slider_distance;
+        foundLeafIndex = debug_tree_index;
 
+        if (debug_slider.value <= CLOSE_PROXIMITY_RADIUS) debug_proximity = Proximity.CLOSE;
+        else if (debug_slider.value <= MEDIUM_PROXIMITY_RADIUS) debug_proximity = Proximity.MEDIUM;
+        else if (debug_slider.value <= DISTANT_PROXIMITY_RADIUS) debug_proximity = Proximity.DISTANT;
+        else debug_proximity = Proximity.FARAWAY;
+        Debug.Log(debug_slider.value);
+        switch (debug_proximity)
+        {
+            case Proximity.CLOSE:
+                {
+                    RadarTreeText.text = "A árvore " + leaves[foundLeafIndex].speciesName + " está muito próxima!";
+                    //OpenFoundTreeBox();
+                    // Notify nearby tree
+                    //ActiveNotification = foundLeafIndex;
+                    break;
+                }
+            case Proximity.MEDIUM:
+                {
+                    RadarTreeText.text = "Estás a aproximar-te da árvore " + leaves[foundLeafIndex].speciesName + "!";
+                    break;
+                }
+            case Proximity.DISTANT:
+                {
+                    RadarTreeText.text = "A árvore " + leaves[foundLeafIndex].speciesName + " está perto!";
+                    break;
+                }
+            default: //FARAWAY
+                {
+                    RadarTreeText.text = "Não há árvores próximas ainda por descobrir.";
+                    break;
+                }
+        }
+    }
+
+    double curr_debug_slider_distance;
+    double lowest_debug_slider_distance;
+    public Slider debug_slider;
+    public int debug_tree_index;
+    public Proximity debug_proximity;
     private void CheckForTrees()
     {
         Proximity closest_proximity = Proximity.FARAWAY;
@@ -247,28 +287,4 @@ public class GPSLocation : MonoBehaviour
     }
 
     public Proximity GetProximity() => foundProximity;
-
-
-    public float Map(float from, float to, float from2, float to2, float value)
-    {
-        if (value <= from2)
-        {
-            return from;
-        }
-        else if (value >= to2)
-        {
-            return to;
-        }
-        else
-        {
-            return (to - from) * ((value - from2) / (to2 - from2)) + from;
-        }
-    }
-
-    public void DebugSliderShow()
-    {
-        fakeDistance = Map(50f, 0f, 0f, 1f, debug_slider.value);
-
-        return;
-    }
 }
