@@ -25,7 +25,6 @@ public class GPSLocation : MonoBehaviour
     private int foundLeafIndex = -1;
     private Proximity foundProximity = Proximity.FARAWAY;
 
-    public Slider DebugSlider;
     public double fakeDistance;
     public double selfLatitude;
     public double selfLongitude;
@@ -72,6 +71,8 @@ public class GPSLocation : MonoBehaviour
         }
         CounterText.text = c.ToString() + " / " + leaves.Length.ToString();
         PointsText.text = GameControl.control.PointCounter.GetCounter() + " Points";
+
+        debug_slider.maxValue = 60.0f;
     }
 
     // Update is called once per frame
@@ -80,9 +81,12 @@ public class GPSLocation : MonoBehaviour
         if (locationServiceStarted && location_updated)
         {
             location_updated = false;
-            CheckForTrees();
             debug_slider.value = (float)lowest_debug_slider_distance;
+            CheckForTrees();
         }
+
+        
+
     }
 
     double curr_debug_slider_distance = 50.0f;
@@ -94,8 +98,8 @@ public class GPSLocation : MonoBehaviour
         Proximity closest_proximity = Proximity.FARAWAY;
         short closest_index = -1;
 
-        curr_debug_slider_distance = 50.0f;
-        lowest_debug_slider_distance = 50.0f;
+       // curr_debug_slider_distance = 50.0f;
+        //lowest_debug_slider_distance = 50.0f;
         for (short i = 0; i < leaves.Length; i++)
         {
             if (leaves[i].IsLeafFound() && !leaves[i].IsTreeFound())
@@ -106,6 +110,7 @@ public class GPSLocation : MonoBehaviour
                     lowest_debug_slider_distance = curr_debug_slider_distance;
                     closest_proximity = prox;
                     closest_index = i;
+                    Debug.Log(lowest_debug_slider_distance + "and" + curr_debug_slider_distance + " and " + closest_proximity);
                 }
             }
         }
@@ -262,7 +267,7 @@ public class GPSLocation : MonoBehaviour
 
     public void DebugSliderShow()
     {
-        fakeDistance = Map(50f, 0f, 0f, 1f, DebugSlider.value);
+        fakeDistance = Map(50f, 0f, 0f, 1f, debug_slider.value);
 
         return;
     }

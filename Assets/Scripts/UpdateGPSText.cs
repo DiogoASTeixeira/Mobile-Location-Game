@@ -33,7 +33,7 @@ public class UpdateGPSText : MonoBehaviour
             }
             else
             {
-                LeafName.text = "No undiscovered trees nearby";
+                LeafName.text = "Não há árvores para descobrir por perto.";
             }
             gps.previousNotification = gps.ActiveNotification;
         }

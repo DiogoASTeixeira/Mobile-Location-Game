@@ -20,6 +20,7 @@ public class InsideController : MonoBehaviour
     public Sprite[] HalfLeaves;
     public Sprite[] HalfLeavesNormal;
     public Sprite[] HalfLeavesHard;
+    public Sprite[] feedbackIconsSprites;
     //public Sprite[] FullLeaves;
     public GameObject[] modal;
 
@@ -31,6 +32,7 @@ public class InsideController : MonoBehaviour
     public Image HalfLeaf;
     public Image[] QuestionBtn;
     public Button SkipBtn;
+    public GameObject Skip;
 
     //Panel 3
     public TMPro.TextMeshProUGUI LeavesLeftText;
@@ -57,7 +59,6 @@ public class InsideController : MonoBehaviour
     private void Start()
     {
         Control = GameControl.control;
-        
     }
 
     private void Update()
@@ -73,6 +74,8 @@ public class InsideController : MonoBehaviour
             CreateLeafChallenge();
             UpdateUICameraPanel();
             Control.PointCounter.StartCounter();
+            StartCoroutine("HideSkipTemp");
+
         }
         else
         {
@@ -129,6 +132,8 @@ public class InsideController : MonoBehaviour
             LowerSection.SetActive(true);
             QuestionBox.SetActive(false);
             Control.PointCounter.StartCounter();
+            StartCoroutine("HideSkipTemp");
+
         }
         else
         {
@@ -247,7 +252,7 @@ public class InsideController : MonoBehaviour
             rightIcon.gameObject.SetActive(true);
         }
         //espera 2 segundos
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         //liga o icon ? do desconhecido de novo
         foreach (GameObject feedbackIcon in feedbackIcons)
         {
@@ -263,6 +268,8 @@ public class InsideController : MonoBehaviour
     }
     IEnumerator ShowWrongFeedback()
     {
+        HalfLeaf.sprite = feedbackIconsSprites[0];
+
         //desliga o icon ? do desconhecido
         foreach (GameObject feedbackIcon in feedbackIcons)
         {
@@ -274,7 +281,7 @@ public class InsideController : MonoBehaviour
             wrongIcon.gameObject.SetActive(true);
         }
         //espera 2 segundos
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         //liga o icon ? do desconhecido de novo
         foreach (GameObject feedbackIcon in feedbackIcons)
         {
@@ -285,6 +292,17 @@ public class InsideController : MonoBehaviour
         {
             wrongIcon.gameObject.SetActive(false);
         }
+
+        UpdateUICameraPanel();
+        yield return null;
+    }
+    IEnumerator HideSkipTemp()
+    {
+        Skip.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        Skip.SetActive(true);
+
+
         yield return null;
     }
 

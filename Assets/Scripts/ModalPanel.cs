@@ -58,7 +58,7 @@ public class ModalPanel : MonoBehaviour
         anim.Play("CloseModal_Animation", -1, valuerange);
         if (this.transform.localPosition.y < -500)
         {
-            Debug.Log("Closed Modal");
+            //Debug.Log("Closed Modal");
             //this.transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
 
             CloseModal.Invoke();

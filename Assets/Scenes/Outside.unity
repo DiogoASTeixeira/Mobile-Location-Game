@@ -6936,7 +6936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 229, y: 177}
+  m_AnchoredPosition: {x: 34, y: 177}
   m_SizeDelta: {x: 716.3457, y: 591.4434}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1456535865
@@ -8838,7 +8838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829f494db48e1047ad254810aa34e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugSlider: {fileID: 1454853}
   fakeDistance: 0
   selfLatitude: 0
   selfLongitude: 0
@@ -8871,11 +8870,11 @@ MonoBehaviour:
   MapTreeViewPort: {fileID: 1447782333}
   LeafViewPort:
   - LeafTransitor: {fileID: 951137373}
-  - LeafTransitor: {fileID: 283375276}
-  - LeafTransitor: {fileID: 632380357}
-  - LeafTransitor: {fileID: 789711605}
   - LeafTransitor: {fileID: 1585930972}
+  - LeafTransitor: {fileID: 789711605}
+  - LeafTransitor: {fileID: 283375276}
   - LeafTransitor: {fileID: 2032856154}
+  - LeafTransitor: {fileID: 632380357}
 --- !u!224 &1788518653 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5045688181507243776, guid: a745129b955ec2241965b8ec57c684d0,
