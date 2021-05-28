@@ -9025,6 +9025,7 @@ GameObject:
   - component: {fileID: 6482886054401538675}
   - component: {fileID: 6482886054401538674}
   - component: {fileID: 6482886054401538673}
+  - component: {fileID: 3462716276958580441}
   m_Layer: 5
   m_Name: Modal Trees
   m_TagString: Untagged
@@ -9178,6 +9179,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3462716276958580441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482886054401538668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0952d968aa2274588b3c20c4dfa5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeKey: 27
+  emptyWindow: {fileID: 6482886054401538674}
+  windowOrder: []
 --- !u!1 &6482886054446970165
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Android;
 using System;
 using TMPro;
+using UnityEngine.Events;
 
 public class GPSLocation : MonoBehaviour
 {
@@ -142,6 +143,7 @@ public class GPSLocation : MonoBehaviour
         if (currentViewPortProximity < previousViewPortProximity || currentViewPortIndex != previousViewPortIndex)
         {
             TreeMap.FocusMapOnTree(currentViewPortIndex);
+            Handheld.Vibrate();
         }
 
         previousViewPortProximity = currentViewPortProximity;

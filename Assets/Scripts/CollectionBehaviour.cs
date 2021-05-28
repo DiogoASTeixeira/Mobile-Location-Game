@@ -8,8 +8,9 @@ public class CollectionBehaviour : MonoBehaviour
     public Button[] LeafButtons;
     public GameObject[] FoundInsideIndicator;
     public GameObject[] FoundOutsideIndicator;
-    public TextMeshProUGUI[] treeCounterText;
-    public Image[] counterColor;
+    
+    public GameObject[] completedColor;
+    public GameObject[] completedCheck;
 
 
     private void Start()
@@ -23,12 +24,12 @@ public class CollectionBehaviour : MonoBehaviour
                 LockedImage[i].SetActive(false);
                 LeafButtons[i].interactable = true;
                 FoundInsideIndicator[i].SetActive(true);
-                counterColor[i].color = new Color32(106, 142, 78, 255);
-                treeCounterText[i].text = "1/2";
                 if (leaves[i].IsTreeFound())
                 {
                     FoundOutsideIndicator[i].SetActive(true);
-                    treeCounterText[i].text = "2/2";
+                    completedColor[i].SetActive(true);
+                    completedCheck[i].SetActive(true);
+
                 }
             }
             else
