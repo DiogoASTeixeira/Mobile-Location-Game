@@ -81,13 +81,21 @@ public class GPSLocation : MonoBehaviour
         {
             location_updated = false;
             CheckForTrees();
+            debug_slider.value = (float)lowest_debug_slider_distance;
         }
     }
+
+    double curr_debug_slider_distance = 50.0f;
+    double lowest_debug_slider_distance = 50.0f;
+    public Slider debug_slider;
 
     private void CheckForTrees()
     {
         Proximity closest_proximity = Proximity.FARAWAY;
         short closest_index = -1;
+
+        curr_debug_slider_distance = 50.0f;
+        lowest_debug_slider_distance = 50.0f;
         for (short i = 0; i < leaves.Length; i++)
         {
             if (leaves[i].IsLeafFound() && !leaves[i].IsTreeFound())
@@ -95,6 +103,7 @@ public class GPSLocation : MonoBehaviour
                 Proximity prox = CheckIfInRange(leaves[i]);
                 if(prox < closest_proximity)
                 {
+                    lowest_debug_slider_distance = curr_debug_slider_distance;
                     closest_proximity = prox;
                     closest_index = i;
                 }
@@ -170,9 +179,11 @@ public class GPSLocation : MonoBehaviour
         CounterText.text = c.ToString() + " / " + leaves.Length;
     }
 
+
     private Proximity CheckIfInRange(Leaf leaf)
     {
         double distance = leaf.DistanceToTree(selfLatitude, selfLongitude);
+        curr_debug_slider_distance = distance;
         if (distance <= CLOSE_PROXIMITY_RADIUS) return Proximity.CLOSE;
         if (distance <= MEDIUM_PROXIMITY_RADIUS) return Proximity.MEDIUM;
         if (distance <= DISTANT_PROXIMITY_RADIUS) return Proximity.DISTANT;

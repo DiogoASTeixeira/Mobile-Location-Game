@@ -207,7 +207,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 16660431}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 50
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -7294,7 +7294,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.1
+  m_fontSize: 53.7
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8855,6 +8855,7 @@ MonoBehaviour:
   FoundTreeText: {fileID: 1000312068}
   CounterText: {fileID: 1664964532}
   RadarTreeText: {fileID: 1598019443}
+  debug_slider: {fileID: 1454853}
 --- !u!114 &1776564175
 MonoBehaviour:
   m_ObjectHideFlags: 0
