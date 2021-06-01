@@ -15,6 +15,7 @@ public class CollectionBehaviour : MonoBehaviour
 
     public int debug_AllLeavesOn;
     public UnityEvent DebugOntransition;
+    public UnityEvent DebugOntransition2;
 
     private void Start()
     {
@@ -167,27 +168,37 @@ public class CollectionBehaviour : MonoBehaviour
                 leaves[i].FoundLeaf();
                 
             }
+            debug_AllLeavesOn = 6;
+
             DebugOntransition.Invoke();
-            debug_AllLeavesOn = 0;
+        }
+        
+        if (debug_AllLeavesOn == 10)
+        {
+            GameControl control = GameControl.control;
+            Leaf[] leaves = control.Leaves;
+            int n = 0;
+            for (int i = 0; i < leaves.Length; i++)
+            {
+                leaves[i].FoundTree();
+
+            }
+            DebugOntransition2.Invoke();
+            debug_AllLeavesOn = 6;
         }
         
     }
 
     public void addToDebugAllLeavesOn()
     {
-        if (debug_AllLeavesOn < 5)
+        if (debug_AllLeavesOn < 10)
         {
             debug_AllLeavesOn++;
 
             Debug.Log(debug_AllLeavesOn);
         }
-        
 
     }
 
-    public void hello()
-    {
-        Debug.Log("Ping");
-
-    }
+    
 }

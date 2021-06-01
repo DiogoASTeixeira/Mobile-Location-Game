@@ -37,7 +37,7 @@ public class InitialEmptyScript : MonoBehaviour
     {
         if (!Permission.HasUserAuthorizedPermission(Permission.Camera) || !Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
-            string[] permissions = [Permission.Camera, Permission.FineLocation];
+            string[] permissions = { Permission.Camera, Permission.FineLocation };
             Permission.RequestUserPermissions(permissions);
 
             clicked_request_btn = true;

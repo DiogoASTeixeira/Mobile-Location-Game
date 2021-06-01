@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameControl : MonoBehaviour
     // Static Reference
     public static GameControl control;
     public GameObject NavBar;
+    public Button RA;
+    public GameObject RALockedToolTip;
 
     // data to persist between scenes
     [HideInInspector]
@@ -67,6 +70,19 @@ public class GameControl : MonoBehaviour
     {
         CreateLeaves();
         
+    }
+    
+    private void Update()
+    {
+        foreach (Leaf leaf in Leaves)
+            if (!leaf.IsTreeFound()) RA.interactable = false;
+            else 
+            { 
+                RA.interactable = true;
+                RALockedToolTip.SetActive(false);
+            }
+
+
     }
 
     private void CreateLeaves()

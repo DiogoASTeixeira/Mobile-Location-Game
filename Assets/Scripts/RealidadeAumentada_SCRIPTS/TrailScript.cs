@@ -29,7 +29,8 @@ public class TrailScript : MonoBehaviour
 	public GameObject stickerObject10;
 	public GameObject stickerObject11;
 	public GameObject stickerObject12;
-
+	public GameObject[] disableStickerIfNotFound;
+	public GameObject[] disableRealIfNotFound;
 
 	public GameObject phonecamera;
 	public Vector3 Distance;
@@ -55,10 +56,18 @@ public class TrailScript : MonoBehaviour
 		placeSticker = false;
 		deleteToggle = false;
 		GameControl.control.NavBar.SetActive(false);
-		
+		Leaf[] leaves = Control.Leaves;
 
+		for (short i = 0; i < leaves.Length; i++)
+		{
+			if (leaves[i].IsTreeFound())
+			{
+				disableStickerIfNotFound[i].SetActive(true);
+				disableRealIfNotFound[i].SetActive(true);
+			}
+
+		}
 	}
-
 	public void deleteOn()
 	{
 		deleteToggle = true;

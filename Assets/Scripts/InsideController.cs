@@ -397,11 +397,7 @@ public class InsideController : MonoBehaviour
             // Correct answer Turns green
             QuestionBtn[leafChallenge.rightAnswer].color = new Color32(106, 142, 78, 255);
 
-            //Show ? Icon in Question
-            foreach (GameObject feedbackIcon in feedbackIcons)
-            {
-                feedbackIcon.gameObject.SetActive(true);
-            }
+            
 
 
             m_MethodToCall = ShowInfoPanel;
@@ -417,6 +413,11 @@ public class InsideController : MonoBehaviour
         {
             // only the one matching i == which will be on, all others will be off
             modal[i].SetActive(i == which);
+        }
+        //Show ? Icon in Question
+        foreach (GameObject feedbackIcon in feedbackIcons)
+        {
+            feedbackIcon.gameObject.SetActive(true);
         }
         InfoPanel.gameObject.SetActive(true);
         Debug.LogWarning("DONE");
