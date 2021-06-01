@@ -25,6 +25,8 @@ public class GPSLocation : MonoBehaviour
     private int foundLeafIndex = -1;
     private Proximity foundProximity = Proximity.FARAWAY;
 
+    public IntroManager PanelManager;
+
     public double fakeDistance;
     public double selfLatitude;
     public double selfLongitude;
@@ -46,6 +48,7 @@ public class GPSLocation : MonoBehaviour
     public TextMeshProUGUI CounterText;
     public TextMeshProUGUI RadarTreeText;
 
+    public GameObject[] Modals;
        
 
     void Start()
@@ -166,7 +169,7 @@ public class GPSLocation : MonoBehaviour
             case Proximity.CLOSE:
                 {
                     RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está muito próxima!";
-                    OpenFoundTreeBox();
+                    OpenFoundModal();
                     // Notify nearby tree
                     ActiveNotification = closest_index;
                     break;
@@ -206,6 +209,19 @@ public class GPSLocation : MonoBehaviour
         FoundTreeText.text = "A espécie " + leaves[foundLeafIndex].speciesName + " está perto.";
     }
 
+    private void OpenFoundModal()
+    {
+        Modals[foundLeafIndex].SetActive(true);
+    }
+
+
+    public void CheckIfFoundAllTrees()
+    {
+        if(GameControl.control.HasFoundAllTrees())
+        {
+            PanelManager.ShowNextPanel();
+        }
+    }
     public void CloseFoundTreeBox()
     {
         GameControl.control.SaveGame();

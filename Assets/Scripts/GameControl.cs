@@ -112,6 +112,13 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
+    public bool HasFoundAllTrees()
+    {
+        foreach (Leaf leaf in Leaves)
+            if (!leaf.IsTreeFound()) return false;
+        return true;
+    }
+
     //TODO prepare localisation with GPS and BT
     public void CheckSceneTransition()
     {
