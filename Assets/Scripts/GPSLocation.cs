@@ -220,6 +220,7 @@ public class GPSLocation : MonoBehaviour
         if(GameControl.control.HasFoundAllTrees())
         {
             PanelManager.ShowNextPanel();
+            GameControl.control.NavBar.SetActive(true);
         }
     }
     public void CloseFoundModal(int ModalIndex)
