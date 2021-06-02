@@ -49,6 +49,7 @@ public class GPSLocation : MonoBehaviour
     public TextMeshProUGUI RadarTreeText;
 
     public GameObject[] Modals;
+    public bool isModalOpen = false;
        
 
     void Start()
@@ -152,54 +153,49 @@ public class GPSLocation : MonoBehaviour
                 }
             }
         }
-        // Tree is in range and hasn't been found
-        /*if (closest_proximity != Proximity.FARAWAY)
+       
+        if (!isModalOpen)
         {
+
             foundLeafIndex = closest_index;
             foundProximity = closest_proximity;
-            OpenFoundTreeBox();
-            // Notify nearby tree
-            ActiveNotification = closest_index;
-        }
-        */
-        foundLeafIndex = closest_index;
-        foundProximity = closest_proximity;
-        switch (closest_proximity)
-        {
-            case Proximity.CLOSE:
-                {
-                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está muito próxima!";
-                    OpenFoundModal();
-                    // Notify nearby tree
-                    ActiveNotification = closest_index;
-                    break;
-                }
-            case Proximity.MEDIUM:
-                {
-                    RadarTreeText.text = "Estás a aproximar-te da árvore " + leaves[closest_index].speciesName + "!";
-                    break;
-                }
-            case Proximity.DISTANT:
-                {
-                    RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está perto!";
-                    break;
-                }
-            default: //FARAWAY
-                {
-                    RadarTreeText.text = "Não há árvores próximas ainda por descobrir.";
-                    break;
-                }
-        }
-        currentViewPortIndex = closest_index;
-        currentViewPortProximity = closest_proximity;
-        if (currentViewPortProximity < previousViewPortProximity || currentViewPortIndex != previousViewPortIndex)
-        {
-            TreeMap.FocusMapOnTree(currentViewPortIndex);
-            Handheld.Vibrate();
-        }
+            switch (closest_proximity)
+            {
+                case Proximity.CLOSE:
+                    {
+                        RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está muito próxima!";
+                        OpenFoundModal();
+                        // Notify nearby tree
+                        ActiveNotification = closest_index;
+                        break;
+                    }
+                case Proximity.MEDIUM:
+                    {
+                        RadarTreeText.text = "Estás a aproximar-te da árvore " + leaves[closest_index].speciesName + "!";
+                        break;
+                    }
+                case Proximity.DISTANT:
+                    {
+                        RadarTreeText.text = "A árvore " + leaves[closest_index].speciesName + " está perto!";
+                        break;
+                    }
+                default: //FARAWAY
+                    {
+                        RadarTreeText.text = "Não há árvores próximas ainda por descobrir.";
+                        break;
+                    }
+            }
+            currentViewPortIndex = closest_index;
+            currentViewPortProximity = closest_proximity;
+            if (currentViewPortProximity < previousViewPortProximity || currentViewPortIndex != previousViewPortIndex)
+            {
+                TreeMap.FocusMapOnTree(currentViewPortIndex);
+                Handheld.Vibrate();
+            }
 
-        previousViewPortProximity = currentViewPortProximity;
-        previousViewPortIndex = currentViewPortIndex;
+            previousViewPortProximity = currentViewPortProximity;
+            previousViewPortIndex = currentViewPortIndex;
+        }
         return;
     }
 
@@ -211,15 +207,11 @@ public class GPSLocation : MonoBehaviour
 
     private void OpenFoundModal()
     {
-        Modals[foundLeafIndex].SetActive(true);
-        leaves[foundLeafIndex].FoundTree();
-        GameControl.control.SaveGame();
-        int c = 0;
-        for (int i = 0; i < leaves.Length; i++)
+        if (!isModalOpen)
         {
-            if (leaves[i].IsTreeFound()) c++;
+            isModalOpen = true;
+            Modals[foundLeafIndex].SetActive(true);
         }
-        CounterText.text = c.ToString() + " / " + leaves.Length;
     }
 
 
@@ -230,9 +222,10 @@ public class GPSLocation : MonoBehaviour
             PanelManager.ShowNextPanel();
         }
     }
-    public void CloseFoundModal()
+    public void CloseFoundModal(int ModalIndex)
     {
-        leaves[foundLeafIndex].FoundTree();
+        isModalOpen = false;
+        leaves[ModalIndex].FoundTree();
         GameControl.control.SaveGame();
         int c = 0;
         for (int i = 0; i < leaves.Length; i++)
