@@ -74,12 +74,22 @@ public class GameControl : MonoBehaviour
     
     private void Update()
     {
+
         foreach (Leaf leaf in Leaves)
-            if (!leaf.IsTreeFound()) RA.interactable = false;
-            else 
-            { 
+            if (NumberOfFoundTrees() >= 1)
+            {
+                Debug.Log("null");
                 RA.interactable = true;
                 RALockedToolTip.SetActive(false);
+                
+
+            }
+            else
+
+            {
+                RA.interactable = false;
+                RALockedToolTip.SetActive(true);
+
             }
 
 
@@ -104,6 +114,15 @@ public class GameControl : MonoBehaviour
         }
         return n;
     }
+    public int NumberOfFoundTrees()
+    {
+        int n = 0;
+        for(int i = 0; i < Leaves.Length; i++)
+        {
+            if (Leaves[i].IsTreeFound()) n++;
+        }
+        return n;
+    }
 
     public bool HasFoundAllLeaves()
     {
@@ -118,6 +137,8 @@ public class GameControl : MonoBehaviour
             if (!leaf.IsTreeFound()) return false;
         return true;
     }
+    
+    
 
     //TODO prepare localisation with GPS and BT
     public void CheckSceneTransition()
