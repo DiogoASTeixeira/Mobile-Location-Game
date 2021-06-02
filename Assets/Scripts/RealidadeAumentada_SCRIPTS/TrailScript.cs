@@ -5,6 +5,8 @@ using UnityEngine;
 using GoogleARCore;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+
 
 /*
 #if UNITY_EDITOR
@@ -15,6 +17,7 @@ using UnityEngine.EventSystems;
 
 public class TrailScript : MonoBehaviour
 {
+	
 
 	public GameObject stickerObject0;
 	public GameObject stickerObject1;
@@ -147,9 +150,14 @@ public class TrailScript : MonoBehaviour
 
 	
 	
+	public GameObject touchedObject = null;
+	Vector3 InicialCamPos;
 
+	public void deselectObject()
+    {
+		touchedObject = null;
 
-	
+	}
 
 	// Update is called once per frame
 	void Update()
@@ -158,6 +166,37 @@ public class TrailScript : MonoBehaviour
 		if (Control.seen_tutorial == true)
 		{
 			TutorialToggle.SetActive(false);
+
+
+		}
+
+		if (Input.GetMouseButtonDown(0) || Input.touchCount > 1)
+		{
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			
+
+			if (Physics.Raycast(ray, out hit, 100))
+			{
+
+				touchedObject = hit.transform.gameObject;
+				InicialCamPos = phonecamera.transform.position;
+				
+
+			}
+
+
+		}
+
+		if (touchedObject != null)
+        {
+			Vector3 camPos = phonecamera.transform.position;
+			Vector3 camDirection = phonecamera.transform.forward;
+			Debug.Log(camDirection);
+			Quaternion camRotation = phonecamera.transform.rotation;
+			Vector3 spawnPos = (camDirection * 0.5f);
+			touchedObject.transform.position = camPos + (camDirection - spawnPos);
+			touchedObject.transform.rotation = camRotation;
 
 
 		}
@@ -171,6 +210,7 @@ public class TrailScript : MonoBehaviour
 			Vector3 camDirection = phonecamera.transform.forward;
 			Quaternion camRotation = phonecamera.transform.rotation;
 			Vector3 spawnPos = (camDirection * spawnDistance);
+			Vector3 spawnPos2 = (camDirection * 0.01f);
 
 			if (hasPlacedLeafAnchor == false)
 			{
@@ -257,7 +297,7 @@ public class TrailScript : MonoBehaviour
 			}
 			else if (stickerType == 12)
 			{
-				GameObject cur = Instantiate(stickerObject12, (camPos + (camDirection - spawnPos)), camRotation); //cria a sticker 12
+				GameObject cur = Instantiate(stickerObject12, (camPos + (camDirection - spawnPos2)), camRotation); //cria a sticker 12
 				cur.transform.SetParent(leafAnchor.transform);
 				placeSticker = false;
 			}

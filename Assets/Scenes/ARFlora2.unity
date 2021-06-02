@@ -650,7 +650,19 @@ MonoBehaviour:
       m_Calls: []
   onDeselected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1636737717}
+        m_TargetAssemblyTypeName: TrailScript, Assembly-CSharp
+        m_MethodName: deselectObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onNothing:
     m_PersistentCalls:
       m_Calls: []
@@ -13911,7 +13923,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248447649449928, guid: cf498fc35b538884db557f7a9a2c0ef9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1995114164396524, guid: cf498fc35b538884db557f7a9a2c0ef9, type: 3}
       propertyPath: m_IsActive
@@ -16272,6 +16284,7 @@ MonoBehaviour:
   placeSticker: 0
   stickerType: 0
   TutorialToggle: {fileID: 1173234925}
+  touchedObject: {fileID: 0}
 --- !u!114 &1636737718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21185,6 +21198,16 @@ PrefabInstance:
         type: 3}
       propertyPath: seen_tutorial
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
+        type: 3}
+      propertyPath: leafStruct.Array.data[0].foundInside
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588096747396063302, guid: e34a4ed8744febd49ae8539118b4b962,
+        type: 3}
+      propertyPath: leafStruct.Array.data[0].foundOutside
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7588096747396063303, guid: e34a4ed8744febd49ae8539118b4b962,
         type: 3}

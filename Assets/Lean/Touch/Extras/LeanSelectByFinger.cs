@@ -19,6 +19,7 @@ namespace Lean.Touch
 		/// <summary>If you enable this then any selected object will automatically be deselected if the finger used to select it is no longer touching the screen.</summary>
 		public bool DeselectWithFingers { set { deselectWithFingers = value; } get { return deselectWithFingers; } } [SerializeField] private bool deselectWithFingers;
 
+
 		/// <summary>This is invoked when an object is selected.</summary>
 		public LeanSelectableLeanFingerEvent OnSelectedFinger { get { if (onSelectedFinger == null) onSelectedFinger = new LeanSelectableLeanFingerEvent(); return onSelectedFinger; } } [SerializeField] private LeanSelectableLeanFingerEvent onSelectedFinger;
 
@@ -93,6 +94,7 @@ namespace Lean.Touch
 				}
 			}
 		}
+		
 
 		protected virtual void Update()
 		{
@@ -101,6 +103,8 @@ namespace Lean.Touch
 				for (var i = selectables.Count - 1; i >= 0; i--)
 				{
 					var selectable = selectables[i];
+					
+					//Debug.Log(publicSelectable[0]);
 
 					if (ShouldRemoveSelectable(selectable) == true)
 					{
