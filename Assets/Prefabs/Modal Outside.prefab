@@ -112,7 +112,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 149.7609, y: 149.7609}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1317728093080475548
 CanvasRenderer:
@@ -219,17 +219,17 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 44005ac1e3c101b4f87de4f659353a0b, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 45
+    m_MaxSize: 55
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 1.03
   m_Text: "\n\n\n\n\n\n<size=60>Encontraste a \xE1rvore\nBordo do Jap\xE3o!</size>\n\nPodes
     agora usar as suas folhas mais tarde\nno ambiente criativo de realidade\n aumentada!"
 --- !u!1 &1317728093242425810
@@ -272,7 +272,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -43.648796}
-  m_SizeDelta: {x: 643.9204, y: 929.6677}
+  m_SizeDelta: {x: 751.0623, y: 1084.3551}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1317728093289397352
 GameObject:
@@ -376,7 +376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10, y: -9.999939}
+  m_AnchoredPosition: {x: 10, y: -10}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1317728093319406312
@@ -1016,7 +1016,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -198}
+  m_AnchoredPosition: {x: 0, y: -225}
   m_SizeDelta: {x: 131.1746, y: 131.1746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7678771607828121709
@@ -1218,8 +1218,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 285.86}
-  m_SizeDelta: {x: 177.9535, y: 177.9535}
+  m_AnchoredPosition: {x: 0, y: 328.71}
+  m_SizeDelta: {x: 246.9401, y: 246.9401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1675891619793206980
 CanvasRenderer:
