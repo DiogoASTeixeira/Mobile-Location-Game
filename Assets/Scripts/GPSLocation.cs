@@ -222,11 +222,23 @@ public class GPSLocation : MonoBehaviour
             PanelManager.ShowNextPanel();
         }
     }
+    public void CloseFoundModal()
+    {
+        leaves[foundLeafIndex].FoundTree();
+        GameControl.control.SaveGame();
+        int c = 0;
+        for (int i = 0; i < leaves.Length; i++)
+        {
+            if (leaves[i].IsTreeFound()) c++;
+        }
+        CounterText.text = c.ToString() + " / " + leaves.Length;
+    }
+
     public void CloseFoundTreeBox()
     {
-        GameControl.control.SaveGame();
         FoundTreeBox.SetActive(false);
         leaves[foundLeafIndex].FoundTree();
+        GameControl.control.SaveGame();
         int c = 0;
         for (int i = 0; i < leaves.Length; i++)
         {
