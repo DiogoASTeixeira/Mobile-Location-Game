@@ -21,6 +21,7 @@ public class GameControl : MonoBehaviour
     public bool seen_intro;
     public bool seen_tutorial;
     public bool load_finished;
+    public GameObject continueGarden;
     /*
     public bool bordo_found;
     public bool pilriteiro_found;
@@ -92,7 +93,10 @@ public class GameControl : MonoBehaviour
 
             }
 
-
+        if (NumberOfFoundTrees() >= 1 || NumberOfFoundLeaves() >= 1)
+        {
+            //continueGarden.SetActive(false);
+        }
     }
 
     private void CreateLeaves()
@@ -145,10 +149,10 @@ public class GameControl : MonoBehaviour
     {
         // string s = GetSupposedScene();
          string s = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("Menu");
+        //SceneManager.LoadScene("Inside");
         if (s != SceneManager.GetActiveScene().name)
         {
-            SceneManager.LoadScene(s);
+            //SceneManager.LoadScene(s);
         }
     }
 

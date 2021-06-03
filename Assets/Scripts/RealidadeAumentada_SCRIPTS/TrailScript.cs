@@ -170,6 +170,7 @@ public class TrailScript : MonoBehaviour
 
 		}
 
+		/*
 		if (Input.GetMouseButtonDown(0) || Input.touchCount > 1)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -201,7 +202,7 @@ public class TrailScript : MonoBehaviour
 
 		}
 
-		
+		*/
 
 
 		if (placeSticker == true)

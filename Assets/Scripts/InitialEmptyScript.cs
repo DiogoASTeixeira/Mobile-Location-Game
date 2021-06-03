@@ -74,9 +74,9 @@ public class InitialEmptyScript : MonoBehaviour
         }
         else
         {
-
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Inside");
             control.CheckSceneTransition();
+            control.NavBar.SetActive(true);
 
         }
     }

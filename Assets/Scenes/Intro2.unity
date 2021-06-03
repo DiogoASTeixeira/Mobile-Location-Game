@@ -966,7 +966,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Menu
+          m_StringArgument: Inside
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1219521546}
+        m_TargetAssemblyTypeName: NavBarToggleScript, Assembly-CSharp
+        m_MethodName: ShowNavBar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &352414024
@@ -2367,6 +2379,7 @@ GameObject:
   - component: {fileID: 1219521543}
   - component: {fileID: 1219521544}
   - component: {fileID: 1219521545}
+  - component: {fileID: 1219521546}
   m_Layer: 5
   m_Name: IntroPanels
   m_TagString: Untagged
@@ -2424,6 +2437,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d3a655168122f140b4bd07e0895bd21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1219521546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219521542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f55af869015a6a4183c6d5efdfc494e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1333823996
