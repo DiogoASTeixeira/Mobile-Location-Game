@@ -51,6 +51,7 @@ public class InsideController : MonoBehaviour
 
     //DEBUG 
     public int points = 0;
+    public int points2 = 0;
 
     // Routines
     public GameObject[] feedbackIcons;
@@ -65,6 +66,7 @@ public class InsideController : MonoBehaviour
     private void Update()
     {
         points = Control.PointCounter.GetCounter();
+        points2 = Control.PointCounter.GetCounter2();
         if (Control.NumberOfFoundLeaves() > 3) playAgain.SetActive(false);
     }
 
@@ -139,11 +141,17 @@ public class InsideController : MonoBehaviour
         }
         else
         {
+            // não castiga o tempo por ter errado
+            if (Control.PointCounter.GetCounter2() < 0)
+            {
+                Control.PointCounter.zeroCounter();
+            }
             // show end panel
             WinStarsScript.UpdateStarUI(Time.time - leafChallenge.TimeStart);
             Control.NavBar.SetActive(true);
             LeavesLeftText.text = "Total Leaves Found: " + Control.NumberOfFoundLeaves() + " / " + Control.Leaves.Length;
-            PointsText.text = "Pontos " + Control.PointCounter.GetCounter();
+            //Its the final counter tununu
+            PointsText.text = "Pontos " + Control.PointCounter.FinalCounter();
             PanelManager.ShowNextPanel();
             Control.SaveGame();
         }
