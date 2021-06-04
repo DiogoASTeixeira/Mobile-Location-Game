@@ -100,7 +100,7 @@ public class GPSLocation : MonoBehaviour
         else if (debug_slider.value <= MEDIUM_PROXIMITY_RADIUS) debug_proximity = Proximity.MEDIUM;
         else if (debug_slider.value <= DISTANT_PROXIMITY_RADIUS) debug_proximity = Proximity.DISTANT;
         else debug_proximity = Proximity.FARAWAY;
-        Debug.Log(debug_slider.value);
+        //Debug.Log(debug_slider.value);
         switch (debug_proximity)
         {
             case Proximity.CLOSE:

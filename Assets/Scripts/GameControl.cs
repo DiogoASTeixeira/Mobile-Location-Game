@@ -79,7 +79,7 @@ public class GameControl : MonoBehaviour
         foreach (Leaf leaf in Leaves)
             if (NumberOfFoundTrees() >= 1)
             {
-                Debug.Log("null");
+                
                 RA.interactable = true;
                 RALockedToolTip.SetActive(false);
                 

@@ -13,11 +13,13 @@ public class UpdateGPSText : MonoBehaviour
     {
         if (gps != null)
         {
+            // Adiciona depois isto se o quiseres
+            /*
             coordinates.text =
                 "Lat: " + gps.selfLatitude.ToString() +
                 "\nLon: " + gps.selfLongitude.ToString() +
                 "\nAcc: " + gps.selfAccuracy.ToString();
-
+            */
 
             if(gps.ActiveNotification != -1)
             {
