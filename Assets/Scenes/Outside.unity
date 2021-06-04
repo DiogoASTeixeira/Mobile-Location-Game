@@ -1799,7 +1799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &231043348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1815,10 +1815,10 @@ RectTransform:
   m_Father: {fileID: 877727612}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 271.5763, y: -661.3056}
+  m_SizeDelta: {x: 443.1526, y: 135.34445}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &231043349
 MonoBehaviour:
@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 126.4
+  m_MinHeight: 122.2
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -7137,7 +7137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Encontras as folhas correspondentes
+  m_text: "Encontras as \xE1rvores correspondentes!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e51ccacbab3be374c8c4a84974f4e339, type: 2}
   m_sharedMaterial: {fileID: -9155424403347483062, guid: e51ccacbab3be374c8c4a84974f4e339,
@@ -10175,7 +10175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 61
+  m_MinHeight: 147.4
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -10572,7 +10572,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.15
+  m_fontSize: 53.3
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12365,7 +12365,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 152.7
+  m_PreferredHeight: 130.5
   m_FlexibleWidth: -1
   m_FlexibleHeight: 1
   m_LayoutPriority: 1
@@ -12389,7 +12389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Bem Vindo(a) ao Jardim Bot\xE2nico do Porto!"
+  m_text: "Bem Vindo(a) ao\n Jardim Bot\xE2nico do Porto!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e51ccacbab3be374c8c4a84974f4e339, type: 2}
   m_sharedMaterial: {fileID: -9155424403347483062, guid: e51ccacbab3be374c8c4a84974f4e339,
@@ -12417,7 +12417,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.05
+  m_fontSize: 65.4
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12453,7 +12453,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 39.276695, y: 20.332142, z: 27.00272, w: 12.841345}
+  m_margin: {x: 0, y: 20.332142, z: 0, w: 5.1451797}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13347,14 +13347,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: -4

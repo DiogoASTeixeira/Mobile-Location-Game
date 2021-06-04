@@ -7,25 +7,28 @@ public class MapTreeFocusApproach : MonoBehaviour
     public GameObject[] treeFoundCircle;
     public CanvasGroup[] treeAlpha;
     public TMPro.TextMeshProUGUI treeCounter;
-    
+    private GameControl Control;
+
     public void Start()
     {
-        
+        Control = GameControl.control;
+        Debug.Log(Control.NumberOfFoundTrees() + " / " + Control.NumberOfFoundLeaves());
+
     }
 
     public void Update()
     {
-        //Debug.Log(MapTreeViewPort.transform.localPosition);
+        treeCounter.text = Control.NumberOfFoundTrees() + " / " + Control.NumberOfFoundLeaves();
 
-        for (short i = 0; i < GameControl.control.Leaves.Length; i++)
+        for (short i = 0; i < Control.Leaves.Length; i++)
         {
-            if (GameControl.control.Leaves[i].IsTreeFound())
+            if (Control.Leaves[i].IsTreeFound())
             {
 
                 if (treeFoundCircle[i] != null )treeFoundCircle[i].SetActive(true);
                 treeAlpha[i].alpha = 0.5f;
-                treeCounter.text = GameControl.control.NumberOfFoundTrees() + " / " + GameControl.control.NumberOfFoundLeaves();
-
+                
+                Debug.Log(Control.NumberOfFoundTrees() + " / " + Control.NumberOfFoundLeaves());
             }
         }
             

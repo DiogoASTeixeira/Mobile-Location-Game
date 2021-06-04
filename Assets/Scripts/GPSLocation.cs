@@ -93,6 +93,7 @@ public class GPSLocation : MonoBehaviour
 
     private void Debug_Update()
     {
+        /*
         //debug_slider.value = (float)lowest_debug_slider_distance;
         foundLeafIndex = debug_tree_index;
 
@@ -101,6 +102,7 @@ public class GPSLocation : MonoBehaviour
         else if (debug_slider.value <= DISTANT_PROXIMITY_RADIUS) debug_proximity = Proximity.DISTANT;
         else debug_proximity = Proximity.FARAWAY;
         //Debug.Log(debug_slider.value);
+        */
         switch (debug_proximity)
         {
             case Proximity.CLOSE:
