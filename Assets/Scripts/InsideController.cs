@@ -23,6 +23,7 @@ public class InsideController : MonoBehaviour
     public Sprite[] feedbackIconsSprites;
     //public Sprite[] FullLeaves;
     public GameObject[] modal;
+    public GameObject playAgain;
 
     //Panel 2 (Camera)
     public TMPro.TextMeshProUGUI CounterText;
@@ -64,6 +65,7 @@ public class InsideController : MonoBehaviour
     private void Update()
     {
         points = Control.PointCounter.GetCounter();
+        if (Control.NumberOfFoundLeaves() > 3) playAgain.SetActive(false);
     }
 
     public void OnCameraPanel()

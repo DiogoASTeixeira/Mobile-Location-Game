@@ -9,6 +9,7 @@ public class CollectionBehaviour : MonoBehaviour
     public Button[] LeafButtons;
     public GameObject[] FoundInsideIndicator;
     public GameObject[] FoundOutsideIndicator;
+    public GameObject findInGardenBtn;
     
     public GameObject[] completedColor;
     public GameObject[] completedCheck;
@@ -21,6 +22,22 @@ public class CollectionBehaviour : MonoBehaviour
     {
         GameControl control = GameControl.control;
         Leaf[] leaves = control.Leaves;
+        if (control.NumberOfFoundLeaves() > 1 && control.NumberOfFoundTrees() != 6) 
+        {
+            findInGardenBtn.SetActive(true);
+        }
+        else if (control.NumberOfFoundLeaves() == 0)
+        {
+            findInGardenBtn.SetActive(false);
+
+        }
+        else
+        {
+            findInGardenBtn.SetActive(false);
+
+        }
+
+
         for (short i = 0; i < leaves.Length; i++)
         {
             if (leaves[i].IsLeafFound())
@@ -42,6 +59,7 @@ public class CollectionBehaviour : MonoBehaviour
                 LeafButtons[i].interactable = false;
                 FoundInsideIndicator[i].SetActive(false);
             }
+            
             debug_AllLeavesOn = 0;
         }
 

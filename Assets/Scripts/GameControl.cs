@@ -93,9 +93,13 @@ public class GameControl : MonoBehaviour
 
             }
 
-        if (NumberOfFoundLeaves() >= 1)
+        if (NumberOfFoundLeaves() > 0)
         {
             continueGarden.interactable = true;
+        }
+        else
+        {
+            continueGarden.interactable = false;
         }
     }
 
