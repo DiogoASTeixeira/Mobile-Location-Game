@@ -225,7 +225,7 @@ public class InsideController : MonoBehaviour
                 Control.azevinho_found = true;
             }
             */
-            Control.PointCounter.CorrectLeaf();
+            Control.PointCounter.CorrectLeaf(GetDifficultyMultiplier());
             WinStarsScript.CorrectGuess();
             //Quiz time
             //ShowQuestion(leafChallenge.GetLeaf());
@@ -430,6 +430,17 @@ public class InsideController : MonoBehaviour
     public void StopCounter()
     {
         Control.PointCounter.StopCounter();
+    }
+
+    private float GetDifficultyMultiplier()
+    {
+        switch(difficulty)
+        {
+            case Difficulty.HARD: return 2.0f;
+            case Difficulty.MEDIUM: return 1.5f;
+            case Difficulty.EASY:
+            default: return 1.0f;
+        }
     }
 
     //TODO detect only in frame
