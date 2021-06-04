@@ -159,15 +159,19 @@ public class InsideController : MonoBehaviour
     {
         if (!Control.HasFoundAllLeaves())
         {
+            /*
             Control.NavBar.SetActive(false);
             CreateLeafChallenge();
-            UpdateUICameraPanel();
+            //UpdateUICameraPanel();
             LowerSection.SetActive(true);
             QuestionBox.SetActive(false);
-            Control.PointCounter.StartCounter();
+            //Control.PointCounter.StartCounter();
             SkipBtn.gameObject.SetActive(true);
 
             PanelManager.ShowPreviousPanel();
+            PanelManager.ShowPreviousPanel();
+            */
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Inside");
         }
     }
 
@@ -423,7 +427,10 @@ public class InsideController : MonoBehaviour
         Debug.LogWarning("DONE");
     }
 
-
+    public void StopCounter()
+    {
+        Control.PointCounter.StopCounter();
+    }
 
     //TODO detect only in frame
     private bool IsLeafOnScreenCenter(int leafNumber)
