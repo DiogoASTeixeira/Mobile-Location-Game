@@ -8,7 +8,6 @@ public class InitialEmptyScript : MonoBehaviour
     public GameObject panel;
     public Vuforia.VuforiaBehaviour vuforia;
 
-    private static bool clicked_request_btn = false;
     private static bool started = false;
     void Awake()
     {
@@ -40,7 +39,6 @@ public class InitialEmptyScript : MonoBehaviour
             string[] permissions = { Permission.Camera, Permission.FineLocation };
             Permission.RequestUserPermissions(permissions);
 
-            clicked_request_btn = true;
         }
     }
 

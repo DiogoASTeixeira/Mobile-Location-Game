@@ -187,6 +187,8 @@ public class GPSLocation : MonoBehaviour
                         break;
                     }
             }
+
+            // Move map view to nearby tree
             currentViewPortIndex = closest_index;
             currentViewPortProximity = closest_proximity;
             if (currentViewPortProximity < previousViewPortProximity || currentViewPortIndex != previousViewPortIndex)

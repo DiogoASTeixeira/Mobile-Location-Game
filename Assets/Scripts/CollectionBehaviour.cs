@@ -180,7 +180,6 @@ public class CollectionBehaviour : MonoBehaviour
         {
             GameControl control = GameControl.control;
             Leaf[] leaves = control.Leaves;
-            int n = 0;
             for (int i = 0; i < leaves.Length; i++)
             {
                 leaves[i].FoundLeaf();
@@ -195,7 +194,6 @@ public class CollectionBehaviour : MonoBehaviour
         {
             GameControl control = GameControl.control;
             Leaf[] leaves = control.Leaves;
-            int n = 0;
             for (int i = 0; i < leaves.Length; i++)
             {
                 leaves[i].FoundTree();

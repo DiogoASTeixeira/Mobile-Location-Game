@@ -10,7 +10,7 @@ public class Leaf
 
     public readonly string speciesName;
     public readonly string scientificName;
-    public readonly string information;
+    //public readonly string information;
     private readonly MyVector2 treeCoordinates;
     private bool foundInside = false;
     private bool foundOutside = false;
@@ -24,7 +24,7 @@ public class Leaf
         public string speciesName;
         public string scientificName;
         public double latitude, longitude;
-        public string information;
+        //public string information;
 
         // Use for Testing
         public bool foundInside;
@@ -36,7 +36,7 @@ public class Leaf
      {
         speciesName = stru.speciesName;
         scientificName = stru.scientificName;
-        information = stru.information;
+        //information = stru.information;
         treeCoordinates = new MyVector2(stru.latitude, stru.longitude);
         foundInside = stru.foundInside;
         foundOutside = stru.foundOutside;

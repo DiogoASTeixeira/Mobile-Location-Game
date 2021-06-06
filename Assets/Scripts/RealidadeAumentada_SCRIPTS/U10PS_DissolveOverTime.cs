@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
@@ -7,8 +6,6 @@ public class U10PS_DissolveOverTime : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
     public Material newMat;
-    RaycastHit hit;
-    private bool dissolveToggle;
 
     public float speed = .5f;
 
@@ -47,7 +44,6 @@ public class U10PS_DissolveOverTime : MonoBehaviour
            // this.GetComponent<Renderer>().material = newMat;
 
             StartCoroutine("DestroyDissolveNext");
-            dissolveToggle = true;
 
         }
     }

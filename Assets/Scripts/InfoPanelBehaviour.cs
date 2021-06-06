@@ -14,6 +14,6 @@ public class InfoPanelBehaviour : UnityEngine.MonoBehaviour
         Leaf leaf = GameControl.control.Leaves[leafIndex];
         Species.text = leaf.scientificName;
         //Family.text = leaf.family; TODO
-        Information.text = leaf.information;
+        //Information.text = leaf.information;
     }
 }
